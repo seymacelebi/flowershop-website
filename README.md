@@ -21,8 +21,8 @@ Project is created with:
 *  Javascript
 
 ## Pictures
-*![First Page](./images/aaa1.web.png)
-*![First Page](./images/aaa2.web.png)
-*![First Page](./images/aaa3.web.png)
-*![First Page](./images/aaa4.web.png)
-*![First Page](./images/aaa5.web.png)
+*![First Page](./images/aaa1.png)
+*![First Page](./images/aaa2.png)
+*![First Page](./images/aaa3.png)
+*![First Page](./images/aaa.png)
+*![First Page](./images/aaa5.png)
