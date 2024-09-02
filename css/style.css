@@ -320,6 +320,7 @@ header .fa-bars {
   border-radius: 0.5rem;
   padding: 3rem 2rem;
   position: relative;
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
 }
 
 .review .box-container .box .fas-fa-quote-right {
@@ -328,6 +329,37 @@ header .fa-bars {
   right: 3rem;
   font-size: 6rem;
   color: #eee;
+}
+.review .box-container .box .stars i {
+  color: var(--pink);
+  font-size: 2rem;
+}
+.review .box-container .box p {
+  color: #999;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding-top: 2rem;
+}
+
+.review .box-container .box .user {
+  display: flex;
+  align-items: center;
+  padding-top: 2rem;
+}
+.review .box-container .box .user img {
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+.review .box-container .box .user h3 {
+  font-size: 2rem;
+  color: #333;
+}
+.review .box-container .box .user span {
+  font-size: 1.5rem;
+  color: #999;
 }
 
 .contact .row {
@@ -350,27 +382,55 @@ header .fa-bars {
 .contact .row form .image img {
   width: 100%;
 }
-.contact .row form .box{
-    padding: 1rem;
-    font-size: 1.7rem;
-    color: #333;
-    text-transform: none;
-    border: .1rem solid rgba(0, 0, 0, 0.1);
-    border-radius: .5rem;
-    margin: .7rem 0;
-    width: 100%;
+.contact .row form .box {
+  padding: 1rem;
+  font-size: 1.7rem;
+  color: #333;
+  text-transform: none;
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  margin: 0.7rem 0;
+  width: 100%;
 }
-.contact .row form .box:focus{
-    border-color: var(--pink);
+.contact .row form .box:focus {
+  border-color: var(--pink);
 }
-.contact .row form textarea{
-    height: 15rem;
-    resize: none;
+.contact .row form textarea {
+  height: 15rem;
+  resize: none;
+}
+.contact .image img {
+  width: 75%; /* Ebeveyn genişliğinin %50'si kadar küçültür */
+  height: auto; /* Oranını korumak için */
+  max-width: 430px; /* Maksimum genişliği 300 piksel ile sınırlar */
 }
 
+.footer .box-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
 
+.footer .box-container .box {
+  flex: 1 1 25rem;
+}
 
+.footer .box-container .box h3 {
+  color: #333;
+  font-size: 2.5rem;
+  padding: 1rem 0;
+}
 
+.footer .box-container .box a {
+  display: block;
+  color: #666;
+  font-size: 1.5rem;
+  padding: 1rem 0;
+}
+.footer .box-container .box a:hover {
+  color: var(--pink);
+  text-decoration: underline;
+}
 /* media queries */
 @media (max-with: 991px) {
   html {
