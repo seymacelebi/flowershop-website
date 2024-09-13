@@ -52,6 +52,7 @@ section {
   background: var(--pink);
 }
 
+
 header {
   position: fixed;
   top: 0;
@@ -145,6 +146,59 @@ header .fa-bars {
 .home .content span {
   font-size: 2.5rem;
 }
+/* Genel Stil */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Alışveriş Sepeti Başlığı */
+#cart-items {
+  padding-top: 100px; /* Üst kısımdan boşluk bırak */
+}
+
+#cart-items .heading {
+  font-size: 36px; /* Başlık boyutunu ayarla */
+  color: #ff007f; /* Pembe tonlarında bir renk */
+  text-align: center; /* Ortaya hizala */
+  font-weight: bold;
+  margin-bottom: 50px; /* Başlık altına boşluk bırak */
+}
+
+#cart-items .heading span {
+  color: #333; /* "carts" kelimesini daha koyu bir renk yap */
+}
+
+/* Box-Container Stili */
+#cart-items .box-container {
+  display: flex; /* Sepet öğelerini yan yana yerleştirmek için flex kullan */
+  flex-wrap: wrap; /* Satır taşarsa yeni satıra geç */
+  justify-content: center; /* Öğeleri yatayda ortala */
+  gap: 20px; /* Öğeler arasında boşluk bırak */
+  padding: 20px; /* Kenarlardan içeri boşluk bırak */
+}
+
+/* Sepet Öğesi Kutusu */
+#cart-items .box-container .box {
+  background-color: #f9f9f9; /* Sepet kutusunun arka planı */
+  border: 1px solid #ddd; /* İnce bir kenarlık */
+  border-radius: 10px; /* Kenarları yuvarla */
+  width: 300px; /* Sabit genişlik */
+  padding: 20px; /* İçerik için boşluk */
+  text-align: center; /* İçeriği ortala */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+  margin-bottom: 20px; /* Kutular arasında dikey boşluk bırak */
+}
+
+/* Mobil Görünüm için Düzenleme */
+@media screen and (max-width: 768px) {
+  #cart-items .box-container {
+    flex-direction: column; /* Mobilde sepet öğelerini alt alta yerleştir */
+  }
+}
+
 
 .about .row {
   display: flex;
