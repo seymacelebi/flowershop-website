@@ -4,7 +4,7 @@ const products = [
     id:1,
     discount: "-10%",
     imageSrc: "images/flower4.jpg",
-    title: "flower pot",
+    title: "A",
     price: "$12.99",
     originalPrice: "$15.99",
     cartText: "add to cart",
@@ -33,7 +33,7 @@ const products = [
     imageSrc: "images/flower4.jpg",
     title: "flower pot",
     price: "$12.99",
-    originalPrice: "$15.99",
+    originalPrice: "$150.99",
     cartText: "add to cart",
   },
   {
@@ -96,6 +96,10 @@ const products = [
 function createProductBoxes() {
   const container = document.getElementById("product-container");
 
+  if (!container) {
+    return;
+  }
+
   products.forEach((product) => {
     // Yeni bir 'box' div'i oluştur
     const box = document.createElement("div");
@@ -123,8 +127,11 @@ function createProductBoxes() {
   });
 }
 
-// Fonksiyonu çağırarak ürün kutularını oluştur
-document.addEventListener("DOMContentLoaded", createProductBoxes);
+// Sayfa yüklendiğinde fonksiyonu çalıştır
+document.addEventListener("DOMContentLoaded", function() {
+  createProductBoxes();
+});
+
 
 let cart = [];
 
@@ -148,27 +155,50 @@ function addToCart(buttonElement) {
   updateCartDisplay();
 }
 
-// Sepet içeriğini ekrana yazdırma işlevi
-function updateCartDisplay() {
-  const cartContainer = document.getElementById("cart-container");
+// Sepetteki ürünleri gösterme fonksiyonu
+function displayCartItems() {
+  const cartContainer = document.getElementById("cart-container"); // Sepet için HTML'de oluşturulmuş bir element
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  if (!cartContainer) {
-    console.log("Cart container bulunamadı.");
+  if (cart.length === 0) {
+    cartContainer.innerHTML = "<p>Sepetiniz boş.</p>";
     return;
   }
 
-  cartContainer.innerHTML = "";
-
-  cart.forEach((product, index) => {
-    const cartItem = document.createElement("div");
-    cartItem.className = "cart-item";
-    cartItem.innerHTML = `
-      <p>${product.title} - ${product.price}</p>
-      <button onClick="removeFromCart(${index})">Remove</button>
+  cart.forEach(product => {
+    const productElement = document.createElement("div");
+    productElement.className = "cart-item";
+    productElement.innerHTML = `
+      <h3>${product.title}</h3>
+      <p>${product.price}</p>
     `;
-    cartContainer.appendChild(cartItem);
+    cartContainer.appendChild(productElement);
   });
 }
+
+// Sepet sayfası yüklendiğinde çalıştır
+window.onload = displayCartItems;
+
+
+function displayCartItems() {
+  const cartContainer = document.getElementById('cart-container'); // Sepet için HTML'de oluşturulmuş bir element
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+  cart.forEach(product => {
+      let productElement = document.createElement('div');
+      productElement.classList.add('cart-item');
+      productElement.innerHTML = `
+          <h3>${product.name}</h3>
+          <p>Price: ${product.price}</p>
+          <p>Quantity: ${product.quantity}</p>
+      `;
+      cartContainer.appendChild(productElement);
+  });
+}
+
+window.onload = displayCartItems; // Sayfa yüklendiğinde sepeti göster
+
+
 
 // Sepet simgesindeki ürün sayısını güncelleme işlevi
 function updateCartCount() {
