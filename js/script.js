@@ -93,41 +93,6 @@ const products = [
 ];
 
 
-// Ürün kutularını oluşturma fonksiyonu
-function createProductBoxes() {
-  const container = document.getElementById("product-container");
-
-  if (!container) {
-    return;
-  }
-
-  products.forEach((product) => {
-    // Yeni bir 'box' div'i oluştur
-    const box = document.createElement("div");
-    box.className = "box";
-
-    // 'box' div'inin içeriğini oluştur
-    box.innerHTML = `
-        <span class="discount">${product.discount}</span>
-        <div class="image">
-          <img src="${product.imageSrc}" alt="${product.title}" />
-          <div class="icons">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#products" class="cart-btn" onClick="addToCart(this)">${product.cartText}</a>
-            <a href="#" class="fas fa-share"></a>
-          </div>
-        </div>
-        <div class="content">
-          <h3>${product.title}</h3>
-          <div class="price">${product.price} <span>${product.originalPrice}</span></div>
-        </div>
-      `;
-
-    // 'box' div'ini container'a ekle
-    container.appendChild(box);
-  });
-}
-
 // Sayfa yüklendiğinde fonksiyonu çalıştır
 document.addEventListener("DOMContentLoaded", function() {
   createProductBoxes();
@@ -178,14 +143,23 @@ document.addEventListener("DOMContentLoaded", function() {
 // Sepete ekleme işlevi
 function addToCart(buttonElement) {
   const boxElement = buttonElement.closest(".box");
+  console.log(boxElement, "boxElement")
+
   const productTitle = boxElement.querySelector("h3").innerText;
   const productPrice = boxElement.querySelector(".price").childNodes[0].textContent.trim();
+
+  const productImage = boxElement.querySelector(".image img").src;
+  console.log(productImage); // Bu, doğru resim kaynağını gösteriyor mu?
+  
 
   const productInCart = {
     title: productTitle,
     price: productPrice,
-    quantity: 1
+    quantity: 1,
+    image : productImage
   };
+
+  console.log(productInCart, "productInCart")
 
   const existingProduct = cart.find(product => product.title === productInCart.title);
   
@@ -215,32 +189,55 @@ function updateCartDisplay() {
   displayCartItems(); // Sepeti yeniden oluştur
 }
 
-// Sepetteki ürünleri göstermek için kullanılan işlev
+
 function displayCartItems() {
+ 
   const cartContainer = document.getElementById('cart-container');
+
   if (!cartContainer) {
     return null; // Eğer sepet container yoksa, fonksiyonu durdur
   }
 
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+  console.log(cart, "cart2")
+
   if (cart.length === 0) {
     cartContainer.innerHTML = "<p>Sepetiniz boş.</p>";
     return;
   }
-  
-  cart.forEach((product, index) => {
-    let productElement = document.createElement('div');
-    productElement.classList.add('cart-item');
-    productElement.innerHTML = `
-        <h3>${product.title}</h3>
-        <p>Price: ${product.price}</p>
-        <p>Quantity: ${product.quantity}</p>
-        <button onclick="removeFromCart(${index})">Remove</button>
+
+  cartContainer.innerHTML = ""; // Eski içerikleri temizle
+  console.log("deneme", cart)
+
+  cart.forEach((item, index) => {
+    const box = document.createElement("div");
+    box.className = "box";
+
+    box.innerHTML = `
+      <div class="image">
+        <img src="${item.image}" alt="${item.title}" />
+      </div>
+      <div class="content">
+        <h3>${item.title}</h3>
+        <div class="price">${item.price}</div>
+        <button class="btn-cart btn" onclick="removeFromCart(${index})">Remove</button>
+      </div>
     `;
-    cartContainer.appendChild(productElement);
+
+    cartContainer.appendChild(box);
   });
 }
+
+function removeFromCart(index) {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  cart.splice(index, 1); // Belirtilen ürünü sepetten çıkar
+
+  localStorage.setItem('cart', JSON.stringify(cart)); // Güncellenmiş sepeti localStorage'e kaydet
+  displayCartItems(); // Sepeti yeniden güncelle
+}
+
 
 // Sepetten ürün çıkarma işlevi
 function removeFromCart(index) {
@@ -249,3 +246,4 @@ function removeFromCart(index) {
   updateCartCount(); // Sepet simgesindeki ürün sayısını güncelle
   updateCartDisplay(); // Sepeti yeniden göster
 }
+
