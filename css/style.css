@@ -199,6 +199,32 @@ body {
   }
 }
 
+.round-button {
+  width: 40px;
+  height: 40px;
+  background-color: #fff; /* Yeşil arka plan */
+  color: black; /* Beyaz yazı rengi */
+  border: none; /* Kenarlık yok */
+  border-radius: 50%; /* Yuvarlak şekil */
+  font-size: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(155, 103, 103, 0.2); /* Hafif gölge efekti */
+  transition: background-color 0.3s, transform 0.2s; /* Animasyon */
+}
+
+
+.button-container {
+  display: flex; /* Butonları yan yana dizer */
+  gap: 10px; /* Butonlar arasına boşluk bırakır */
+  justify-content: center; /* Ortalar */
+  align-items: center; /* Dikeyde ortalar */
+  margin-top: 20px; /* Yukarıdan boşluk bırakır */
+}
+
+
 
 .about .row {
   display: flex;
