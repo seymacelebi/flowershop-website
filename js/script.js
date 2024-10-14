@@ -222,7 +222,10 @@ function displayCartItems() {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   if (cart.length === 0) {
-    cartContainer.innerHTML = "<p>Sepetiniz boş.</p>";
+    cartContainer.innerHTML = `
+      <span style="background-color:#fff; display: inline-block; width: 90%; height: 160%;  font-size: 30px; text-align: center;">
+        <p>Basket Empty.</p>
+      </span>`;
     return;
   }
 
