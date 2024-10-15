@@ -98,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let favorite = JSON.parse(localStorage.getItem("favorite")) || [];
 
 // Ürün kutularını oluşturma fonksiyonu
 function createProductBoxes() {
@@ -116,7 +117,7 @@ function createProductBoxes() {
         <div class="image">
           <img src="${product.imageSrc}" alt="${product.title}" />
           <div class="icons">
-            <a href="#" class="fas fa-heart"></a>
+          <a href="#productFav" onClick="addToFavorite(this)" class="fas fa-heart"></a>
             <a href="#products" class="cart-btn" onClick="addToCart(this)">${product.cartText}</a>
             <a href="#" class="fas fa-share"></a>
           </div>
@@ -136,6 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
   createProductBoxes();
   updateCartCount(); // Sayfa yüklendiğinde sepet simgesindeki sayıyı güncelle
   displayCartItems(); // Sepetteki ürünleri göster
+  displayFavoriteItems();
 });
 
 // Sepete ekleme işlevi
@@ -211,7 +213,7 @@ function updateQuantity(event, change) {
   displayCartItems();
 }
 
-// Function to display cart items
+// Function to display SHOPPING cart items 
 function displayCartItems() {
   const cartContainer = document.getElementById("cart-container");
 
@@ -273,20 +275,12 @@ function displayCartItems() {
   );
 }
 
-// Example removeFromCart function
-function removeFromCart(index) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cart.splice(index, 1);
-  localStorage.setItem("cart", JSON.stringify(cart));
-  displayCartItems(); // Refresh the cart display
-}
+
 
 
 function removeFromCart(index) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
   cart.splice(index, 1); // Belirtilen ürünü sepetten çıkar
-
   localStorage.setItem("cart", JSON.stringify(cart)); // Güncellenmiş sepeti localStorage'e kaydet
   displayCartItems(); // Sepeti yeniden güncelle
 }
@@ -297,4 +291,96 @@ function removeFromCart(index) {
   localStorage.setItem("cart", JSON.stringify(cart)); // Güncel sepeti kaydet
   updateCartCount(); // Sepet simgesindeki ürün sayısını güncelle
   updateCartDisplay(); // Sepeti yeniden göster
+}
+
+
+//Favorilere ekleme işlemi
+function addToFavorite(buttonElement){
+  const boxElement = buttonElement.closest(".box");
+  console.log(boxElement, "boxElementFav");
+
+  const productTitle = boxElement.querySelector("h3").innerText;
+  const productPrice = boxElement
+    .querySelector(".price")
+    .childNodes[0].textContent.trim();
+
+  const productImage = boxElement.querySelector(".image img").src;
+
+  const productInFavorite = {
+    title: productTitle,
+    price: productPrice,
+    quantity: 1,
+    image: productImage,
+  };
+
+  console.log(productInFavorite, "productInFavorite");
+
+  const existingProduct = cart.find(
+    (product) => product.title === productInFavorite.title
+  );
+
+  if (existingProduct) {
+    existingProduct.quantity += 1; // Miktar artır
+  } else {
+    favorite.push(productInFavorite); // Yeni ürünü sepete ekle
+  }
+
+   localStorage.setItem("favorite", JSON.stringify(favorite));
+
+
+}
+
+
+// FAVORITE PRODUCT DISPLAY
+function displayFavoriteItems() {
+  const favoriteContainer = document.getElementById("favorite-container");
+  console.log(favoriteContainer, "favoriteContainer")
+
+  if (!favoriteContainer) {
+    return null; // Stop if cart container doesn't exist
+  }
+
+  let  favorite = JSON.parse(localStorage.getItem("favorite")) || [];
+
+  console.log(favorite, "favorite")
+
+  if (favorite.length === 0) {
+    favoriteContainer.innerHTML = `
+      <span style="background-color:#fff; display: inline-block; width: 90%; height: 160%;  font-size: 30px; text-align: center;">
+        <p>Favorite page Empty.</p>
+      </span>`;
+    return;
+  }
+
+  favoriteContainer.innerHTML = ""; // Clear old content
+
+  favorite.forEach((item, index) => {
+    const box = document.createElement("div");
+    box.className = "box";
+
+    box.innerHTML = `
+      <div class="image">
+        <img src="${item.image}" alt="${item.title}" />
+      </div>
+      <div class="content">
+        <h3>${item.title}</h3>
+        <div class="price">$${item.price}</div>
+        <div class="quantity" id="quantity-${index}"><h1>Quantity: ${item.quantity}</h1></div>      
+        <button class="btn-cart btn" onclick="removeFromFavorite(${index})">Remove</button>
+      </div>
+    `;
+
+    favoriteContainer.appendChild(box);
+  });
+
+
+}
+
+// REMOVE FAVORITE PRODUCT
+
+function removeFromFavorite(index){
+  let favorite = JSON.parse(localStorage.getItem("favorite")) || [];
+  favorite.splice(index, 1);
+  localStorage.setItem("favorite", JSON.stringify(favorite));
+  displayFavoriteItems(); // Refresh the cart display
 }

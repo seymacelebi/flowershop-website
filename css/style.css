@@ -365,6 +365,34 @@ body {
   font-weight: bolder;
   padding-top: 1rem;
 }
+/* ******* FAVORITE CONTAINER */
+#favorite-container .image img {
+  height: 25rem; /* İstediğin yüksekliği buraya yaz */
+  width: auto;   /* Oranların korunması için genişliği otomatik yap */
+  object-fit: cover; /* İstersen resmi kutuya sığdır */
+}
+#favorite-container .image .icons a{
+  height: 5rem;
+  line-height: 5rem;
+  font-size: 2rem;
+  width: 50%;
+  background: var(--pink);
+  color: #fff;
+}
+#favorite-container .image .box .content{
+  padding: 2rem;
+  text-align: center;
+}
+#favorite-container .box .content h3 {
+  font-size: 2.5rem;
+  color: #333;
+}
+#favorite-container .box .content .price {
+  font-size: 2.5rem;
+  color: var(--pink);
+  font-weight: bolder;
+  padding-top: 1rem;
+}
 
 .products .box-container .box:hover .image img {
   transform: scale(1.1);
