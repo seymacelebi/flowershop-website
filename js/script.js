@@ -5,7 +5,7 @@ const products = [
     discount: "-10%",
     imageSrc: "images/flower4.jpg",
     title: "Rose",
-    price:"12.99",
+    price: "12.99",
     originalPrice: "$15.99",
     cartText: "add to cart",
   },
@@ -14,7 +14,7 @@ const products = [
     discount: "-10%",
     imageSrc: "images/flower4.jpg",
     title: "Tulip",
-    price:"12.99",
+    price: "12.99",
     originalPrice: "$15.99",
     cartText: "add to cart",
   },
@@ -23,7 +23,7 @@ const products = [
     discount: "-10%",
     imageSrc: "images/flower4.jpg",
     title: "Daisy",
-    price:"12.99",
+    price: "12.99",
     originalPrice: "$15.99",
     cartText: "add to cart",
   },
@@ -32,7 +32,7 @@ const products = [
     discount: "-10%",
     imageSrc: "images/flower4.jpg",
     title: "Sunflower",
-    price:"12.99",
+    price: "12.99",
     originalPrice: "$150.99",
     cartText: "add to cart",
   },
@@ -41,7 +41,7 @@ const products = [
     discount: "-10%",
     imageSrc: "images/flower4.jpg",
     title: "Lily",
-    price:"12.99",
+    price: "12.99",
     originalPrice: "$15.99",
     cartText: "add to cart",
   },
@@ -50,7 +50,7 @@ const products = [
     discount: "-10%",
     imageSrc: "images/flower4.jpg",
     title: "Orchid",
-    price:"12.99",
+    price: "12.99",
     originalPrice: "$15.99",
     cartText: "add to cart",
   },
@@ -59,7 +59,7 @@ const products = [
     discount: "-10%",
     imageSrc: "images/flower4.jpg",
     title: "Lavender",
-    price:"12.99",
+    price: "12.99",
     originalPrice: "$15.99",
     cartText: "add to cart",
   },
@@ -77,7 +77,7 @@ const products = [
     discount: "-10%",
     imageSrc: "images/flower4.jpg",
     title: "Daffodil",
-    price:"12.99",
+    price: "12.99",
     originalPrice: "$15.99",
     cartText: "add to sepet",
   },
@@ -86,7 +86,7 @@ const products = [
     discount: "-10%",
     imageSrc: "images/flower4.jpg",
     title: "Chrysanthemum",
-    price:"12.99",
+    price: "12.99",
     originalPrice: "$15.99",
     cartText: "add to cart",
   },
@@ -101,6 +101,7 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let favorite = JSON.parse(localStorage.getItem("favorite")) || [];
 
 // Ürün kutularını oluşturma fonksiyonu
+// Ayrıca toast notification da var içinde
 function createProductBoxes() {
   const container = document.getElementById("product-container");
 
@@ -117,7 +118,7 @@ function createProductBoxes() {
         <div class="image">
           <img src="${product.imageSrc}" alt="${product.title}" />
           <div class="icons">
-          <a href="#productFav" onClick="addToFavorite(this)" class="fas fa-heart"></a>
+          <a href="#productFav"  onClick="addToFavorite(this)" class="fas fa-heart"></a>
             <a href="#products" class="cart-btn" onClick="addToCart(this)">${product.cartText}</a>
             <a href="#" class="fas fa-share"></a>
           </div>
@@ -127,6 +128,32 @@ function createProductBoxes() {
           <div class="price">${product.price} <span>${product.originalPrice}</span></div>
         </div>
       `;
+
+    // Yeni eklenen cart-btn'a tıklama olayı ekleniyor
+    const cartBtn = box.querySelector(".cart-btn");
+    cartBtn.addEventListener("click", function () {
+      Toastify({
+        text: "Product added cart succesfully!",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#28a745",
+        close: true,
+      }).showToast();
+    });
+
+    // Favorilere ekle butonuna tıklama olayı
+    const favoriteBtn = box.querySelector(".fa-heart");
+    favoriteBtn.addEventListener("click", function () {
+      Toastify({
+        text: "Product added to favorites successfully!",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#FF6347", // Farklı bir renk
+        close: true,
+      }).showToast();
+    });
 
     container.appendChild(box);
   });
@@ -192,12 +219,11 @@ function updateCartDisplay() {
   displayCartItems(); // Sepeti yeniden oluştur
 }
 
-
 // Function to update quantity and save to localStorage
 function updateQuantity(event, change) {
   const index = event.target.getAttribute("data-index");
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  
+
   // Update quantity
   cart[index].quantity += change;
 
@@ -208,12 +234,12 @@ function updateQuantity(event, change) {
 
   // Save updated cart back to localStorage
   localStorage.setItem("cart", JSON.stringify(cart));
-  
+
   // Refresh the cart display
   displayCartItems();
 }
 
-// Function to display SHOPPING cart items 
+// Function to display SHOPPING cart items
 function displayCartItems() {
   const cartContainer = document.getElementById("cart-container");
 
@@ -247,7 +273,9 @@ function displayCartItems() {
       <div class="content">
         <h3>${item.title}</h3>
         <div class="price">$${item.price}</div>
-        <div class="quantity" id="quantity-${index}"><h1>Quantity: ${item.quantity}</h1></div>
+        <div class="quantity" id="quantity-${index}"><h1>Quantity: ${
+      item.quantity
+    }</h1></div>
         <div class="button-container">
           <button class="round-button increase" data-index="${index}">+</button>
           <button class="round-button decrease" data-index="${index}">-</button>
@@ -275,9 +303,6 @@ function displayCartItems() {
   );
 }
 
-
-
-
 function removeFromCart(index) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   cart.splice(index, 1); // Belirtilen ürünü sepetten çıkar
@@ -293,12 +318,9 @@ function removeFromCart(index) {
   updateCartDisplay(); // Sepeti yeniden göster
 }
 
-
 //Favorilere ekleme işlemi
-function addToFavorite(buttonElement){
+function addToFavorite(buttonElement) {
   const boxElement = buttonElement.closest(".box");
-  console.log(boxElement, "boxElementFav");
-
   const productTitle = boxElement.querySelector("h3").innerText;
   const productPrice = boxElement
     .querySelector(".price")
@@ -313,8 +335,6 @@ function addToFavorite(buttonElement){
     image: productImage,
   };
 
-  console.log(productInFavorite, "productInFavorite");
-
   const existingProduct = cart.find(
     (product) => product.title === productInFavorite.title
   );
@@ -325,24 +345,18 @@ function addToFavorite(buttonElement){
     favorite.push(productInFavorite); // Yeni ürünü sepete ekle
   }
 
-   localStorage.setItem("favorite", JSON.stringify(favorite));
-
-
+  localStorage.setItem("favorite", JSON.stringify(favorite));
 }
-
 
 // FAVORITE PRODUCT DISPLAY
 function displayFavoriteItems() {
   const favoriteContainer = document.getElementById("favorite-container");
-  console.log(favoriteContainer, "favoriteContainer")
 
   if (!favoriteContainer) {
     return null; // Stop if cart container doesn't exist
   }
 
-  let  favorite = JSON.parse(localStorage.getItem("favorite")) || [];
-
-  console.log(favorite, "favorite")
+  let favorite = JSON.parse(localStorage.getItem("favorite")) || [];
 
   if (favorite.length === 0) {
     favoriteContainer.innerHTML = `
@@ -365,20 +379,17 @@ function displayFavoriteItems() {
       <div class="content">
         <h3>${item.title}</h3>
         <div class="price">$${item.price}</div>
-        <div class="quantity" id="quantity-${index}"><h1>Quantity: ${item.quantity}</h1></div>      
         <button class="btn-cart btn" onclick="removeFromFavorite(${index})">Remove</button>
       </div>
     `;
 
     favoriteContainer.appendChild(box);
   });
-
-
 }
 
 // REMOVE FAVORITE PRODUCT
 
-function removeFromFavorite(index){
+function removeFromFavorite(index) {
   let favorite = JSON.parse(localStorage.getItem("favorite")) || [];
   favorite.splice(index, 1);
   localStorage.setItem("favorite", JSON.stringify(favorite));
