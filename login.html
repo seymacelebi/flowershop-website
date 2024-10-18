@@ -36,110 +36,135 @@
       </div>
     </header>
 
+    <!-- Login Section -->
+    <main class="login-container">
+      <div class="login-box">
+        <h1 class="heading">Login <span>Page</span></h1>
+        <form id="login-form" method="post">
+          <label for="email">E-mail</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter email address"
+            required
+          />
 
-   <!-- Login Section -->
-<main class="login-container">
-    <div class="login-box">
-      <h1 class="heading">Login <span>Page</span></h1>
-      <form id="login-form">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" placeholder="Enter email address" required>
-  
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Enter password" required>
-  
-        <div class="form-options">
-          <label>
-            <input type="checkbox"> I accept the terms of membership
-          </label>
-          <a href="#">I forgot my password</a>
-        </div>
-  
-        <button type="submit" class="login-btn">Login</button>
-        <button type="button" class="google-login">Login with Google</button>
-      </form>
-    </div>
-  </main>
-  
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter password"
+            required
+          />
 
+          <div class="form-options">
+            <label>
+              <input type="checkbox" required /> I accept the terms of
+              membership
+            </label>
+            <a href="#">I forgot my password</a>
+          </div>
+
+          <button type="submit" class="login-btn">Login</button>
+          <button type="button" class="google-login">Login with Google</button>
+        </form>
+      </div>
+    </main>
   </body>
 </html>
 
-
 <script>
-const loginForm = document.getElementById("login-form");
+  // const loginForm = document.getElementById("login-form");
 
-loginForm.addEventListener('submit', (event) => {
-  event.preventDefault(); // Prevents page reload on submit
+  // loginForm.addEventListener('submit', (event) => {
+  //   event.preventDefault(); // Prevents page reload on submit
 
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+  //   const email = document.getElementById('email').value;
+  //   const password = document.getElementById('password').value;
 
-  // Store email and password in localStorage
-  localStorage.setItem('email', email);
-  localStorage.setItem('password', password);
+  //   // Store email and password in localStorage
+  //   localStorage.setItem('email', email);
+  //   localStorage.setItem('password', password);
 
-  console.log('Logged in:', { email, password });
-});
+  //   console.log('Logged in:', { email, password });
 
+  // });
+
+  // JavaScript to handle form submission
+
+  const loginForm = document.getElementById("login-form");
+
+  loginForm.addEventListener("submit", function (event) {
+    event.preventDefault(); // Sayfanın yeniden yüklenmesini engeller
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    // Basit kontrol (E-posta ve şifre alanları boş değilse)
+    if (email && password) {
+      window.location.href = "user.html"; // user.html sayfasına yönlendir
+    } else {
+      alert("Please enter both email and password!");
+    }
+  });
 </script>
 
 <style>
-/* Login Section */
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 90vh;
-  
-}
+  /* Login Section */
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+  }
 
-.login-box {
-  background-color: white;
-  padding: 30px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  width: 600px;
-  text-align: center;
-}
+  .login-box {
+    background-color: white;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 600px;
+    text-align: center;
+  }
 
-.login-box h2 {
-  margin-bottom: 20px;
-}
+  .login-box h2 {
+    margin-bottom: 20px;
+  }
 
-form {
-  display: flex;
-  flex-direction: column;
-}
+  form {
+    display: flex;
+    flex-direction: column;
+  }
 
-input[type="email"], input[type="password"] {
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
+  input[type="email"],
+  input[type="password"] {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
 
-.form-options {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px 0;
-}
+  .form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+  }
 
-.login-btn, .google-login {
-  margin-top: 10px;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-}
+  .login-btn,
+  .google-login {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
 
-.login-btn {
-  background-color: black;
-  color: white;
-}
+  .login-btn {
+    background-color: black;
+    color: white;
+  }
 
-.google-login {
-  background-color: #4285f4;
-  color: white;
-}
+  .google-login {
+    background-color: #4285f4;
+    color: white;
+  }
 </style>
