@@ -77,16 +77,16 @@
         </form>
       </div>
    
-      <div id="register" class="tab-content ">
+      <div id="register" class="tab-content">
         <h1 class="heading">Register <span>Page</span></h1>
-        <form>
+        <form id="register-form" method="post">
           <label>Full Name</label>
           <input type="text" placeholder="Enter Full Name" required />
           <label>E-Mail</label>
-          <input type="email" placeholder="Enter Email Address" required />
+          <input type="registerEmail" id="registerEmail" placeholder="Enter Email Address" required />
           <label>Password</label>
-          <input type="password" placeholder="Enter Password" required />
-          <button type="submit">Register</button>
+          <input type="registerPassword" id="registerPassword" placeholder="Enter Password" required />
+          <button type="registerSubmit">Register</button>
         </form>
       </div>
   </div>
@@ -105,24 +105,133 @@
   document.getElementById(tabName).classList.add('active');
   event.currentTarget.classList.add('active');
 }
+// Function to open tabs (login/register)
+function openTab(tabName) {
+  // Hide all tab contents
+  const tabContents = document.querySelectorAll(".tab-content");
+  tabContents.forEach(content => content.classList.remove("active"));
 
+  // Remove active class from all buttons
+  const tabButtons = document.querySelectorAll(".tab-btn");
+  tabButtons.forEach(button => button.classList.remove("active"));
 
-  // JavaScript to handle form submission
+  // Show the specific tab content
+  document.getElementById(tabName).classList.add("active");
 
-  const loginForm = document.getElementById("login-form");
+  // Add active class to the clicked button
+  event.currentTarget.classList.add("active");
+}
 
-  loginForm.addEventListener("submit", function (event) {
-    event.preventDefault(); // Sayfanın yeniden yüklenmesini engeller
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+// Handle the registration process
+document.getElementById("register-form").addEventListener("submit", function(event) {
+  event.preventDefault();
 
-    // Basit kontrol (E-posta ve şifre alanları boş değilse)
-    if (email && password) {
-      window.location.href = "user.html"; // user.html sayfasına yönlendir
+  // Get the input values
+  const fullName = document.querySelector("#register-form input[type='text']").value;
+  const email = document.querySelector("#register-form input[type='registerEmail']").value;
+  const password = document.querySelector("#register-form input[type='registerPassword']").value;
+
+  // Create a user object
+  const user = {
+    fullName: fullName,
+    email: email,
+    password: password
+  };
+
+  // Store the user in localStorage (keyed by the user's email)
+  localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+  alert("Registration successful! You can now log in.");
+  Toastify({
+    text: "Product added to favorites successfully!",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#FF6347", // Farklı bir renk
+        close: true,
+      }).showToast();
+  openTab('login');
+});
+
+// Handle the login process
+document.getElementById("login-form").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  // Get the input values
+  const email = document.querySelector("#login-form #email").value;
+  const password = document.querySelector("#login-form #password").value;
+
+  // Retrieve the user data from localStorage
+  const storedUser = localStorage.getItem(email);
+  
+  if (storedUser) {
+    const user = JSON.parse(storedUser);
+
+    // Validate password
+    if (user.password === password) {
+      alert(`Welcome back, ${user.fullName}!`);
+      window.location.href = "index.html#home"; // user.html sayfasına yönlendir
     } else {
-      alert("Please enter both email and password!");
+      alert("Incorrect password. Please try again.");
     }
-  });
+  } else {
+    alert("No account found with this email. Please register.");
+  }
+
+});
+
+//login check
+// Function to check if the user is already logged in
+function checkLoginStatus() {
+  const loggedInUser = localStorage.getItem("loggedInUser");
+
+  if (loggedInUser) {
+    window.location.href = "user.html"; // Redirect to user dashboard or home page
+  }
+}
+
+// Run the checkLoginStatus function when the page loads
+document.addEventListener("DOMContentLoaded", function() {
+  checkLoginStatus();
+});
+
+// Handle the login process
+document.getElementById("login-form").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  // Get the input values
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  // Retrieve the user data from localStorage
+  const storedUser = localStorage.getItem(email);
+
+  if (storedUser) {
+    const user = JSON.parse(storedUser);
+
+    // Validate password
+    if (user.password === password) {
+      alert(`Welcome back, ${user.fullName}!`);
+
+      // Store logged-in user in localStorage
+      localStorage.setItem("loggedInUser", email);
+      // Redirect to the user dashboard or another page
+      window.location.href = "user.html"; // Change to your dashboard or home page
+    } else {
+      alert("Incorrect password. Please try again.");
+    }
+  } else {
+    alert("No account found with this email. Please register.");
+  }
+});
+
+// Function to handle logout
+function logout() {
+  localStorage.removeItem("loggedInUser"); // Remove the logged-in user from localStorage
+  alert("You have been logged out.");
+  window.location.href = "index.html"; // Redirect back to login page or home page
+}
+
 </script>
 
 <style>
@@ -198,6 +307,15 @@ input[type="password"] {
     font-size: 14px;
 }
 
+input[type="text"],
+input[type="registerEmail"],
+input[type="registerPassword"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
 button {
     padding: 10px;
     background-color: gray;
