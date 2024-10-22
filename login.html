@@ -142,14 +142,6 @@ document.getElementById("register-form").addEventListener("submit", function(eve
   localStorage.setItem("loggedInUser", JSON.stringify(user));
 
   alert("Registration successful! You can now log in.");
-  Toastify({
-    text: "Product added to favorites successfully!",
-        duration: 3000,
-        gravity: "top",
-        position: "right",
-        backgroundColor: "#FF6347", // Farklı bir renk
-        close: true,
-      }).showToast();
   openTab('login');
 });
 
