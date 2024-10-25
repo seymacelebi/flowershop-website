@@ -61,11 +61,17 @@
       </aside>
 
       <main class="main-content">
-        <h2>Sun Flower</h2>
-        <h3>$15.00</h3>
-        <button>+</button> <button>-</button>
-        <button>Add to Basket</button>
-        <h3>Delivery by 2 days</h3>
+        <h1>Sun Flower</h1>
+        <span></span>
+        <div class="product-price">
+          <span class="current-price">1.350,00 TL</span>
+          <span class="original-price"><s>1.550,00 TL</s></span>
+          <span class="discount">%13 İndirim</span>
+      </div>
+
+        <button class="add-to-cart btn">Add to Cart</button>
+        <a href="favoriteProduct.html" class="fas fa-heart"></a>
+        <h3>Will be shipped on October 28th at the latest.</h3>
       </main>
     </div>
 
@@ -101,5 +107,36 @@ html, body {
   padding: 90px;
   height: 100%; /* Yüksekliği tam ekran */
 }
+
+.product-price .current-price {
+    color: red;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.product-price .original-price {
+    color: gray;
+    font-size: 24px;
+    text-decoration: line-through;
+    margin-left: 10px;
+}
+
+.add-to-cart {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    width: 85%;
+}
+
+.add-to-cart:hover {
+    background-color: darkgray;
+}
+
+.main-content .h1 {
+ 
+}
+
 
 </style>
