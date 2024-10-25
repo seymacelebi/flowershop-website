@@ -61,17 +61,45 @@
       </aside>
 
       <main class="main-content">
-        <h1>Sun Flower</h1>
-        <span></span>
-        <div class="product-price">
-          <span class="current-price">1.350,00 TL</span>
-          <span class="original-price"><s>1.550,00 TL</s></span>
-          <span class="discount">%13 İndirim</span>
-      </div>
+        <br /><br /><br /><br />
 
-        <button class="add-to-cart btn">Add to Cart</button>
-        <a href="favoriteProduct.html" class="fas fa-heart"></a>
-        <h3>Will be shipped on October 28th at the latest.</h3>
+        <div class="product-price">
+          <h1>Sun Flower</h1>
+          <br />
+          <div>
+            <span class="current-price">1.350,00 TL</span>
+            <span class="original-price"><s>1.550,00 TL</s></span>
+            <!-- Yıldız simgesi -->
+            <span class="rating-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <!-- Yarım yıldız örneği -->
+            </span>
+          </div>
+          <br />
+          <span class="discount">%13 İndirim</span>
+        </div>
+
+        <div class="addressText">
+          <i class="fas fa-building"></i>
+          <input
+            type="text"
+            placeholder="Select the address you want to send to"
+            class="inputA"
+          />
+        </div>
+
+        <div class="buttons">
+          <button class="add-to-cart btn">Add to Cart</button>
+          <a href="favoriteProduct.html" class="fas fa-heart"></a>
+        </div>
+
+        <div class="text-shippment">
+          <h3>Will be shipped on October 28th at the latest.</h3>
+        </div>
       </main>
     </div>
 
@@ -80,63 +108,142 @@
 </html>
 
 <style>
-html, body {
-  height: 100%;
-  width: 100%;
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  overflow: hidden; /* Scroll'u kapatır */
-}
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    overflow: hidden; /* Scroll'u kapatır */
+  }
 
-.container {
-  display: flex;
-  width: 100%;
-  height: 100vh; /* Tam ekran yapar */
-  background-color: white;
-}
+  .container {
+    display: flex;
+    width: 100%;
+    height: 100vh; /* Tam ekran yapar */
+    background-color: white;
+  }
 
-.sidebar {
-  width: 40%; /* Yan menü genişliği */
-  padding: 10px;
-  height: 100%; /* Yüksekliği tam ekran */
-  overflow-y: hidden;
-}
+  .sidebar {
+    width: 40%; /* Yan menü genişliği */
+    padding: 10px;
+    height: 100%; /* Yüksekliği tam ekran */
+    overflow-y: hidden;
+  }
 
-.main-content {
-  width: 60%; /* Ana içerik genişliği */
-  padding: 90px;
-  height: 100%; /* Yüksekliği tam ekran */
-}
+  .main-content {
+    width: 60%; /* Ana içerik genişliği */
+    padding: 90px;
+    height: 100%; /* Yüksekliği tam ekran */
+  }
 
-.product-price .current-price {
+  .product-price {
+    background-color: #ff33991a;
+    margin-top: 20px;
+    width: 91vh;
+    border-radius: 0.5rem;
+    height: 20vh;
+  }
+  .product-price h1 {
+    margin-bottom: 60px; /* H1 ve fiyat arasında boşluk */
+  }
+  .product-price .current-price {
     color: red;
+    margin-left: 10px;
     font-size: 24px;
     font-weight: bold;
-}
+  }
 
-.product-price .original-price {
+  .product-price .discount {
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+
+  .product-price .original-price {
     color: gray;
     font-size: 24px;
     text-decoration: line-through;
     margin-left: 10px;
-}
+  }
+  .rating-stars {
+    margin-left: 40%; /* Fiyatlar ile yıldızlar arasında boşluk */
+  }
 
-.add-to-cart {
+  .rating-stars i {
+    color: #ffd700; /* Yıldızların rengi (altın) */
+    margin-left: 5px; /* Yıldızlar arasında boşluk */
+    font-size: 14px; /* Yıldız boyutu */
+  }
+  .buttons {
+    justify-content: center; /* Ortalar */
+  }
+
+  .add-to-cart {
+    margin-top: 30px;
+    margin-right: 8px;
     background-color: black;
     color: white;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
     width: 85%;
-}
+  }
 
-.add-to-cart:hover {
+  .add-to-cart:hover {
     background-color: darkgray;
-}
+  }
+  .text-shippment {
+    margin-top: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px; /* Aşağıdan boşluk için */
+    padding-left: 7px;
+    background-color: #ff33991a;
+    width: 90vh;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
 
-.main-content .h1 {
- 
-}
+  .text-shippment h3 {
+    margin: 0;
+    padding: 0;
+  }
+  .inputA {
+    margin-top: 20px;
+    width: 84%; /* Genişletmek için */
+    background-color: white; /* Arka plan rengi */
+    padding: 10px; /* İç boşluk */
+    border: 1px solid #ccc; /* Kenarlık */
+    border-radius: 5px; /* Kenar yuvarlama */
+    font-size: 16px; /* Yazı boyutu */
+  }
 
+  .addressText {
+    position: relative;
+    width: 100%;
+  }
 
+  .addressText i {
+    padding-top: 18px;
+    position: absolute;
+    left: 10px; /* Simgeyi input'un soluna yerleştir */
+    top: 50%;
+    transform: translateY(-50%); /* Simgeyi dikey ortala */
+    color: #999; /* Simge rengi */
+    font-size: 18px; /* Simge boyutu */
+    border-radius: 5rem;
+  }
+
+  .inputA {
+    width: 85%;
+    padding: 10px 10px 10px 40px; /* Sol tarafta simge için boşluk */
+    background-color: #f0f0f0; /* Arka plan rengi */
+  }
+
+  .fas.fa-heart {
+    font-size: 24px; /* İstediğiniz boyutu girin */
+  }
 </style>
