@@ -120,7 +120,7 @@ function createProductBoxes() {
           <div class="icons">
           <a href="#productFav"  onClick="addToFavorite(this)" class="fas fa-heart"></a>
             <a href="#products" class="cart-btn" onClick="addToCart(this)">${product.cartText}</a>
-            <a href="#" class="fas fa-share"></a>
+             <a href="productDetail.html" class="fas fa-share"></a>
           </div>
         </div>
         <div class="content">
