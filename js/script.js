@@ -252,7 +252,9 @@ function displayCartItems() {
   if (cart.length === 0) {
     cartContainer.innerHTML = `
       <span style="background-color:#fff; display: inline-block; width: 90%; height: 160%;  font-size: 30px; text-align: center;">
-        <p>Basket Empty.</p>
+      <i class="fa-solid fa-cart-shopping"></i>
+      <br/><br/>
+      <p>Basket Empty.</p>
       </span>`;
     return;
   }
@@ -361,7 +363,9 @@ function displayFavoriteItems() {
   if (favorite.length === 0) {
     favoriteContainer.innerHTML = `
       <span style="background-color:#fff; display: inline-block; width: 90%; height: 160%;  font-size: 30px; text-align: center;">
-        <p>Favorite page Empty.</p>
+      <i class="fa-solid fa-heart"></i>
+      <br/><br/>
+      <p>Favorite page Empty.</p>
       </span>`;
     return;
   }
