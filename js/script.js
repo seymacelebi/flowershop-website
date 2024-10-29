@@ -2,95 +2,219 @@
 const products = [
   {
     id: 1,
-    discount: "-10%",
-    imageSrc: "images/flower4.jpg",
     title: "Rose",
-    price: "12.99",
-    originalPrice: "$15.99",
-    cartText: "add to cart",
+    description: "A timeless bouquet of red roses, symbolizing love and passion.",
+    price: 12.99,
+    originalPrice: 15.99,
+    discount: "-10%",
+    imageSrc: "images/rosebuket.jpg",
+    extraImages: [
+      "images/rose1.jpg",
+      "images/rose2.jpg"
+    ],
+    availability: "In Stock",
+    category: "Bouquet",
+    colorOptions: ["Red", "White", "Pink"],
+    rating: 4.8,
+    seasonalAvailability: "Year-round",
+    tags: ["Romantic", "Classic"],
+    usage: ["Anniversary", "Valentine's Day", "Wedding"],
+    dimensions: { height: "40cm", width: "30cm" },
+    weight: "500g",
+    careInstructions: "Keep in a cool place and change water daily.",
+    reviews: [
+      { user: "Alice", rating: 5, comment: "Beautiful and fresh!" },
+      { user: "Bob", rating: 4, comment: "Perfect for a romantic gift." }
+    ],
+    supplier: "Fresh Blooms Co.",
+    giftWrapAvailable: true,
+    cartText: "add to cart"
   },
   {
     id: 2,
+    title: "Tulip",
+    description: "Elegant tulips in beautiful pastel shades for a touch of spring.",
+    price: 12.99,
+    originalPrice: 15.99,
     discount: "-10%",
     imageSrc: "images/flower4.jpg",
-    title: "Tulip",
-    price: "12.99",
-    originalPrice: "$15.99",
-    cartText: "add to cart",
+    extraImages: [
+      "images/tulip1.jpg",
+      "images/tulip2.jpg"
+    ],
+    availability: "In Stock",
+    category: "Bouquet",
+    colorOptions: ["Pink", "Purple", "Yellow"],
+    rating: 4.6,
+    seasonalAvailability: "Spring",
+    tags: ["New Arrival"],
+    usage: ["Mother's Day", "Birthday", "Spring Decor"],
+    dimensions: { height: "35cm", width: "25cm" },
+    weight: "450g",
+    careInstructions: "Keep in indirect sunlight and water daily.",
+    reviews: [
+      { user: "Sara", rating: 5, comment: "Perfect for spring!" },
+      { user: "Jake", rating: 4, comment: "Lovely colors and freshness." }
+    ],
+    supplier: "Tulip Gardens Ltd.",
+    giftWrapAvailable: false,
+    cartText: "add to cart"
   },
   {
     id: 3,
-    discount: "-10%",
-    imageSrc: "images/flower4.jpg",
     title: "Daisy",
-    price: "12.99",
-    originalPrice: "$15.99",
-    cartText: "add to cart",
+    description: "A charming daisy bouquet, bringing joy and simplicity to any occasion.",
+    price: 12.99,
+    originalPrice: 15.99,
+    discount: "-10%",
+    imageSrc: "images/daisy.jpg",
+    extraImages: [
+      "images/daisy1.jpg",
+      "images/daisy2.jpg"
+    ],
+    availability: "In Stock",
+    category: "Bouquet",
+    colorOptions: ["White", "Yellow"],
+    rating: 4.5,
+    seasonalAvailability: "Summer",
+    tags: ["Cheerful", "Classic"],
+    usage: ["Birthday", "Just Because", "Thank You"],
+    dimensions: { height: "30cm", width: "20cm" },
+    weight: "400g",
+    careInstructions: "Place in fresh water and change daily.",
+    reviews: [
+      { user: "Emma", rating: 5, comment: "Brings so much joy!" },
+      { user: "John", rating: 4, comment: "Simple and beautiful." }
+    ],
+    supplier: "Bloom Suppliers",
+    giftWrapAvailable: true,
+    cartText: "add to cart"
   },
   {
     id: 4,
+    title: "Sunflower",
+    description: "Radiant sunflowers that brighten up any space with their cheerful appearance.",
+    price: 12.99,
+    originalPrice: 150.99,
     discount: "-10%",
     imageSrc: "images/flower4.jpg",
-    title: "Sunflower",
-    price: "12.99",
-    originalPrice: "$150.99",
-    cartText: "add to cart",
+    extraImages: [
+      "images/sunflower1.jpg",
+      "images/sunflower2.jpg"
+    ],
+    availability: "Limited Stock",
+    category: "Bouquet",
+    colorOptions: ["Yellow"],
+    rating: 4.9,
+    seasonalAvailability: "Summer",
+    tags: ["Bright", "Cheerful"],
+    usage: ["Housewarming", "Birthday", "Get Well Soon"],
+    dimensions: { height: "45cm", width: "35cm" },
+    weight: "600g",
+    careInstructions: "Place in direct sunlight and water as needed.",
+    reviews: [
+      { user: "Olivia", rating: 5, comment: "So bright and happy!" },
+      { user: "Lucas", rating: 4, comment: "A bit pricey but beautiful." }
+    ],
+    supplier: "Sunny Blossoms",
+    giftWrapAvailable: true,
+    cartText: "add to cart"
   },
   {
     id: 5,
+    title: "Lily",
+    description: "Elegant lilies that add a touch of sophistication to any setting.",
+    price: 12.99,
+    originalPrice: 15.99,
     discount: "-10%",
     imageSrc: "images/flower4.jpg",
-    title: "Lily",
-    price: "12.99",
-    originalPrice: "$15.99",
-    cartText: "add to cart",
+    extraImages: [
+      "images/lily1.jpg",
+      "images/lily2.jpg"
+    ],
+    availability: "In Stock",
+    category: "Bouquet",
+    colorOptions: ["White", "Pink"],
+    rating: 4.7,
+    seasonalAvailability: "Year-round",
+    tags: ["Elegant", "Classic"],
+    usage: ["Sympathy", "Anniversary", "Wedding"],
+    dimensions: { height: "50cm", width: "30cm" },
+    weight: "500g",
+    careInstructions: "Keep in cool water and trim stems regularly.",
+    reviews: [
+      { user: "Sophia", rating: 5, comment: "Elegant and fresh!" },
+      { user: "Ethan", rating: 4, comment: "Great for formal events." }
+    ],
+    supplier: "Lily Gardens",
+    giftWrapAvailable: true,
+    cartText: "add to cart"
   },
   {
     id: 6,
+    title: "Orchid",
+    description: "An exotic orchid plant that adds elegance and beauty to any room.",
+    price: 12.99,
+    originalPrice: 15.99,
     discount: "-10%",
     imageSrc: "images/flower4.jpg",
-    title: "Orchid",
-    price: "12.99",
-    originalPrice: "$15.99",
-    cartText: "add to cart",
+    extraImages: [
+      "images/orchid1.jpg",
+      "images/orchid2.jpg"
+    ],
+    availability: "In Stock",
+    category: "Potted Plant",
+    colorOptions: ["White"],
+    rating: 4.7,
+    seasonalAvailability: "Year-round",
+    tags: ["Elegant", "Exotic"],
+    usage: ["Home Decor", "Gift"],
+    dimensions: { height: "60cm", width: "20cm" },
+    weight: "700g",
+    careInstructions: "Requires indirect sunlight and minimal watering.",
+    reviews: [
+      { user: "Mia", rating: 5, comment: "Absolutely stunning!" },
+      { user: "Noah", rating: 4, comment: "Beautiful but needs special care." }
+    ],
+    supplier: "Exotic Plants Co.",
+    giftWrapAvailable: false,
+    cartText: "add to cart"
   },
   {
     id: 7,
-    discount: "-10%",
-    imageSrc: "images/flower4.jpg",
     title: "Lavender",
-    price: "12.99",
-    originalPrice: "$15.99",
-    cartText: "add to cart",
-  },
-  {
-    id: 8,
+    description: "Fragrant lavender that calms the senses and enhances any space.",
+    price: 12.99,
+    originalPrice: 15.99,
     discount: "-10%",
     imageSrc: "images/flower4.jpg",
-    title: "Peony",
-    price: "19.99",
-    originalPrice: "$15.99",
-    cartText: "add to cart",
+    extraImages: [
+      "images/lavender1.jpg",
+      "images/lavender2.jpg"
+    ],
+    availability: "In Stock",
+    category: "Herb",
+    colorOptions: ["Purple"],
+    rating: 4.5,
+    seasonalAvailability: "Summer",
+    tags: ["Fragrant", "Relaxing"],
+    usage: ["Aromatherapy", "Home Decor"],
+    dimensions: { height: "30cm", width: "20cm" },
+    weight: "300g",
+    careInstructions: "Keep in a dry place and avoid direct sunlight.",
+    reviews: [
+      { user: "Liam", rating: 5, comment: "The scent is amazing!" },
+      { user: "Emma", rating: 4, comment: "Great for calming the mind." }
+    ],
+    supplier: "Herb Garden",
+    giftWrapAvailable: true,
+    cartText: "add to cart"
   },
-  {
-    id: 9,
-    discount: "-10%",
-    imageSrc: "images/flower4.jpg",
-    title: "Daffodil",
-    price: "12.99",
-    originalPrice: "$15.99",
-    cartText: "add to sepet",
-  },
-  {
-    id: 10,
-    discount: "-10%",
-    imageSrc: "images/flower4.jpg",
-    title: "Chrysanthemum",
-    price: "12.99",
-    originalPrice: "$15.99",
-    cartText: "add to cart",
-  },
-];
+]
+
+localStorage.setItem("productInStore", JSON.stringify(products));
+
+
 
 // Sayfa yüklendiğinde fonksiyonu çalıştır
 document.addEventListener("DOMContentLoaded", function () {
@@ -100,49 +224,50 @@ document.addEventListener("DOMContentLoaded", function () {
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let favorite = JSON.parse(localStorage.getItem("favorite")) || [];
 
+
 // Ürün kutularını oluşturma fonksiyonu
 // Ayrıca toast notification da var içinde
 function createProductBoxes() {
   const container = document.getElementById("product-container");
-
   if (!container) {
     return;
   }
+
+  // Clear the container before adding new product boxes
+  container.innerHTML = '';
 
   products.forEach((product) => {
     const box = document.createElement("div");
     box.className = "box";
 
     box.innerHTML = `
-        <span class="discount">${product.discount}</span>
-        <div class="image">
-          <img src="${product.imageSrc}" alt="${product.title}" />
-          <div class="icons">
-          <a href="#productFav"  onClick="addToFavorite(this)" class="fas fa-heart"></a>
-            <a href="#products" class="cart-btn" onClick="addToCart(this)">${product.cartText}</a>
-             <a href="productDetail.html" class="fas fa-share"></a>
-          </div>
-        </div>
-        <div class="content">
-          <h3>${product.title}</h3>
-          <div class="price">${product.price} <span>${product.originalPrice}</span></div>
-        </div>
-      `;
-
-    // Yeni eklenen cart-btn'a tıklama olayı ekleniyor
+    <span class="discount">${product.discount}</span>
+    <div class="image">
+      <img src="${product.imageSrc}" alt="${product.title}" />
+      <div class="icons">
+        <a href="#productFav" onClick="addToFavorite(this)" class="fas fa-heart"></a>
+        <a href="#products" class="cart-btn" onClick="addToCart(this)">${product.cartText}</a>
+        <a href="productDetail.html?id=${product.id}" class="fas fa-share"></a>
+      </div>
+    </div>
+    <div class="content">
+      <h3>${product.title}</h3>
+      <div class="price">${product.price} <span>${product.originalPrice}</span></div>
+    </div>
+  `;
+    // Add click event listener to the cart button
     const cartBtn = box.querySelector(".cart-btn");
     cartBtn.addEventListener("click", function () {
       Toastify({
-        text: "Product added cart succesfully!",
+        text: "Product added to cart successfully!",
         duration: 3000,
         gravity: "top",
         position: "right",
         backgroundColor: "#28a745",
         close: true,
       }).showToast();
-    });
-
-    // Favorilere ekle butonuna tıklama olayı
+    });  
+    // Add click event listener to the favorite button
     const favoriteBtn = box.querySelector(".fa-heart");
     favoriteBtn.addEventListener("click", function () {
       Toastify({
@@ -150,7 +275,7 @@ function createProductBoxes() {
         duration: 3000,
         gravity: "top",
         position: "right",
-        backgroundColor: "#FF6347", // Farklı bir renk
+        backgroundColor: "#FF6347",
         close: true,
       }).showToast();
     });

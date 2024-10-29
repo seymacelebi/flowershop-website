@@ -57,7 +57,7 @@
 
     <div class="container">
       <aside class="sidebar">
-        <img src="images/flower2.jpg" alt="" />
+        <img />
       </aside>
 
       <main class="main-content">
@@ -108,12 +108,58 @@
         <div class="text-shippment">
           <h3>Will be shipped on October 28th at the latest.</h3>
         </div>
+
+        <div class="text-desc">
+          <h3>Will be shipped on October 28th at the latest.</h3>
+        </div>
       </main>
     </div>
 
     <script src="js/script.js"></script>
   </body>
 </html>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+  // URL parametresinden id'yi al
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = urlParams.get("id");
+  console.log(productId, "bb")
+
+  // Tüm ürünleri `localStorage`'dan al
+  const allProducts = JSON.parse(localStorage.getItem("productInStore"));
+  console.log(allProducts, "lalalal3444")
+
+  if (productId && allProducts) {
+    // ID'si ile ürünü bul
+    const product = allProducts.find(p => p.id === parseInt(productId));
+    displayProductDetails(product); // Ürün bilgilerini göster
+    console.log(product, "şşş")
+  }
+});
+
+function displayProductDetails(product) {
+  console.log(product, "qqere")
+  // Ürün adı
+  document.querySelector(".product-price h1").innerText = product.title;
+
+  // Güncel fiyat ve orijinal fiyat
+  document.querySelector(".current-price").innerText = `${product.price} $`;
+  document.querySelector(".original-price").innerHTML = `<s>${product.originalPrice} $</s>`;
+
+  // İndirim oranı
+  document.querySelector(".discount").innerText = product.discount;
+
+  // Ana ürün görseli
+  document.querySelector(".sidebar img").src = product.imageSrc;
+
+  document.querySelector(".text-desc").innerText = product.description;
+
+  // Ürün detaylarını gerektiği gibi eklemeye devam edebilirsiniz.
+}
+
+</script>
 
 <style>
   html,
@@ -132,12 +178,25 @@
     background-color: white;
   }
 
-  .sidebar {
-    width: 40%; /* Yan menü genişliği */
-    padding: 10px;
-    height: 100%; /* Yüksekliği tam ekran */
-    overflow-y: hidden;
-  }
+  /* Yan menü stili */
+.sidebar {
+  width: 40%; /* Yan menü genişliği */
+  padding: 10px;
+  height: 100vh; /* Tam ekran yüksekliği */
+  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Görselin tam görünmesi için stil */
+.sidebar img {
+  width: 100%; /* Yan menünün genişliğine uyum sağlar */
+  height: auto; /* Orijinal oranı korur */
+  object-fit: contain; /* Görselin içeri sığmasını sağlar, kırpmaz */
+  max-height: 100%; /* Görselin yan menünün yüksekliğini aşmamasını sağlar */
+}
+
 
   .main-content {
     width: 60%; /* Ana içerik genişliği */
@@ -220,6 +279,29 @@
     margin: 0;
     padding: 0;
   }
+
+
+  .text-desc {
+    margin-top: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px; /* Aşağıdan boşluk için */
+    padding-left: 7px;
+    background-color: #fff;
+    width: 90vh;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .text-desc h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.5rem;
+  }
+
+
   .inputA {
     margin-top: 20px;
     width: 84%; /* Genişletmek için */
