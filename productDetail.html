@@ -60,6 +60,12 @@
         <img />
       </aside>
 
+      <!-- Thumbnails for extra images -->
+      <div class="thumbnails">
+        <img class="thumbnail" src="images/flower2.jpg" alt="Extra Image 1" />
+        <img class="thumbnail" src="images/flower4.jpg" alt="Extra Image 2" />
+      </div>
+
       <main class="main-content">
         <br /><br /><br /><br />
 
@@ -116,7 +122,6 @@
         <div class="comments-section">
           <h3>Customer Reviews</h3>
         </div>
-        
       </main>
 
       <hr />
@@ -127,15 +132,23 @@
 </html>
 
 <script>
+  // Select the main image and all thumbnails
+  const mainImage = document.getElementById("main-image");
+  const thumbnails = document.querySelectorAll(".thumbnail");
+
+  // Add click event to each thumbnail
+  thumbnails.forEach((thumbnail) => {
+    thumbnail.addEventListener("click", () => {
+      mainImage.src = thumbnail.src; // Set the main image src to the clicked thumbnail's src
+    });
+  });
+
   document.addEventListener("DOMContentLoaded", () => {
     // URL parametresinden id'yi al
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get("id");
-    console.log(productId, "bb");
-
     // Tüm ürünleri `localStorage`'dan al
     const allProducts = JSON.parse(localStorage.getItem("productInStore"));
-    console.log(allProducts, "lalalal3444");
 
     if (productId && allProducts) {
       // ID'si ile ürünü bul
@@ -212,24 +225,43 @@
   }
 
   /* Yan menü stili */
+  /* Sidebar styling for the main image */
   .sidebar {
-    width: 40%; /* Yan menü genişliği */
+    width: 40%;
     padding: 10px;
-    height: 100vh; /* Tam ekran yüksekliği */
-    overflow-y: hidden;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-y: hidden;
   }
 
-  /* Görselin tam görünmesi için stil */
   .sidebar img {
-    width: 100%; /* Yan menünün genişliğine uyum sağlar */
-    height: auto; /* Orijinal oranı korur */
-    object-fit: contain; /* Görselin içeri sığmasını sağlar, kırpmaz */
-    max-height: 100%; /* Görselin yan menünün yüksekliğini aşmamasını sağlar */
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 100%;
   }
 
+  /* Thumbnails styling */
+  .thumbnails {
+    margin-top: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .thumbnail {
+    width: 80px;
+    cursor: pointer;
+    border: 2px solid #ddd;
+    padding: 2px;
+    transition: border 0.3s;
+  }
+
+  .thumbnail:hover {
+    border-color: #333;
+  }
   .main-content {
     width: 60%; /* Ana içerik genişliği */
     padding: 90px;
@@ -397,41 +429,40 @@
     margin-bottom: 30px;
     height: auto;
     overflow: auto;
-}
+  }
 
-.comments-section h3 {
+  .comments-section h3 {
     font-size: 18px;
     margin-bottom: 15px;
-}
+  }
 
-.comment {
+  .comment {
     padding: 10px 0;
     border-bottom: 1px solid #eee;
-}
+  }
 
-.comment:last-child {
+  .comment:last-child {
     border-bottom: none;
-}
+  }
 
-.comment-header {
+  .comment-header {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 5px;
-}
+  }
 
-.comment-header p {
+  .comment-header p {
     margin: 0;
     font-size: 14px;
     color: #555;
-}
+  }
 
-.comment-content {
+  .comment-content {
     font-size: 14px;
     color: #333;
     margin: 0; /* Ensure no extra margin is added */
-}
-
+  }
 
   .rating-stars {
     color: #f5c518;
@@ -458,8 +489,7 @@
   }
   @media (max-width: 768px) {
     .comments-section {
-        width: 90%;
+      width: 90%;
     }
-}
-
+  }
 </style>
