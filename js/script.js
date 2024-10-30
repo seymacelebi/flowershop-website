@@ -26,6 +26,23 @@ const products = [
       { user: "Alice", rating: 5, comment: "Beautiful and fresh!" },
       { user: "Bob", rating: 4, comment: "Perfect for a romantic gift." }
     ],
+    variants: [
+      {
+        size: "Standard",
+        price: 12.99,
+        availability: "In Stock"
+      },
+      {
+        size: "Deluxe",
+        price: 18.99,
+        availability: "In Stock"
+      },
+      {
+        size: "Premium",
+        price: 25.99,
+        availability: "Limited Stock"
+      }
+    ],
     supplier: "Fresh Blooms Co.",
     giftWrapAvailable: true,
     cartText: "add to cart"
@@ -55,6 +72,23 @@ const products = [
     reviews: [
       { user: "Sara", rating: 5, comment: "Perfect for spring!" },
       { user: "Jake", rating: 4, comment: "Lovely colors and freshness." }
+    ],
+    variants: [
+      {
+        size: "Standard",
+        price: 12.99,
+        availability: "In Stock"
+      },
+      {
+        size: "Deluxe",
+        price: 18.99,
+        availability: "In Stock"
+      },
+      {
+        size: "Premium",
+        price: 25.99,
+        availability: "Limited Stock"
+      }
     ],
     supplier: "Tulip Gardens Ltd.",
     giftWrapAvailable: false,
@@ -86,6 +120,23 @@ const products = [
       { user: "Emma", rating: 5, comment: "Brings so much joy!" },
       { user: "John", rating: 4, comment: "Simple and beautiful." }
     ],
+    variants: [
+      {
+        size: "Standard",
+        price: 12.99,
+        availability: "In Stock"
+      },
+      {
+        size: "Deluxe",
+        price: 18.99,
+        availability: "In Stock"
+      },
+      {
+        size: "Premium",
+        price: 25.99,
+        availability: "Limited Stock"
+      }
+    ],
     supplier: "Bloom Suppliers",
     giftWrapAvailable: true,
     cartText: "add to cart"
@@ -115,6 +166,23 @@ const products = [
     reviews: [
       { user: "Olivia", rating: 5, comment: "So bright and happy!" },
       { user: "Lucas", rating: 4, comment: "A bit pricey but beautiful." }
+    ],
+    variants: [
+      {
+        size: "Standard",
+        price: 12.99,
+        availability: "In Stock"
+      },
+      {
+        size: "Deluxe",
+        price: 18.99,
+        availability: "In Stock"
+      },
+      {
+        size: "Premium",
+        price: 25.99,
+        availability: "Limited Stock"
+      }
     ],
     supplier: "Sunny Blossoms",
     giftWrapAvailable: true,
@@ -146,6 +214,23 @@ const products = [
       { user: "Sophia", rating: 5, comment: "Elegant and fresh!" },
       { user: "Ethan", rating: 4, comment: "Great for formal events." }
     ],
+    variants: [
+      {
+        size: "Standard",
+        price: 12.99,
+        availability: "In Stock"
+      },
+      {
+        size: "Deluxe",
+        price: 18.99,
+        availability: "In Stock"
+      },
+      {
+        size: "Premium",
+        price: 25.99,
+        availability: "Limited Stock"
+      }
+    ],
     supplier: "Lily Gardens",
     giftWrapAvailable: true,
     cartText: "add to cart"
@@ -176,6 +261,23 @@ const products = [
       { user: "Mia", rating: 5, comment: "Absolutely stunning!" },
       { user: "Noah", rating: 4, comment: "Beautiful but needs special care." }
     ],
+    variants: [
+      {
+        size: "Standard",
+        price: 12.99,
+        availability: "In Stock"
+      },
+      {
+        size: "Deluxe",
+        price: 18.99,
+        availability: "In Stock"
+      },
+      {
+        size: "Premium",
+        price: 25.99,
+        availability: "Limited Stock"
+      }
+    ],
     supplier: "Exotic Plants Co.",
     giftWrapAvailable: false,
     cartText: "add to cart"
@@ -205,6 +307,23 @@ const products = [
     reviews: [
       { user: "Liam", rating: 5, comment: "The scent is amazing!" },
       { user: "Emma", rating: 4, comment: "Great for calming the mind." }
+    ],
+    variants: [
+      {
+        size: "Standard",
+        price: 12.99,
+        availability: "In Stock"
+      },
+      {
+        size: "Deluxe",
+        price: 18.99,
+        availability: "In Stock"
+      },
+      {
+        size: "Premium",
+        price: 25.99,
+        availability: "Limited Stock"
+      }
     ],
     supplier: "Herb Garden",
     giftWrapAvailable: true,

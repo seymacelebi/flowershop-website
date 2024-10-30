@@ -112,7 +112,14 @@
         <div class="text-desc">
           <h3>Will be shipped on October 28th at the latest.</h3>
         </div>
+
+        <div class="comments-section">
+          <h3>Customer Reviews</h3>
+        </div>
+        
       </main>
+
+      <hr />
     </div>
 
     <script src="js/script.js"></script>
@@ -120,45 +127,71 @@
 </html>
 
 <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // URL parametresinden id'yi al
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get("id");
+    console.log(productId, "bb");
 
-document.addEventListener("DOMContentLoaded", () => {
-  // URL parametresinden id'yi al
-  const urlParams = new URLSearchParams(window.location.search);
-  const productId = urlParams.get("id");
-  console.log(productId, "bb")
+    // Tüm ürünleri `localStorage`'dan al
+    const allProducts = JSON.parse(localStorage.getItem("productInStore"));
+    console.log(allProducts, "lalalal3444");
 
-  // Tüm ürünleri `localStorage`'dan al
-  const allProducts = JSON.parse(localStorage.getItem("productInStore"));
-  console.log(allProducts, "lalalal3444")
+    if (productId && allProducts) {
+      // ID'si ile ürünü bul
+      const product = allProducts.find((p) => p.id === parseInt(productId));
+      displayProductDetails(product); // Ürün bilgilerini göster
+      console.log(product, "şşş");
+    }
+  });
 
-  if (productId && allProducts) {
-    // ID'si ile ürünü bul
-    const product = allProducts.find(p => p.id === parseInt(productId));
-    displayProductDetails(product); // Ürün bilgilerini göster
-    console.log(product, "şşş")
+  function displayProductDetails(product) {
+    console.log(product, "qqere");
+
+    // Ürün adı
+    document.querySelector(".product-price h1").innerText = product.title;
+
+    // Güncel fiyat ve orijinal fiyat
+    document.querySelector(".current-price").innerText = `${product.price} $`;
+    document.querySelector(
+      ".original-price"
+    ).innerHTML = `<s>${product.originalPrice} $</s>`;
+
+    // İndirim oranı
+    document.querySelector(".discount").innerText = product.discount;
+
+    // Ana ürün görseli
+    document.querySelector(".sidebar img").src = product.imageSrc;
+
+    // Açıklama
+    document.querySelector(".text-desc").innerText = product.description;
+
+    // Yorumlar için HTML
+    const reviewContainer = document.querySelector(".review-container"); // Yorumlar için bir div'e ihtiyacınız olacak
+    //reviewContainer.innerHTML = ""; // Mevcut yorumları temizle
+
+    // Örneğin, yorumları eklemek için 'comments-section' öğesini seçin
+    const commentsSection = document.querySelector(".comments-section");
+
+    // Her bir yorumu eklemek için döngü
+    product.reviews.forEach((review) => {
+      // Yeni yorum öğesi oluşturun
+      const reviewElement = document.createElement("div");
+      reviewElement.classList.add("comment");
+
+      // Yorum içeriğini ekleyin
+      reviewElement.innerHTML = `
+    <p><strong>${review.user}</strong> - ${review.comment}</p>
+    <span class="rating-stars">
+      ${Array(review.rating).fill('<i class="fas fa-star"></i>').join("")}
+      ${review.rating % 1 !== 0 ? '<i class="fas fa-star-half-alt"></i>' : ""}
+    </span>
+  `;
+
+      // Yorum öğesini 'comments-section' içine ekleyin
+      commentsSection.appendChild(reviewElement);
+    });
   }
-});
-
-function displayProductDetails(product) {
-  console.log(product, "qqere")
-  // Ürün adı
-  document.querySelector(".product-price h1").innerText = product.title;
-
-  // Güncel fiyat ve orijinal fiyat
-  document.querySelector(".current-price").innerText = `${product.price} $`;
-  document.querySelector(".original-price").innerHTML = `<s>${product.originalPrice} $</s>`;
-
-  // İndirim oranı
-  document.querySelector(".discount").innerText = product.discount;
-
-  // Ana ürün görseli
-  document.querySelector(".sidebar img").src = product.imageSrc;
-
-  document.querySelector(".text-desc").innerText = product.description;
-
-  // Ürün detaylarını gerektiği gibi eklemeye devam edebilirsiniz.
-}
-
 </script>
 
 <style>
@@ -179,24 +212,23 @@ function displayProductDetails(product) {
   }
 
   /* Yan menü stili */
-.sidebar {
-  width: 40%; /* Yan menü genişliği */
-  padding: 10px;
-  height: 100vh; /* Tam ekran yüksekliği */
-  overflow-y: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .sidebar {
+    width: 40%; /* Yan menü genişliği */
+    padding: 10px;
+    height: 100vh; /* Tam ekran yüksekliği */
+    overflow-y: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-/* Görselin tam görünmesi için stil */
-.sidebar img {
-  width: 100%; /* Yan menünün genişliğine uyum sağlar */
-  height: auto; /* Orijinal oranı korur */
-  object-fit: contain; /* Görselin içeri sığmasını sağlar, kırpmaz */
-  max-height: 100%; /* Görselin yan menünün yüksekliğini aşmamasını sağlar */
-}
-
+  /* Görselin tam görünmesi için stil */
+  .sidebar img {
+    width: 100%; /* Yan menünün genişliğine uyum sağlar */
+    height: auto; /* Orijinal oranı korur */
+    object-fit: contain; /* Görselin içeri sığmasını sağlar, kırpmaz */
+    max-height: 100%; /* Görselin yan menünün yüksekliğini aşmamasını sağlar */
+  }
 
   .main-content {
     width: 60%; /* Ana içerik genişliği */
@@ -214,6 +246,7 @@ function displayProductDetails(product) {
   .product-price h1 {
     margin-left: 15px;
     margin-bottom: 60px; /* H1 ve fiyat arasında boşluk */
+    margin-top: 30px;
   }
   .product-price .current-price {
     color: red;
@@ -235,7 +268,7 @@ function displayProductDetails(product) {
     margin-left: 10px;
   }
   .rating-stars {
-    margin-left: 40%; /* Fiyatlar ile yıldızlar arasında boşluk */
+    margin-left: 55%; /* Fiyatlar ile yıldızlar arasında boşluk */
   }
 
   .rating-stars i {
@@ -280,7 +313,6 @@ function displayProductDetails(product) {
     padding: 0;
   }
 
-
   .text-desc {
     margin-top: 20px;
     padding-top: 30px;
@@ -300,7 +332,6 @@ function displayProductDetails(product) {
     padding: 0;
     font-size: 1.5rem;
   }
-
 
   .inputA {
     margin-top: 20px;
@@ -356,4 +387,79 @@ function displayProductDetails(product) {
     font-weight: bold; /* Yazıyı kalın yap */
     color: #333; /* Yazı rengini ayarla */
   }
+
+  .comments-section {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width: 85%;
+    margin-bottom: 30px;
+    height: auto;
+    overflow: auto;
+}
+
+.comments-section h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.comment {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.comment:last-child {
+    border-bottom: none;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.comment-header p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.comment-content {
+    font-size: 14px;
+    color: #333;
+    margin: 0; /* Ensure no extra margin is added */
+}
+
+
+  .rating-stars {
+    color: #f5c518;
+  }
+
+  .comment p {
+    margin: 5px 0;
+    color: #333;
+  }
+
+  .helpful-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #666;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-top: 5px;
+  }
+
+  .helpful-btn:hover {
+    background-color: #e0e0e0;
+  }
+  @media (max-width: 768px) {
+    .comments-section {
+        width: 90%;
+    }
+}
+
 </style>
