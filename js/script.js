@@ -7,7 +7,7 @@ const products = [
     price: 12.99,
     originalPrice: 15.99,
     discount: "-10%",
-    imageSrc: "images/rosebuket.jpg",
+    imageSrc: "images/rose1.jpg",
     extraImages: [
       "images/rose2.jpg",
       "images/rose3.jpg"
@@ -54,10 +54,10 @@ const products = [
     price: 12.99,
     originalPrice: 15.99,
     discount: "-10%",
-    imageSrc: "images/flower4.jpg",
+    imageSrc: "images/tulip1.jpg",
     extraImages: [
-      "images/tulip1.jpg",
-      "images/tulip2.jpg"
+      "images/tulip2.jpg",
+      "images/tulip3.jpg"
     ],
     availability: "In Stock",
     category: "Bouquet",
@@ -101,9 +101,9 @@ const products = [
     price: 12.99,
     originalPrice: 15.99,
     discount: "-10%",
-    imageSrc: "images/daisy.jpg",
+    imageSrc: "images/daisy1.jpg",
     extraImages: [
-      "images/daisy1.jpg",
+      "images/daisy3.jpg",
       "images/daisy2.jpg"
     ],
     availability: "In Stock",
@@ -148,9 +148,9 @@ const products = [
     price: 12.99,
     originalPrice: 150.99,
     discount: "-10%",
-    imageSrc: "images/flower4.jpg",
+    imageSrc: "images/sunflower1.jpg",
     extraImages: [
-      "images/sunflower1.jpg",
+      "images/sunflower3.jpg",
       "images/sunflower2.jpg"
     ],
     availability: "Limited Stock",
@@ -195,9 +195,9 @@ const products = [
     price: 12.99,
     originalPrice: 15.99,
     discount: "-10%",
-    imageSrc: "images/flower4.jpg",
+    imageSrc: "images/lily1.jpg",
     extraImages: [
-      "images/lily1.jpg",
+      "images/lily3.jpg",
       "images/lily2.jpg"
     ],
     availability: "In Stock",
@@ -242,10 +242,10 @@ const products = [
     price: 12.99,
     originalPrice: 15.99,
     discount: "-10%",
-    imageSrc: "images/flower4.jpg",
+    imageSrc: "images/orchid1.jpg",
     extraImages: [
-      "images/orchid1.jpg",
-      "images/orchid2.jpg"
+      "images/orchid2.jpg",
+      "images/orchid3.jpg"
     ],
     availability: "In Stock",
     category: "Potted Plant",
@@ -289,10 +289,151 @@ const products = [
     price: 12.99,
     originalPrice: 15.99,
     discount: "-10%",
-    imageSrc: "images/flower4.jpg",
+    imageSrc: "images/lavanta1.jpg",
     extraImages: [
-      "images/lavender1.jpg",
-      "images/lavender2.jpg"
+      "images/lavanta2.jpg",
+      "images/lavanta3.jpg"
+    ],
+    availability: "In Stock",
+    category: "Herb",
+    colorOptions: ["Purple"],
+    rating: 4.5,
+    seasonalAvailability: "Summer",
+    tags: ["Fragrant", "Relaxing"],
+    usage: ["Aromatherapy", "Home Decor"],
+    dimensions: { height: "30cm", width: "20cm" },
+    weight: "300g",
+    careInstructions: "Keep in a dry place and avoid direct sunlight.",
+    reviews: [
+      { user: "Liam", rating: 5, comment: "The scent is amazing!" },
+      { user: "Emma", rating: 4, comment: "Great for calming the mind." }
+    ],
+    variants: [
+      {
+        size: "Standard",
+        price: 12.99,
+        availability: "In Stock"
+      },
+      {
+        size: "Deluxe",
+        price: 18.99,
+        availability: "In Stock"
+      },
+      {
+        size: "Premium",
+        price: 25.99,
+        availability: "Limited Stock"
+      }
+    ],
+    supplier: "Herb Garden",
+    giftWrapAvailable: true,
+    cartText: "add to cart"
+  },
+  {
+    id: 8,
+    title: "Gerbera",
+    description: "Fragrant lavender that calms the senses and enhances any space.",
+    price: 12.99,
+    originalPrice: 15.99,
+    discount: "-10%",
+    imageSrc: "images/g1.jpg",
+    extraImages: [
+      "images/g2.jpg",
+      "images/g3.jpg"
+    ],
+    availability: "In Stock",
+    category: "Herb",
+    colorOptions: ["Purple"],
+    rating: 4.5,
+    seasonalAvailability: "Summer",
+    tags: ["Fragrant", "Relaxing"],
+    usage: ["Aromatherapy", "Home Decor"],
+    dimensions: { height: "30cm", width: "20cm" },
+    weight: "300g",
+    careInstructions: "Keep in a dry place and avoid direct sunlight.",
+    reviews: [
+      { user: "Liam", rating: 5, comment: "The scent is amazing!" },
+      { user: "Emma", rating: 4, comment: "Great for calming the mind." }
+    ],
+    variants: [
+      {
+        size: "Standard",
+        price: 12.99,
+        availability: "In Stock"
+      },
+      {
+        size: "Deluxe",
+        price: 18.99,
+        availability: "In Stock"
+      },
+      {
+        size: "Premium",
+        price: 25.99,
+        availability: "Limited Stock"
+      }
+    ],
+    supplier: "Herb Garden",
+    giftWrapAvailable: true,
+    cartText: "add to cart"
+  },
+  {
+    id: 9,
+    title: "Spatifilyum",
+    description: "Fragrant lavender that calms the senses and enhances any space.",
+    price: 12.99,
+    originalPrice: 15.99,
+    discount: "-10%",
+    imageSrc: "images/ss1.jpg",
+    extraImages: [
+      "images/ss2.jpg",
+      "images/ss3.jpg"
+    ],
+    availability: "In Stock",
+    category: "Herb",
+    colorOptions: ["Purple"],
+    rating: 4.5,
+    seasonalAvailability: "Summer",
+    tags: ["Fragrant", "Relaxing"],
+    usage: ["Aromatherapy", "Home Decor"],
+    dimensions: { height: "30cm", width: "20cm" },
+    weight: "300g",
+    careInstructions: "Keep in a dry place and avoid direct sunlight.",
+    reviews: [
+      { user: "Liam", rating: 5, comment: "The scent is amazing!" },
+      { user: "Emma", rating: 4, comment: "Great for calming the mind." }
+    ],
+    variants: [
+      {
+        size: "Standard",
+        price: 12.99,
+        availability: "In Stock"
+      },
+      {
+        size: "Deluxe",
+        price: 18.99,
+        availability: "In Stock"
+      },
+      {
+        size: "Premium",
+        price: 25.99,
+        availability: "Limited Stock"
+      }
+    ],
+    supplier: "Herb Garden",
+    giftWrapAvailable: true,
+    cartText: "add to cart"
+  },
+  {
+    id: 10,
+    title: "Lisyantus",
+    description: "Fragrant lavender that calms the senses and enhances any space.",
+    price: 12.99,
+    originalPrice: 15.99,
+    discount: "-10%",
+    imageSrc: "images/ll1.jpg",
+    extraImages: [
+      "images/ll2.jpg",
+      "images/ll3.jpg"
     ],
     availability: "In Stock",
     category: "Herb",
