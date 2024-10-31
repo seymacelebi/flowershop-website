@@ -9,8 +9,8 @@ const products = [
     discount: "-10%",
     imageSrc: "images/rosebuket.jpg",
     extraImages: [
-      "images/rose1.jpg",
-      "images/rose2.jpg"
+      "images/rose2.jpg",
+      "images/rose3.jpg"
     ],
     availability: "In Stock",
     category: "Bouquet",
