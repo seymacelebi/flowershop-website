@@ -57,12 +57,12 @@
 
     <div class="container">
       <aside class="sidebar">
-        <img id="main-image"  alt="Main Image">
+        <img id="main-image" alt="Main Image" />
       </aside>
 
       <!-- Thumbnails for extra images -->
       <div class="thumbnails">
-        <img class="thumbnail"  alt="Extra Image 1" />
+        <img class="thumbnail" alt="Extra Image 1" />
         <img class="thumbnail" src="images/flower4.jpg" alt="Extra Image 2" />
       </div>
 
@@ -107,8 +107,8 @@
         </div>
 
         <div class="buttons">
-          <button class="add-to-cart btn">Add to Cart</button>
-          <a href="favoriteProduct.html" class="fas fa-heart"></a>
+          <button class="add-to-cart btn" onClick="addToCart(this)" >Add to Cart</button>
+          <a href="favoriteProduct.html"  class="fas fa-heart"></a>
         </div>
 
         <div class="text-shippment">
@@ -133,49 +133,88 @@
 
 <script>
   const allProducts = JSON.parse(localStorage.getItem("productInStore"));
+  const urlParams = new URLSearchParams(window.location.search);
 
-//   // Select the main image and all thumbnails
-// // Select the main image and all thumbnails
-// // Select the main image and thumbnails container
-const mainImage = document.getElementById("main-image");
-const thumbnailsContainer = document.querySelector(".thumbnails");
-const urlParams = new URLSearchParams(window.location.search);
-const productId = urlParams.get("id");
-const product = allProducts.find((p) => p.id === parseInt(productId));
+  const mainImage = document.getElementById("main-image");
+  const thumbnailsContainer = document.querySelector(".thumbnails");
+  const productId = urlParams.get("id");
+  const product = allProducts.find((p) => p.id === parseInt(productId));
+
+  // Sepete ürün eklemek için addToCart fonksiyonu
+function addToCart(element) {
+  // Sepetteki ürünleri al
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+  console.log(cart, "cartt")
+
+  // Sepette aynı ürün var mı kontrol et
+  const existingProduct = cart.find((p) => p.id === product.id);
+  if (existingProduct) {
+    // Varsa miktarını arttır
+    existingProduct.quantity += 1;
+  } else {
+    // Yoksa yeni ürün olarak ekle
+    cart.push({
+      ...product, // product nesnesini ekliyoruz
+      quantity: 1 // Başlangıç miktarı olarak 1 veriyoruz
+    });
+  }
+
+  // Güncellenmiş sepeti localStorage'da sakla
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  // Sepet sayacını güncelle
+  updateCartCount();
+}
+
+// Sepetteki ürün sayısını güncellemek için bir fonksiyon
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+  document.getElementById("cart-count").textContent = totalQuantity;
+}
+
+// Sayfa yüklendiğinde sepet sayısını güncelle
+updateCartCount();
 
 
-// Set the main image initially
-mainImage.src = product.imageSrc;
-
-// Clear any existing thumbnails in the container
-thumbnailsContainer.innerHTML = "";
 
 
 
-// Generate thumbnail images from extraImages array and add event listeners
-product.extraImages.forEach(imageSrc => {
+
+
+
+
+  
+
+
+
+  // Set the main image initially
+  mainImage.src = product.imageSrc;
+
+  // Clear any existing thumbnails in the container
+  thumbnailsContainer.innerHTML = "";
+
+  // Generate thumbnail images from extraImages array and add event listeners
+  product.extraImages.forEach((imageSrc) => {
     const img = document.createElement("img");
     img.className = "thumbnail";
     img.src = imageSrc;
     img.alt = "Extra Image";
-    
+
     // Add click event to update the main image when thumbnail is clicked
     img.addEventListener("click", () => {
-        mainImage.src = imageSrc;
+      mainImage.src = imageSrc;
     });
 
     thumbnailsContainer.appendChild(img);
-});
+  });
 
-// Check if the main image and thumbnails are set up correctly
-console.log(mainImage, thumbnailsContainer);
-
-
-
+  // Check if the main image and thumbnails are set up correctly
+  console.log(mainImage, thumbnailsContainer);
 
   document.addEventListener("DOMContentLoaded", () => {
     // URL parametresinden id'yi al
-    const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get("id");
     // Tüm ürünleri `localStorage`'dan al
 
@@ -204,7 +243,6 @@ console.log(mainImage, thumbnailsContainer);
 
     // Ana ürün görseli
     document.querySelector(".sidebar img").src = product.imageSrc;
-    
 
     // Açıklama
     document.querySelector(".text-desc").innerText = product.description;
@@ -267,6 +305,7 @@ console.log(mainImage, thumbnailsContainer);
   }
 
   .sidebar img {
+    margin-top: 100px;
     width: 100%;
     height: auto;
     object-fit: contain;

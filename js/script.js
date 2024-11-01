@@ -495,50 +495,25 @@ function createProductBoxes() {
 
   // Clear the container before adding new product boxes
   container.innerHTML = '';
-
   products.forEach((product) => {
     const box = document.createElement("div");
     box.className = "box";
 
     box.innerHTML = `
-    <span class="discount">${product.discount}</span>
-    <div class="image">
-      <img src="${product.imageSrc}" alt="${product.title}" />
-      <div class="icons">
-        <a href="#productFav" onClick="addToFavorite(this)" class="fas fa-heart"></a>
-        <a href="#products" class="cart-btn" onClick="addToCart(this)">${product.cartText}</a>
-        <a href="productDetail.html?id=${product.id}" class="fas fa-share"></a>
+      <span class="discount">${product.discount}</span>
+      <div class="image">
+        <img src="${product.imageSrc}" alt="${product.title}" />
+        <div class="icons">
+          <a href="#productFav" onClick="addToFavorite(this)" class="fas fa-heart"></a>
+          <a href="#products" class="cart-btn" data-id="${product.id}" onClick="addToCart(this)">${product.cartText}</a>
+          <a href="productDetail.html?id=${product.id}" class="fas fa-share"></a>
+        </div>
       </div>
-    </div>
-    <div class="content">
-      <h3>${product.title}</h3>
-      <div class="price">${product.price} <span>${product.originalPrice}</span></div>
-    </div>
-  `;
-    // Add click event listener to the cart button
-    const cartBtn = box.querySelector(".cart-btn");
-    cartBtn.addEventListener("click", function () {
-      Toastify({
-        text: "Product added to cart successfully!",
-        duration: 3000,
-        gravity: "top",
-        position: "right",
-        backgroundColor: "#28a745",
-        close: true,
-      }).showToast();
-    });  
-    // Add click event listener to the favorite button
-    const favoriteBtn = box.querySelector(".fa-heart");
-    favoriteBtn.addEventListener("click", function () {
-      Toastify({
-        text: "Product added to favorites successfully!",
-        duration: 3000,
-        gravity: "top",
-        position: "right",
-        backgroundColor: "#FF6347",
-        close: true,
-      }).showToast();
-    });
+      <div class="content">
+        <h3>${product.title}</h3>
+        <div class="price">${product.price} <span>${product.originalPrice}</span></div>
+      </div>
+    `;
 
     container.appendChild(box);
   });
@@ -552,12 +527,18 @@ document.addEventListener("DOMContentLoaded", function () {
   displayFavoriteItems();
 });
 
+
+
+
 // Sepete ekleme işlevi
 function addToCart(buttonElement) {
+  console.log(buttonElement, "1212121")
   const boxElement = buttonElement.closest(".box");
-  console.log(boxElement, "boxElement");
+  console.log(boxElement,"boxElement22")
+   const productId = buttonElement.getAttribute("data-id");
+   console.log(productId,"productId")
 
-  const productTitle = boxElement.querySelector("h3").innerText;
+   const productTitle = boxElement.querySelector("h3").innerText;
   const productPrice = boxElement
     .querySelector(".price")
     .childNodes[0].textContent.trim();
@@ -565,35 +546,39 @@ function addToCart(buttonElement) {
   const productImage = boxElement.querySelector(".image img").src;
   console.log(productImage); // Bu, doğru resim kaynağını gösteriyor mu?
 
+
   const productInCart = {
+    id: parseInt(productId, 10), // veya Number(productId)
     title: productTitle,
     price: productPrice,
     quantity: 1,
     image: productImage,
   };
-
+  
   console.log(productInCart, "productInCart");
 
   const existingProduct = cart.find(
-    (product) => product.title === productInCart.title
+    (p) => p.id === productInCart.id
   );
 
   if (existingProduct) {
-    existingProduct.quantity += 1; // Miktar artır
+    existingProduct.quantity += 1; // Increase quantity
   } else {
-    cart.push(productInCart); // Yeni ürünü sepete ekle
+    cart.push(productInCart); // Add new product to cart
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
   updateCartCount();
-  updateCartDisplay(); // Sepeti güncelle
+  updateCartDisplay();
 }
+
 
 // Sepetteki ürün sayısını güncelleme işlevi
 function updateCartCount() {
   const cartCountElement = document.getElementById("cart-count");
   cartCountElement.textContent = cart.length; // Sepetteki ürün sayısını göster
 }
+
 
 // Sepeti yeniden gösterme işlevi
 function updateCartDisplay() {
