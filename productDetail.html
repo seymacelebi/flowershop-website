@@ -90,16 +90,20 @@
 
         <div class="addressText">
           <i class="fas fa-building"></i>
-          <!-- <input
-            type="text"
-            placeholder="Select the address you want to send to"
-            class="inputA"
-          /> -->
-          <select id="city-select" class="inputA">
+          <select id="city-select" class="inputA" onchange="showDateOptions()">
             <option value="">Select the address you want to send to</option>
         </select>
         </div>
 
+           
+        <div id="date-options" class="date-options hidden">
+          <button>Bugün <span>02 Kasım</span></button>
+          <button>Yarın <span>03 Kasım</span></button>
+          <button>Pazartesi <span>04 Kasım</span></button>
+          <button onclick="openCalendar()">Takvim</button>
+      </div>
+
+    
         <div class="textRandom">
           <i class="fa-solid fa-ticket"></i>
           <span>Up to 6 Months Installment</span>
@@ -298,6 +302,19 @@ updateCartCount();
         });
     })
     .catch(error => console.error('Error fetching the JSON data:', error));
+
+    function showDateOptions() {
+    const citySelect = document.getElementById('city-select');
+    const dateOptions = document.getElementById('date-options');
+
+    if (citySelect.value) {
+        dateOptions.classList.remove('hidden');
+    } else {
+        dateOptions.classList.add('hidden');
+    }
+}
+
+
 
 </script>
 
@@ -581,6 +598,30 @@ updateCartCount();
   .helpful-btn:hover {
     background-color: #e0e0e0;
   }
+  .date-options {
+    display: flex;
+    gap: 10px;
+}
+
+.date-options button {
+    width: 200px;
+    margin-top: 10px;
+    padding: 10px 15px;
+    border: none;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.date-options button span {
+    display: block;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
   @media (max-width: 768px) {
     .comments-section {
       width: 90%;
