@@ -532,11 +532,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Sepete ekleme işlevi
 function addToCart(buttonElement) {
-  console.log(buttonElement, "1212121")
   const boxElement = buttonElement.closest(".box");
-  console.log(boxElement,"boxElement22")
    const productId = buttonElement.getAttribute("data-id");
-   console.log(productId,"productId")
 
    const productTitle = boxElement.querySelector("h3").innerText;
   const productPrice = boxElement
@@ -544,8 +541,6 @@ function addToCart(buttonElement) {
     .childNodes[0].textContent.trim();
 
   const productImage = boxElement.querySelector(".image img").src;
-  console.log(productImage); // Bu, doğru resim kaynağını gösteriyor mu?
-
 
   const productInCart = {
     id: parseInt(productId, 10), // veya Number(productId)
