@@ -18,7 +18,7 @@
     <header>
       <input type="checkbox" name="" id="toggler" />
       <label for="toggler" class="fas fa-bars"></label>
-      <a href="#" class="logo">flower<span>.</span></a>
+      <a href="/index.html#home" class="logo">flower<span>.</span></a>
 
       <nav class="navbar">
         <a href="/index.html#home">Home</a>
@@ -40,55 +40,122 @@
     <div class="container">
       <aside class="sidebar">
         <ul>
-          <li><a href="#">My Account Settings</a></li>
-          <li><a href="#">My Orders</a></li>
-          <li><a href="#">My Return Requests</a></li>
-          <li><a href="#">My Shopping Cart</a></li>
-          <li><a href="#">Favorites</a></li>
-          <li><a href="#">My Collection</a></li>
-          <li><a href="#">My Comments</a></li>
-          <li><a href="#">Money Points / Gift Certificate</a></li>
-          <li><a href="#">My Support Requests</a></li>
-          <li><a href="#" id="logout-button">Log out</a></li>
+          <li>
+            <a href="#" onclick="loadContent('My Account Settings', this)"
+              ><i class="fa-solid fa-user"></i> My Account Settings</a
+            >
+          </li>
+          <li>
+            <a href="#" onclick="loadContent('My Orders', this)"
+              ><i class="fa-solid fa-box"></i> My Orders</a
+            >
+          </li>
+          <li>
+            <a href="#" onclick="loadContent('My Return Requests', this)"
+              ><i class="fa-solid fa-undo"></i> My Return Requests</a
+            >
+          </li>
+          <li>
+            <a href="cart.html" onclick="loadContent('My Shopping Cart', this)"
+              ><i class="fa-solid fa-shopping-cart"></i> My Shopping Cart</a
+            >
+          </li>
+          <li>
+            <a href="favoriteProduct.html" onclick="loadContent('Favorites', this)"
+              ><i class="fa-solid fa-heart"></i> Favorites</a
+            >
+          </li>
+          <li>
+            <a href="#" onclick="loadContent('My Collection', this)"
+              ><i class="fa-solid fa-book"></i> My Collection</a
+            >
+          </li>
+          <li>
+            <a href="#" onclick="loadContent('My Comments', this)"
+              ><i class="fa-solid fa-comment"></i> My Comments</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="loadContent('Money Points / Gift Certificate', this)"
+              ><i class="fa-solid fa-gift"></i> Money Points / Gift
+              Certificate</a
+            >
+          </li>
+          <li>
+            <a href="#" onclick="loadContent('My Support Requests', this)"
+              ><i class="fa-solid fa-life-ring"></i> My Support Requests</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              id="logout-button"
+              onclick="loadContent('Log out', this)"
+              ><i class="fa-solid fa-sign-out-alt"></i> Log out</a
+            >
+          </li>
         </ul>
       </aside>
-
-      <main class="main-content">
-        <h1 id="user-info">HELLO </h1>
-        <p>WELCOME TO ACCOUNT!</p>
-        <p>
-          You can track your orders and return/exchange transactions from the
-          "My Account" page...
-        </p>
-        <div class="grid-container">
-          <div class="grid-item"><a href="#">My Account Settings</a></div>
-          <div class="grid-item"><a href="#">My Orders</a></div>
-          <div class="grid-item"><a href="#">My Membership Information</a></div>
-          <div class="grid-item"><a href="#">My Address Book</a></div>
-          <div class="grid-item"><a href="#">Discount Code</a></div>
-          <div class="grid-item"><a href="#">My Return Requests</a></div>
-          <div class="grid-item"><a href="cart.html">My Cart</a></div>
-        </div>
+      <main class="main-content" id="main-content">
+   
       </main>
     </div>
-
     <script src="js/script.js" defer></script>
   </body>
 </html>
 
 <script>
-     // LocalStorage'dan loggedInUser nesnesini alıyoruz
-     let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || {};
 
-// loggedInUser içindeki fullName değerini h1 içine ekliyoruz
-document.getElementById("user-info").textContent = `HELLO ${loggedInUser.fullName || "Guest"}`;
+  function loadContent(content, element) {
+      const mainContent = document.getElementById('main-content');
+      mainContent.innerHTML = `
+        <h1>${content}</h1>
+        <p>Content for "${content}" goes here.</p>
+      `;
 
-  // Function to handle logout
+      // Daha önceki aktif linki kaldır
+      const activeLink = document.querySelector('.sidebar a.active');
+      if (activeLink) {
+        activeLink.classList.remove('active');
+      }
+
+      // Tıklanan linke 'active' sınıfını ekle
+      element.classList.add('active');
+    }
+
+    // Sayfa yüklendiğinde ilk içeriği göster
+    window.onload = function() {
+      const firstLink = document.querySelector('.sidebar a');
+      loadContent('My Account Settings', firstLink);
+    };
+
+
+
+
+  // LocalStorage'dan loggedInUser nesnesini alıyoruz
+  let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || {};
+
+  // loggedInUser içindeki fullName değerini h1 içine ekliyoruz
+  document.getElementById("user-info").textContent = `HELLO ${
+    loggedInUser.fullName || "Guest"
+  }`;
+
+  // Logout function to remove the user data and redirect
   function logout() {
     localStorage.removeItem("loggedInUser"); // Remove the logged-in user from localStorage
     alert("You have been logged out.");
     window.location.href = "index.html"; // Redirect back to login page or home page
   }
+
+  // Add an event listener to the logout button
+  document.addEventListener("DOMContentLoaded", function () {
+    const logoutButton = document.getElementById("logout-button");
+    if (logoutButton) {
+      logoutButton.addEventListener("click", logout);
+    }
+  });
 </script>
 
 <style>
@@ -126,19 +193,40 @@ document.getElementById("user-info").textContent = `HELLO ${loggedInUser.fullNam
   .sidebar {
     width: 20%;
     background-color: #ff33991a;
-    padding: 20px;
+    padding: 30px;
     height: 100%;
     overflow-y: auto;
   }
 
   .sidebar ul {
-    list-style: none;
+    list-style-type: none;
+    padding: 0;
   }
-
+  .sidebar li {
+      margin-bottom: 45px; /* Linkler arasındaki boşluk */
+  }
+  .sidebar a {
+    display: block; /* Her bağlantıyı blok eleman yapar */
+      text-decoration: none;
+      color: #333;
+      padding: 5px 0; /* Üst ve alt boşluk sağlar */
+      margin-bottom: 10px; /* Bağlantılar arasında boşluk bırakır */
+      border-radius: 5px; /* Kenarları yuvarlatmak için */
+      transition: background-color 0.3s;
+    
+  }
+  .sidebar a.active {
+    color: #007bff; /* Tıklanan link rengi */
+      font-weight: bold;
+      background-color: #e8f0fe;
+  }
   .sidebar ul li {
     margin: 15px;
     font-size: 20px;
     font-family: Georgia, "Times New Roman", Times, serif;
+  }
+  .sidebar ul li {
+    display: flex;
   }
 
   .sidebar ul li a {
