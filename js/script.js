@@ -514,6 +514,30 @@ function createProductBoxes() {
         <div class="price">${product.price} <span>${product.originalPrice}</span></div>
       </div>
     `;
+     // Add click event listener to the cart button
+     const cartBtn = box.querySelector(".cart-btn");
+     cartBtn.addEventListener("click", function () {
+       Toastify({
+         text: "Product added to cart successfully!",
+         duration: 3000,
+         gravity: "top",
+         position: "right",
+         backgroundColor: "#28a745",
+         close: true,
+       }).showToast();
+     });  
+     // Add click event listener to the favorite button
+     const favoriteBtn = box.querySelector(".fa-heart");
+     favoriteBtn.addEventListener("click", function () {
+       Toastify({
+         text: "Product added to favorites successfully!",
+         duration: 3000,
+         gravity: "top",
+         position: "right",
+         backgroundColor: "#FF6347",
+         close: true,
+       }).showToast();
+     });
 
     container.appendChild(box);
   });
@@ -714,6 +738,7 @@ function addToFavorite(buttonElement) {
 
   localStorage.setItem("favorite", JSON.stringify(favorite));
 }
+
 
 // FAVORITE PRODUCT DISPLAY
 function displayFavoriteItems() {
