@@ -115,7 +115,7 @@
 
         <div class="buttons">
           <button class="add-to-cart btn" onClick="addToCart(this)" >Add to Cart</button>
-          <a href="favoriteProduct.html"  class="fas fa-heart"></a>
+          <a href="favoriteProduct.html"  onClick="addToFavorite(this)" class="fas fa-heart"></a>
         </div>
 
         <div class="text-shippment">
@@ -183,17 +183,6 @@ function updateCartCount() {
 
 // Sayfa yüklendiğinde sepet sayısını güncelle
 updateCartCount();
-
-
-
-
-
-
-
-
-
-  
-
 
 
   // Set the main image initially
@@ -313,6 +302,39 @@ updateCartCount();
         dateOptions.classList.add('hidden');
     }
 }
+
+
+//Favorilere ekleme işlemi
+function addToFavorite(buttonElement) {
+  const boxElement = buttonElement.closest(".box");
+  const productTitle = boxElement.querySelector("h3").innerText;
+  const productPrice = boxElement
+    .querySelector(".price")
+    .childNodes[0].textContent.trim();
+
+  const productImage = boxElement.querySelector(".image img").src;
+
+  const productInFavorite = {
+    title: productTitle,
+    price: productPrice,
+    quantity: 1,
+    image: productImage,
+  };
+
+  const existingProduct = cart.find(
+    (product) => product.title === productInFavorite.title
+  );
+
+  if (existingProduct) {
+    existingProduct.quantity += 1; // Miktar artır
+  } else {
+    favorite.push(productInFavorite); // Yeni ürünü sepete ekle
+  }
+
+  localStorage.setItem("favorite", JSON.stringify(favorite));
+}
+
+
 
 
 
@@ -604,7 +626,7 @@ updateCartCount();
 }
 
 .date-options button {
-    width: 200px;
+    width: 225px;
     margin-top: 10px;
     padding: 10px 15px;
     border: none;

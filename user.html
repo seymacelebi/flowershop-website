@@ -61,7 +61,9 @@
             >
           </li>
           <li>
-            <a href="favoriteProduct.html" onclick="loadContent('Favorites', this)"
+            <a
+              href="favoriteProduct.html"
+              onclick="loadContent('Favorites', this)"
               ><i class="fa-solid fa-heart"></i> Favorites</a
             >
           </li>
@@ -98,41 +100,66 @@
           </li>
         </ul>
       </aside>
-      <main class="main-content" id="main-content">
-   
-      </main>
+      <main class="main-content" id="main-content"></main>
     </div>
     <script src="js/script.js" defer></script>
   </body>
 </html>
 
 <script>
-
   function loadContent(content, element) {
-      const mainContent = document.getElementById('main-content');
-      mainContent.innerHTML = `
-        <h1>${content}</h1>
-        <p>Content for "${content}" goes here.</p>
-      `;
+    const mainContent = document.getElementById("main-content");
 
-      // Daha önceki aktif linki kaldır
-      const activeLink = document.querySelector('.sidebar a.active');
-      if (activeLink) {
-        activeLink.classList.remove('active');
-      }
-
-      // Tıklanan linke 'active' sınıfını ekle
-      element.classList.add('active');
-    }
-
-    // Sayfa yüklendiğinde ilk içeriği göster
-    window.onload = function() {
-      const firstLink = document.querySelector('.sidebar a');
-      loadContent('My Account Settings', firstLink);
+    // Map content titles to their respective HTML file paths
+    const contentFiles = {
+      "My Account Settings": "accountSettings.html",
+      "My Orders": "myOrders.html",
+      "My Return Requests": "returnRequests.html",
+      "My Shopping Cart": "cart.html",
+      Favorites: "favoriteProduct.html",
+      "My Collection": "collection.html",
+      "My Comments": "comments.html",
+      "Money Points / Gift Certificate": "giftCertificate.html",
+      "My Support Requests": "supportRequests.html",
+      "Log out": "logout.html",
     };
 
+    // Fetch and load the corresponding HTML file
+    const filePath = contentFiles[content];
+    if (filePath) {
+      fetch(filePath)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`Failed to load ${filePath}`);
+          }
+          return response.text();
+        })
+        .then((data) => {
+          mainContent.innerHTML = `<h1>${content}</h1>${data}`;
+        })
+        .catch((error) => {
+          console.error(error);
+          mainContent.innerHTML = `<h1>Error</h1><p>Could not load content for "${content}".</p>`;
+        });
+    } else {
+      mainContent.innerHTML = `<h1>${content}</h1><p>Content for "${content}" goes here.</p>`;
+    }
 
+    // Remove 'active' class from the previous active link
+    const activeLink = document.querySelector(".sidebar a.active");
+    if (activeLink) {
+      activeLink.classList.remove("active");
+    }
 
+    // Add 'active' class to the clicked link
+    element.classList.add("active");
+  }
+
+  // Sayfa yüklendiğinde ilk içeriği göster
+  window.onload = function () {
+    const firstLink = document.querySelector(".sidebar a");
+    loadContent("My Account Settings", firstLink);
+  };
 
   // LocalStorage'dan loggedInUser nesnesini alıyoruz
   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || {};
@@ -153,7 +180,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     const logoutButton = document.getElementById("logout-button");
     if (logoutButton) {
-    console.log(logoutButton, "aaa")
+      console.log(logoutButton, "aaa");
       logoutButton.addEventListener("click", logout);
     }
   });
@@ -204,22 +231,21 @@
     padding: 0;
   }
   .sidebar li {
-      margin-bottom: 45px; /* Linkler arasındaki boşluk */
+    margin-bottom: 45px; /* Linkler arasındaki boşluk */
   }
   .sidebar a {
     display: block; /* Her bağlantıyı blok eleman yapar */
-      text-decoration: none;
-      color: #333;
-      padding: 5px 0; /* Üst ve alt boşluk sağlar */
-      margin-bottom: 10px; /* Bağlantılar arasında boşluk bırakır */
-      border-radius: 5px; /* Kenarları yuvarlatmak için */
-      transition: background-color 0.3s;
-    
+    text-decoration: none;
+    color: #333;
+    padding: 5px 0; /* Üst ve alt boşluk sağlar */
+    margin-bottom: 10px; /* Bağlantılar arasında boşluk bırakır */
+    border-radius: 5px; /* Kenarları yuvarlatmak için */
+    transition: background-color 0.3s;
   }
   .sidebar a.active {
     color: #007bff; /* Tıklanan link rengi */
-      font-weight: bold;
-      background-color: #e8f0fe;
+    font-weight: bold;
+    background-color: #e8f0fe;
   }
   .sidebar ul li {
     margin: 15px;
