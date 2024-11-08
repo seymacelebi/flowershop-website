@@ -32,12 +32,35 @@
   <body>
     <div class="content">
       <div class="warning-part">
-        <p>Güncel <a>Kişisel Verilerin İşlenmesi ve Aktarımına Dair Aydınlatma Metni</a>’ni inceleyip "Okudum, anladım" butonuna basabilirsiniz.</p>
+        <p>
+          Güncel
+          <a>Kişisel Verilerin İşlenmesi ve Aktarımına Dair Aydınlatma Metni</a
+          >’ni inceleyip "Okudum, anladım" butonuna basabilirsiniz.
+        </p>
         <button class="button-approve">Okudum, anladım</button>
-    </div>
-    <div class="accountinfo">
-        <input type="text">
-    </div>
+      </div>
+      <div class="accountinfo">
+        <label for="name" class="label">Name Surname</label>
+        <input type="text" id="name" class="input" placeholder="Şeyma Çelebi" />
+
+        <label for="email" class="label">E-mail</label>
+        <div class="email-container">
+          <input type="text" id="email" class="input" />
+          <!-- <a href="#" class="verify-link">Doğrula</a> -->
+        </div>
+
+        <label for="phone" class="label">Phone Number</label>
+        <input type="text" id="phone" class="input" />
+
+        <label for="address" class="label">Address</label>
+        <textarea
+          id="address"
+          class="textarea"
+          placeholder="Adresinizi buraya giriniz."
+        ></textarea>
+
+        <button class="save-button">Kaydet</button>
+      </div>
     </div>
   </body>
 </html>
@@ -50,18 +73,67 @@
     border-radius: 1px solid;
   }
   .warning-part {
-    width: 50%;
-    background: orange;
+    margin-top: 20px;
+    width: 41%;
+    background: rgb(196, 193, 187);
+    display: flex;
+    align-items: center; /* Yatay ortalar */
+    flex-direction: column; /* Öğeleri dikey olarak sıralar */
   }
-  .button-approve{
+  p a {
+    font-size: 17px; /* İstediğiniz boyuta göre ayarlayın */
+}
+  .button-approve {
     background-color: grey;
     border: none;
     border-radius: 4px;
-    padding: 8px;
+    padding: 10px 10px;
     margin: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-
+    line-height: normal; /* Yüksekliği normale getir */
+  }
+  .accountinfo {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+  }
+  .label {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+  .input,
+  .textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  .textarea {
+    height: 80px;
+    resize: vertical;
+  }
+  .email-container {
+    display: flex;
+    align-items: center;
+  }
+  .verify-link {
+    font-size: 15px;
+    margin-left: 10px;
+    color: #2c3f53;
+    cursor: pointer;
+  }
+  .save-button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
   }
 </style>
