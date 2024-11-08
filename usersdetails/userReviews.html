@@ -30,21 +30,45 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <div class="review-container">
     <div class="review-cart">
       <img src="images/ll1.jpg" alt="Ürün Resmi" />
 
       <div class="review-content">
         <p class="product-name">Daisy</p>
-        <p class="delivery-date"> Teslim Tarihi : 2024-11-10</p>
+        <p class="delivery-date"> Delivery Date : 2024-11-10</p>
         <span class="rating-stars">
           <i class="fas fa-star"></i>
           <i class="fas fa-star"></i>
           <i class="fas fa-star"></i>
           <i class="fas fa-star"></i>
           <i class="fas fa-star-half-alt"></i>
-          <!-- Yarım yıldız örneği -->
-        </span>
+          <span class="review-count">(36133)</span>
+      </span>
+      <button class="review-button">Review Product</button>
       </div>
+    </div>
+
+  
+
+    <div class="review-cart">
+      <img src="images/ll1.jpg" alt="Ürün Resmi" />
+
+      <div class="review-content">
+        <p class="product-name">Daisy</p>
+        <p class="delivery-date"> Delivery Date : 2024-11-10</p>
+        <span class="rating-stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+          <span class="review-count">(36133)</span>
+      </span>
+      <button class="review-button">Review Product</button>
+      </div>
+      
+    </div>
     </div>
   </body>
 </html>
@@ -52,39 +76,39 @@
 <script></script>
 
 <style>
-  .review-cart {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
+  .review-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 20px; /* Space between the cards */
+    justify-items: center; /* Center align cards within each grid cell */
+}
+ .review-cart {
     display: flex;
-    padding: 16px;
-    margin: 20px 0;
-    background-color: #f9f9f9;
-    width: 40%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
     align-items: center;
-    gap: 15px; /* Adds space between the image and the text content */
-  }
-  .review-cart img {
-    width: 100px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    width: 100%; /* Adjust as needed */
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px 0; 
+
+}
+
+.review-cart img {
+    width: 100px; /* Adjust image width */
     height: auto;
     border-radius: 4px;
-    object-fit: cover;
-  }
-  .review-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-left: 30px;
+}
+
+.review-content {
     display: flex;
     flex-direction: column;
-  }
-  .review-content p {
-    font-size: 16px; /* Adjusts font size */
-    color: #333; /* Sets text color */
-    margin: 5px 0; /* Adds vertical spacing between paragraphs */
-    text-align: left; /* Options: left, center, right */
-  }
-  .product-name {
+    margin-left: 20px;
+}
+
+.product-name {
     font-size: 18px;
     font-weight: bold;
     margin: 0 0 5px;
@@ -128,4 +152,5 @@
 .review-button:hover {
     background-color: #218838; /* Darker green on hover */
 }
+
 </style>
