@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="“viewport”"
+      content="“width"
+      ="device-width,"
+      initial-scale="1.0”"
+    />
+
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <!-- toast -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+
+    <!-- custom css link -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="review-cart">
+      <img src="images/ll1.jpg" alt="Ürün Resmi" />
+
+      <div class="review-content">
+        <p class="product-name">Daisy</p>
+        <p class="delivery-date"> Teslim Tarihi : 2024-11-10</p>
+        <span class="rating-stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+          <!-- Yarım yıldız örneği -->
+        </span>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script></script>
+
+<style>
+  .review-cart {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    display: flex;
+    padding: 16px;
+    margin: 20px 0;
+    background-color: #f9f9f9;
+    width: 40%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    gap: 15px; /* Adds space between the image and the text content */
+  }
+  .review-cart img {
+    width: 100px;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+  }
+  .review-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+  .review-content p {
+    font-size: 16px; /* Adjusts font size */
+    color: #333; /* Sets text color */
+    margin: 5px 0; /* Adds vertical spacing between paragraphs */
+    text-align: left; /* Options: left, center, right */
+  }
+  .product-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 5px;
+    color: #333;
+}
+
+.delivery-date {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 10px;
+}
+
+.rating-stars {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.rating-stars i {
+    color: #FFD700; /* Gold color for stars */
+    margin-right: 3px;
+}
+
+.review-count {
+    font-size: 14px;
+    color: #666;
+    margin-left: 8px;
+}
+
+.review-button {
+    background-color: #28a745; /* Green color */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.review-button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+</style>
