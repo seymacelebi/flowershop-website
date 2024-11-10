@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+          name="“viewport”"
+          content="“width"
+          ="device-width,"
+          initial-scale="1.0”"
+        />
+    
+        <!-- font awesome -->
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        />
+        <!-- toast -->
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+        />
+        <script
+          type="text/javascript"
+          src="https://cdn.jsdelivr.net/npm/toastify-js"
+        ></script>
+    
+        <!-- custom css link -->
+        <link rel="stylesheet" href="css/style.css" />
+      </head>
+      <body>
+        <div class="address-card">
+            <div class="address-header">
+              <p>Alıcı: Özlem Yıldız</p>
+              <button class="detail-button">Update</button>
+            </div>
+            <div class="address-content">
+              <div class="details">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore ducimus incidunt maxime animi ratione voluptatibus, odio non optio quibusdam impedit quae</p>
+                <p class="number">0212 212 12 12</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="address-card">
+            <div class="address-header">
+              <p>Alıcı: Özlem Yıldız</p>
+              <button class="detail-button">Update</button>
+            </div>
+            <div class="address-content">
+              <div class="details">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore ducimus incidunt maxime animi ratione voluptatibus, odio non optio quibusdam impedit quae</p>
+                <p class="number">0212 212 12 12</p>
+              </div>
+            </div>
+          </div>
+      </body>
+</html>
+
+<script>
+
+</script>
+
+<style>
+   .address-card{
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 20px 0;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   } 
+   .address-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #444; /* Daha koyu gri */
+    font-weight: bold; /* Yazıyı kalın yapar */
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    margin-left: 16px;
+   }
+   .address-header p {
+    margin: 0;
+  }
+
+  .detail-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .address-content{
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    justify-content: space-between;
+}
+.details{
+    margin-left: 16px;
+    font-size: 14px;
+    color: #333;
+}
+.details p {
+    margin: 4px 0;
+  }
+  .details .number{
+    margin-top: 20px;
+    font-weight: bold;
+  }
+
+</style>
