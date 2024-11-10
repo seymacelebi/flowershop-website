@@ -1,10 +1,127 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="“viewport”"
+      content="“width"
+      ="device-width,"
+      initial-scale="1.0”"
+    />
 
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <!-- toast -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+
+    <!-- custom css link -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="saved-card">
+      <div class="card-header">
+        <p>Card Name: Mastercard</p>
+        <button class="detail-button">Update</button>
+      </div>
+      <div class="card-content">
+        <div class="details">
+          <p class="number">512123******1111</p>
+          <i class="fa-solid fa-credit-card"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="saved-card">
+      <div class="card-header">
+        <p>Card Name: Mastercard</p>
+        <button class="detail-button">Update</button>
+      </div>
+      <div class="card-content">
+        <div class="details">
+          <p class="number">111111******1111</p>
+          <i class="fa-solid fa-credit-card"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="saved-card">
+      <div class="card-header">
+        <p>Card Name: Mastercard</p>
+        <button class="detail-button">Update</button>
+      </div>
+      <div class="card-content">
+        <div class="details">
+          <p class="number">222222******1111</p>
+          <i class="fa-solid fa-credit-card"></i>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
-<script>
-
-</script>
+<script></script>
 <style>
-    
+  .saved-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 20px 0;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #444; /* Daha koyu gri */
+    font-weight: bold; /* Yazıyı kalın yapar */
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    margin-left: 10px;
+  }
+
+  .detail-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .card-content {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    justify-content: space-between;
+  }
+  .details {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Simge ve numara arasındaki boşluk */
+  }
+
+  .details p {
+    margin: 10px 0;
+  }
+  .details .number {
+    margin: 10px 0 0 10px;
+  }
+  .fa-credit-card {
+    font-size: 20px;
+    margin-top: 9px;
+  }
 </style>
