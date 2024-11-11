@@ -162,26 +162,27 @@
   // LocalStorage'dan loggedInUser nesnesini alıyoruz
   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || {};
 
-  // loggedInUser içindeki fullName değerini h1 içine ekliyoruz
-  document.getElementById("user-info").textContent = `HELLO ${
-    loggedInUser.fullName || "Guest"
-  }`;
 
-  // Logout function to remove the user data and redirect
-  function logout() {
-    localStorage.removeItem("loggedInUser"); // Remove the logged-in user from localStorage
-    alert("You have been logged out.");
-    window.location.href = "index.html"; // Redirect back to login page or home page
-  }
+  // // loggedInUser içindeki fullName değerini h1 içine ekliyoruz
+  // document.getElementById("fullName").textContent = `HELLO ${
+  //   loggedInUser.fullName || "Guest"
+  // }`;
 
-  // Add an event listener to the logout button
-  document.addEventListener("DOMContentLoaded", function () {
-    const logoutButton = document.getElementById("logout-button");
-    if (logoutButton) {
-      console.log(logoutButton, "aaa");
-      logoutButton.addEventListener("click", logout);
-    }
-  });
+  // // Logout function to remove the user data and redirect
+  // function logout() {
+  //   localStorage.removeItem("loggedInUser"); // Remove the logged-in user from localStorage
+  //   alert("You have been logged out.");
+  //   window.location.href = "index.html"; // Redirect back to login page or home page
+  // }
+
+  // // Add an event listener to the logout button
+  // document.addEventListener("DOMContentLoaded", function () {
+  //   const logoutButton = document.getElementById("logout-button");
+  //   if (logoutButton) {
+  //     console.log(logoutButton, "aaa");
+  //     logoutButton.addEventListener("click", logout);
+  //   }
+  // });
 </script>
 
 <style>

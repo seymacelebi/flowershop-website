@@ -28,15 +28,31 @@
 
     <!-- custom css link -->
     <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Bootstrap CSS (integrity ve crossorigin kaldırıldı) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
   </head>
+
   <body>
     <div class="add-reminder">
-      <button class="reminder-button">Add Reminder</button>
+      <button id="myBtn" class="reminder-button">Add Reminder</button>
     </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
+      </div>
+    </div>
+
     <div class="saved-card">
       <div class="card-header">
         <p>Card Name: Mastercard</p>
-        <button class="detail-button" id="openModalBtn">Update</button>
+        <button class="detail-button">Update</button>
       </div>
       <div class="card-content">
         <div class="details">
@@ -44,41 +60,47 @@
         </div>
       </div>
     </div>
-
-    <!-- Modal -->
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Reminder</h2>
-        <p>This is your reminder modal content.</p>
-    </div>
-</div>
   </body>
 </html>
+
 <script>
-    // HTML elemanlarını seç
-const modal = document.getElementById("myModal");
-const openModalBtn = document.getElementById("openModalBtn");
-const closeBtn = document.querySelector(".close");
+  window.onload = function () {
+    const myElement = document.getElementById("myBtn");
+    console.log(myElement);
+  };
 
-// Butona tıklanıldığında modalı aç
-openModalBtn.onclick = function() {
+  // Modal'ı alın
+  var modal = document.getElementById("myModal");
+  console.log(modal, "modalqqq");
+
+  // Butonu alın
+  var btn = document.getElementById("myBtn");
+  console.log(modal, "btn1");
+
+  // Kapatma düğmesini alın
+  var span = document.getElementsByClassName("close")[0];
+
+  // Butona tıklanınca modalı göster
+  btn.onclick = function () {
     modal.style.display = "block";
-}
+    console.log("Modal açıldı."); // Kontrol için konsola yazdırma
+  };
 
-// Çarpı simgesine tıklanıldığında modalı kapat
-closeBtn.onclick = function() {
+  // Kapatma düğmesine tıklanınca modalı kapat
+  span.onclick = function () {
     modal.style.display = "none";
-}
+    console.log("Modal kapatıldı."); // Kontrol için konsola yazdırma
+  };
 
-// Modal dışında bir yere tıklanıldığında modalı kapat
-window.onclick = function(event) {
-    if (event.target === modal) {
-        modal.style.display = "none";
+  // Modal dışında bir yere tıklanınca modalı kapat
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+      console.log("Modal dışına tıklandı, modal kapatıldı."); // Konsola yazdırma
     }
-}
-
+  };
 </script>
+
 <style>
   .saved-card {
     border: 1px solid #e0e0e0;
@@ -135,50 +157,50 @@ window.onclick = function(event) {
   .add-reminder {
     display: flex;
     justify-content: flex-end;
-}
-.reminder-button{
+  }
+  .reminder-button {
     color: black;
     border: none;
     border-radius: 4px;
     padding: 8px 16px;
     cursor: pointer;
     font-size: 14px;
-}
-/* Modal görünümünü varsayılan olarak gizle */
-.modal {
-    display: none;
+  }
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Gizli varsayılan */
     position: fixed;
     z-index: 1;
+    padding-top: 100px;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-}
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Siyah opaklık ile */
+  }
 
-/* Modal içerik */
-.modal-content {
-    background-color: #fff;
-    margin: 15% auto;
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
     padding: 20px;
-    border-radius: 5px;
+    border: 1px solid #888;
     width: 80%;
-    max-width: 500px;
-}
+  }
 
-/* Kapatma butonu */
-.close {
-    color: #aaa;
+  /* Close button */
+  .close {
+    color: #aaaaaa;
     float: right;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
-    cursor: pointer;
-}
+  }
 
-.close:hover,
-.close:focus {
+  .close:hover,
+  .close:focus {
     color: #000;
     text-decoration: none;
-}
-
+    cursor: pointer;
+  }
 </style>
