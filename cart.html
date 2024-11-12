@@ -43,8 +43,10 @@
       </section>
 
       <section id="payment-cart" class="payment-cart">
-        
-      </section>
+        <a href="payment.html" class="payment-link">
+        <button class="payment-button">COMPLETE PAYMENT</button>
+    </section>
+    
       
 
     <footer class="content">
@@ -53,7 +55,10 @@
     </div>
     </footer>
 
-    <script src="js/script.js" defer></script>
+    <script src="js/script.js" defer>
+   
+
+    </script>
   </body>
 </html>
 
@@ -83,6 +88,28 @@
     background-color: #f9f9f9;
     width: 40%;
     margin: 0 auto; /* Yatay olarak ortalamak için */
+}
+.payment-button {
+    background-color: #28a745; /* Green color */
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.payment-button:hover {
+    background-color: #218838; /* Darker green on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.payment-button:active {
+    background-color: #1e7e34; /* Even darker green on click */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 

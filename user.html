@@ -69,24 +69,23 @@
           </li>
           <li>
             <a href="#" onclick="loadContent('My Saved Cards', this)"
-              ><i class="fa-solid fa-credit-card"></i> My Saved Cards </a
-            >
+              ><i class="fa-solid fa-credit-card"></i> My Saved Cards
+            </a>
           </li>
           <li>
             <a href="#" onclick="loadContent('My Address Book', this)"
-              ><i class="fa-solid fa-life-ring"></i> My Address Book </a
-            >
+              ><i class="fa-solid fa-life-ring"></i> My Address Book
+            </a>
           </li>
           <li>
-            <a
-              href="#"
-              onclick="loadContent('Reminder Service', this)"
-              ><i class="fa-solid fa-clock"></i> Reminder Service </a>
+            <a href="#" onclick="loadContent('Reminder Service', this)"
+              ><i class="fa-solid fa-clock"></i> Reminder Service
+            </a>
           </li>
           <li>
             <a href="#" onclick="loadContent('Change Password', this)"
-              ><i class="fa-solid fa-lock"></i> Change Password </a
-            >
+              ><i class="fa-solid fa-lock"></i> Change Password
+            </a>
           </li>
           <li>
             <a
@@ -119,7 +118,6 @@
       "My Address Book": "usersdetails/userAddressBook.html",
       "Reminder Service": "usersdetails/reminderService.html",
       "Change Password": "usersdetails/changepassword.html",
-      "Log out": "usersdetails/logout.html",
     };
 
     // Fetch and load the corresponding HTML file
@@ -153,6 +151,9 @@
     element.classList.add("active");
   }
 
+
+
+
   // Sayfa yüklendiğinde ilk içeriği göster
   window.onload = function () {
     const firstLink = document.querySelector(".sidebar a");
@@ -162,6 +163,25 @@
   // LocalStorage'dan loggedInUser nesnesini alıyoruz
   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || {};
 
+  // Çıkış yapma fonksiyonu
+  function logout() {
+    // loggedInUser içindeki bilgileri temizle
+    loggedInUser = null;
+
+    // localStorage veya sessionStorage'de kullanıcı bilgisi tutuluyorsa temizle
+    localStorage.removeItem("loggedInUser"); // veya sessionStorage.removeItem('loggedInUser');
+
+    // Giriş ekranına veya ana sayfaya yönlendir
+    window.location.href = "login.html"; // Giriş ekranına yönlendirin
+  }
+
+  // Log Out butonuna tıklama olayını dinleyin
+  document
+    .getElementById("logout-button")
+    .addEventListener("click", function (event) {
+      event.preventDefault(); // Sayfanın yeniden yüklenmesini önler
+      logout(); // Çıkış yapma fonksiyonunu çağır
+    });
 
   // // loggedInUser içindeki fullName değerini h1 içine ekliyoruz
   // document.getElementById("fullName").textContent = `HELLO ${
