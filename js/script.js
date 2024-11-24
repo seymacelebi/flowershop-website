@@ -789,3 +789,25 @@ function removeFromFavorite(index) {
   localStorage.setItem("favorite", JSON.stringify(favorite));
   displayFavoriteItems(); // Refresh the cart display
 }
+
+  // Form submit event listener
+  document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault(); // Formun standart göndermesini engelle
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const number = document.getElementById("number").value;
+    const message = document.getElementById("message").value;
+
+    // mailto bağlantısı oluştur
+    const mailtoLink = `mailto:deneme.deneme@gmail.com?subject=Contact%20Form%20Submission&body=Name:%20${encodeURIComponent(
+      name
+    )}%0AEmail:%20${encodeURIComponent(email)}%0ANumber:%20${encodeURIComponent(
+      number
+    )}%0AMessage:%20${encodeURIComponent(message)}`;
+
+    // Kullanıcıyı mailto bağlantısına yönlendir
+    window.location.href = mailtoLink;
+
+    // Form alanlarını temizle
+    document.getElementById("contactForm").reset();
+  });
