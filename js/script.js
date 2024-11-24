@@ -613,6 +613,8 @@ function updateQuantity(event, change) {
   const index = event.target.getAttribute("data-index");
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+ 
+
   // Update quantity
   cart[index].quantity += change;
 
@@ -637,6 +639,7 @@ function displayCartItems() {
   }
 
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
 
   if (cart.length === 0) {
     cartContainer.innerHTML = `

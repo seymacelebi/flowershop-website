@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+script<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -53,51 +53,87 @@
           <div>
             <div class="form-group">
               <label>Recipient Name Surname</label>
-              <input type="text" />
+              <input type="text" id="recipient-name" />
             </div>
             <div class="form-group">
               <label>Recipient Phone Number</label>
-              <input type="text" />
+              <input type="text" id="recipient-phone" />
             </div>
             <div class="form-group">
               <label>City</label>
-              <input type="text" />
+              <input type="text" id="city" />
             </div>
           </div>
           <div class="form-group">
             <label>District</label>
-            <input type="text" />
+            <input type="text" id="district" />
           </div>
           <div class="form-group">
             <label>Neighbourhood</label>
-            <input type="text" />
+            <input type="text" id="neighbourhood" />
           </div>
           <div class="form-group">
             <label>Address</label>
             <textarea
-            id="address"
-            class="text"
-            placeholder="Enter Address here."
-          ></textarea>
+              id="address"
+              class="text"
+              placeholder="Enter Address here."
+            ></textarea>
           </div>
         </div>
 
         <!-- Order Summary -->
         <div class="order-summary">
-          <button class="next-button">Forward <i class="fa-solid fa-angle-right"></i></button>
+          <button class="next-button" id="submit-order">
+            Forward <i class="fa-solid fa-angle-right"></i>
+          </button>
           <h1>Order Summary</h1>
-          <p>Subtotal (1 Product): $349.00 </span></p>
+          <p>Subtotal (1 Product): <span>$349.00</span></p>
           <input class="discountText" type="text" placeholder="Enter Code" />
           <button class="discountbutton">Use it</button>
-          <p class="summary">Total: <span>$349,00</span></p>
+          <p class="summary">Total: <span>$349.00</span></p>
         </div>
-     
-
-
       </section>
     </div>
   </body>
 </html>
+
+<script>
+  // LocalStorage'dan shopping cart verilerini çek
+  const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+  console.log(cartItems, "cartt3re")
+
+  // Form bilgilerini al
+  document.getElementById("submit-order").addEventListener("click", () => {
+    const recipientName = document.getElementById("recipient-name").value;
+    const recipientPhone = document.getElementById("recipient-phone").value;
+    const city = document.getElementById("city").value;
+    const district = document.getElementById("district").value;
+    const neighbourhood = document.getElementById("neighbourhood").value;
+    const address = document.getElementById("address").value;
+
+    // Yeni bilgileri bir obje haline getir
+    const orderDetails = {
+      recipientName,
+      recipientPhone,
+      city,
+      district,
+      neighbourhood,
+      address,
+    };
+
+    // Shopping cart verileri ve yeni bilgilerle yeni bir array oluştur
+    const fullOrder = cartItems.map((item) => ({
+      ...item,
+      orderDetails,
+    }));
+
+    console.log(fullOrder, "q11"); // Yeni array'i konsolda gör
+    localStorage.setItem("paymentDetails", JSON.stringify(fullOrder)); // Yeni array'i kaydet
+    console.log(paymentDetails, "paymentDetails")
+ });
+</script>
 
 <style>
   * {
@@ -166,7 +202,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
   }
-  .form-group textarea{
+  .form-group textarea {
     width: 100%;
     height: 100px;
     padding: 8px;
@@ -219,7 +255,7 @@
   .discountText {
     width: 100%; /* Tam genişlik */
     padding: 12px; /* Daha büyük alan */
-    font-size: 1.6em;   
+    font-size: 1.6em;
   }
 
   .next-button {
@@ -233,7 +269,7 @@
     cursor: pointer;
     font-size: 1.2em; /* Daha büyük metin */
   }
-  .order-summary p{
+  .order-summary p {
     margin-top: 20px;
     width: 100%; /* Daha geniş */
     padding: 15px; /* Daha fazla iç boşluk */
@@ -243,6 +279,4 @@
     font-weight: bold; /* Vurgulu metin */
     text-align: center; /* Ortalanmış metin */
   }
-
- 
 </style>
