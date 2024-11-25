@@ -49,39 +49,37 @@ script<!DOCTYPE html>
       </div>
 
       <section class="order-info">
-        <div class="form-section">
-          <div>
-            <div class="form-group">
-              <label>Recipient Name Surname</label>
-              <input type="text" id="recipient-name" />
-            </div>
-            <div class="form-group">
-              <label>Recipient Phone Number</label>
-              <input type="text" id="recipient-phone" />
-            </div>
-            <div class="form-group">
-              <label>City</label>
-              <input type="text" id="city" />
+        <div class="form-container">
+          <div class="form-group">
+            <label for="sender-name">Sender Name Surname</label>
+            <input type="text" id="sender-name" placeholder="Şeyma Çelebi" />
+          </div>
+          <div class="form-group">
+            <label for="phone-number">Sender Phone Number</label>
+            <input
+              type="text"
+              id="phone-number"
+              placeholder="Gönderici Telefon Numarası"
+            />
+          </div>
+          <div class="form-group">
+            <label>Edit Invoice Information</label>
+            <div class="radio-group">
+              <label>
+                <input type="radio" name="invoice-type" checked />
+                For Person
+              </label>
+              <label>
+                <input type="radio" name="invoice-type" />
+                For Company
+              </label>
             </div>
           </div>
           <div class="form-group">
-            <label>District</label>
-            <input type="text" id="district" />
-          </div>
-          <div class="form-group">
-            <label>Neighbourhood</label>
-            <input type="text" id="neighbourhood" />
-          </div>
-          <div class="form-group">
-            <label>Address</label>
-            <textarea
-              id="address"
-              class="text"
-              placeholder="Enter Address here."
-            ></textarea>
+            <label for="address">Address</label>
+            <textarea id="address" placeholder="Adres"></textarea>
           </div>
         </div>
-
         <!-- Order Summary -->
         <div class="order-summary">
           <button class="next-button" id="submit-order">
@@ -102,41 +100,55 @@ script<!DOCTYPE html>
   // LocalStorage'dan shopping cart verilerini çek
   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
-  console.log(cartItems, "cartt3re")
-
-  // Form bilgilerini al
-  document.getElementById("submit-order").addEventListener("click", () => {
-    const recipientName = document.getElementById("recipient-name").value;
-    const recipientPhone = document.getElementById("recipient-phone").value;
-    const city = document.getElementById("city").value;
-    const district = document.getElementById("district").value;
-    const neighbourhood = document.getElementById("neighbourhood").value;
-    const address = document.getElementById("address").value;
-
-    // Yeni bilgileri bir obje haline getir
-    const orderDetails = {
-      recipientName,
-      recipientPhone,
-      city,
-      district,
-      neighbourhood,
-      address,
-    };
-
-    // Shopping cart verileri ve yeni bilgilerle yeni bir array oluştur
-    const fullOrder = cartItems.map((item) => ({
-      ...item,
-      orderDetails,
-    }));
-
-    console.log(fullOrder, "q11"); // Yeni array'i konsolda gör
-    localStorage.setItem("paymentDetails", JSON.stringify(fullOrder)); // Yeni array'i kaydet
-
-    window.location.href = "paymentDetail.html";
- });
+  console.log(cartItems, "cartt3re");
 </script>
 
 <style>
+  .form-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f9f9f9;
+    font-size: 1.6.em;
+    border-radius: 8px;
+    border:1px solid #ddd;
+  }
+
+  .form-container {
+    flex: 2;
+    padding-right: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+
+  .form-group textarea {
+    width: 100%;
+    height: 100px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
   * {
     box-sizing: border-box;
     margin: 0;
@@ -173,42 +185,12 @@ script<!DOCTYPE html>
     display: flex;
     justify-content: space-between;
   }
-  .form-section {
-    width: 70%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    font-size: 1.6em;
-  }
+
   .order-summary {
     width: 20%;
     height: auto;
     border-radius: 8px;
     background-color: #f9f9f9;
-  }
-  .form-group {
-    margin-bottom: 10px;
-  }
-
-  .form-group label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-
-  .form-group input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  .form-group textarea {
-    width: 100%;
-    height: 100px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
   }
 
   .order-summary {
