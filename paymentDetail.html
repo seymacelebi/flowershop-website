@@ -117,33 +117,44 @@ script<!DOCTYPE html>
 
     console.log(paymentDetails, "paymentDetails");
 
-  document.getElementById("submit-order").addEventListener("click", () => {
-    const senderName = document.getElementById("sender-name").value; 
-    const phoneNumber = document.getElementById("phone-number").value;
-    const address = document.getElementById("address").value;
-    const invoiceType = document.querySelector('input[name="invoice-type"]:checked').nextSibling.textContent.trim()
 
-    const paymentDetailsSender = {
-      senderName,
-      phoneNumber,
-      address,
-      invoiceType
-    };
 
-    const orderDetails = paymentDetails.map((item) => ({
-      ...item,
-      paymentDetailsSender
-    }))
+    // Form bilgilerini al
+document.getElementById("submit-order").addEventListener("click", () => {
+  const senderName = document.getElementById("sender-name").value;
+  const senderPhone = document.getElementById("phone-number").value;
+  const invoiceType = document.querySelector('input[name="invoice-type"]:checked').value; // "For Person" or "For Company"
+  const address = document.getElementById("address").value;
 
-    console.log(orderDetails, "dopjısadıdfj")
+  // Yeni bilgileri bir obje haline getir
+  const orderSenderDetail = {
+    senderName,
+    senderPhone,
+    invoiceType,
+    address,
+  };
 
-  });
+  // 'paymentDetails' verilerini localStorage'dan al
+  const fullOrder = JSON.parse(localStorage.getItem("paymentDetails")) || [];
+
+  // Shopping cart verileri ve yeni bilgileri içeren yeni bir array oluştur
+  const updatedFullOrder = fullOrder.map((item) => ({
+    ...item,
+    orderSenderDetail, // orderSenderDetail objesini her item'a ekle
+  }));
+
+  console.log(updatedFullOrder, "Updated Order Details"); // Yeni array'i konsolda gör
+  localStorage.setItem("paymentDetails", JSON.stringify(updatedFullOrder)); // Güncellenmiş array'i kaydet
+
+  window.location.href = "paymentFinal.html"; // Yönlendirme sayfası
+});
+
+  
 
 
   // Güncellenmiş array'i localStorage'a kaydet
   localStorage.setItem("paymentDetails", JSON.stringify(paymentDetails));
 
-  window.location.href = "paymentFinal.html";
 
 </script>
 
