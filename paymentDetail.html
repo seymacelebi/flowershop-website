@@ -86,10 +86,10 @@ script<!DOCTYPE html>
             Forward <i class="fa-solid fa-angle-right"></i>
           </button>
           <h1>Order Summary</h1>
-          <p>Subtotal (1 Product): <span>$349.00</span></p>
+          <p>Subtotal (1 Product): <span>$0.00</span></p>
           <input class="discountText" type="text" placeholder="Enter Code" />
           <button class="discountbutton">Use it</button>
-          <p class="summary">Total: <span>$349.00</span></p>
+          <p class="summary">Total: <span>$0.00</span></p>
         </div>
       </section>
     </div>
@@ -97,26 +97,51 @@ script<!DOCTYPE html>
 </html>
 
 <script>
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    // localStorage'dan subtotal çek
+    const subTotal = JSON.parse(localStorage.getItem("cartSubtotal")) || 0;
+
+    // Subtotal alanını güncelle
+    const subtotalElement = document.querySelector(".order-summary p span");
+    subtotalElement.textContent = `$${subTotal.toFixed(2)}`;
+
+    // Total alanını güncelle
+    const totalElement = document.querySelector(".order-summary .summary span");
+    totalElement.textContent = `$${subTotal.toFixed(2)}`;
+  });
+
   // LocalStorage'dan shopping cart verilerini çek
-const paymentDetails = JSON.parse(localStorage.getItem("paymentDetails")) || [];
+  const paymentDetails =
+    JSON.parse(localStorage.getItem("paymentDetails")) || [];
 
-  console.log(paymentDetails, "paymentDetails");
-// Yeni ödeme detaylarını oluştur
-const newPaymentDetail = {
-  senderName: document.getElementById("sender-name").value,
-  phoneNumber: document.getElementById("phone-number").value,
-  invoiceType: document.querySelector('input[name="invoice-type"]:checked').nextSibling.textContent.trim(),
-  address: document.getElementById("address").value,
-  discountCode: document.querySelector(".discountText").value,
-};
+    console.log(paymentDetails, "paymentDetails");
 
-// Yeni veriyi array'e ekle
-paymentDetails.push(newPaymentDetail);
+  document.getElementById("submit-order").addEventListener("click", () => {
+    const senderName = document.getElementById("sender-name").value; 
+    const phoneNumber = document.getElementById("phone-number").value;
+    const address = document.getElementById("address").value;
+    const invoiceType = document.querySelector('input[name="invoice-type"]:checked').nextSibling.textContent.trim()
 
-// Güncellenmiş array'i localStorage'a kaydet
-localStorage.setItem("paymentDetails", JSON.stringify(paymentDetails));
+    const paymentDetails = {
+      senderName,
+      phoneNumber,
+      address,
+      invoiceType
+    };
+
+    const orderDetails = paymentDetails.map((item) => ({
+      ...item,
+      paymentDetails
+    }))
+
+    console.log(orderDetails, "dopjısadıdfj")
+
+  });
 
 
+  // Güncellenmiş array'i localStorage'a kaydet
+  localStorage.setItem("paymentDetails", JSON.stringify(paymentDetails));
 </script>
 
 <style>
@@ -127,7 +152,7 @@ localStorage.setItem("paymentDetails", JSON.stringify(paymentDetails));
     background-color: #f9f9f9;
     font-size: 1.6.em;
     border-radius: 8px;
-    border:1px solid #ddd;
+    border: 1px solid #ddd;
   }
 
   .form-container {
@@ -144,7 +169,6 @@ localStorage.setItem("paymentDetails", JSON.stringify(paymentDetails));
     margin-bottom: 5px;
     font-size: 14px;
     font-weight: bold;
-
   }
 
   input,
