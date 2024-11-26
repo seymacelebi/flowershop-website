@@ -98,9 +98,25 @@ script<!DOCTYPE html>
 
 <script>
   // LocalStorage'dan shopping cart verilerini çek
-  const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+const paymentDetails = JSON.parse(localStorage.getItem("paymentDetails")) || [];
 
-  console.log(cartItems, "cartt3re");
+  console.log(paymentDetails, "paymentDetails");
+// Yeni ödeme detaylarını oluştur
+const newPaymentDetail = {
+  senderName: document.getElementById("sender-name").value,
+  phoneNumber: document.getElementById("phone-number").value,
+  invoiceType: document.querySelector('input[name="invoice-type"]:checked').nextSibling.textContent.trim(),
+  address: document.getElementById("address").value,
+  discountCode: document.querySelector(".discountText").value,
+};
+
+// Yeni veriyi array'e ekle
+paymentDetails.push(newPaymentDetail);
+
+// Güncellenmiş array'i localStorage'a kaydet
+localStorage.setItem("paymentDetails", JSON.stringify(paymentDetails));
+
+
 </script>
 
 <style>
@@ -159,7 +175,7 @@ script<!DOCTYPE html>
     padding: 120px;
     width: 100%;
     margin: auto;
-    height: 100%;
+    height: auto;
   }
   .progress-bar {
     display: flex;

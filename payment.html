@@ -88,10 +88,10 @@ script<!DOCTYPE html>
             Forward <i class="fa-solid fa-angle-right"></i>
           </button>
           <h1>Order Summary</h1>
-          <p>Subtotal (1 Product): <span>$349.00</span></p>
+          <p>Subtotal (1 Product): <span>$0.00</span></p>
           <input class="discountText" type="text" placeholder="Enter Code" />
           <button class="discountbutton">Use it</button>
-          <p class="summary">Total: <span>$349.00</span></p>
+          <p class="summary">Total: <span>$0.00</span></p>
         </div>
       </section>
     </div>
@@ -102,7 +102,26 @@ script<!DOCTYPE html>
   // LocalStorage'dan shopping cart verilerini çek
   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
+  const subTotal = JSON.parse(localStorage.getItem("cartSubtotal")) || [];
+
+  console.log(subTotal, "subtotalaek0220ı")
+
   console.log(cartItems, "cartt3re")
+
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // localStorage'dan subtotal çek
+    const subTotal = JSON.parse(localStorage.getItem("cartSubtotal")) || 0;
+
+    // Subtotal alanını güncelle
+    const subtotalElement = document.querySelector(".order-summary p span");
+    subtotalElement.textContent = `$${subTotal.toFixed(2)}`;
+
+    // Total alanını güncelle
+    const totalElement = document.querySelector(".order-summary .summary span");
+    totalElement.textContent = `$${subTotal.toFixed(2)}`;
+  });
+
 
   // Form bilgilerini al
   document.getElementById("submit-order").addEventListener("click", () => {
@@ -147,7 +166,7 @@ script<!DOCTYPE html>
     padding: 120px;
     width: 100%;
     margin: auto;
-    height: 100%;
+    height: auto;
   }
   .progress-bar {
     display: flex;

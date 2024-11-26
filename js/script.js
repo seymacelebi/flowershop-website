@@ -549,6 +549,7 @@ document.addEventListener("DOMContentLoaded", function () {
   updateCartCount(); // Sayfa yüklendiğinde sepet simgesindeki sayıyı güncelle
   displayCartItems(); // Sepetteki ürünleri göster
   displayFavoriteItems();
+
 });
 
 
@@ -612,7 +613,7 @@ function updateCartDisplay() {
 function updateQuantity(event, change) {
   const index = event.target.getAttribute("data-index");
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
+  console.log(cart, "hjrfgod")
  
 
   // Update quantity
@@ -639,6 +640,8 @@ function displayCartItems() {
   }
 
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  console.log(cart, "cart67676")
 
 
   if (cart.length === 0) {
@@ -680,6 +683,8 @@ function displayCartItems() {
         <button class="btn-cart btn" onclick="removeFromCart(${index})">Remove</button>
       </div>
     `;
+    calculateCartSubtotal();
+
 
     cartContainer.appendChild(box);
   });
@@ -696,6 +701,26 @@ function displayCartItems() {
     button.addEventListener("click", (event) => updateQuantity(event, -1))
   );
 }
+
+function calculateCartSubtotal() {
+  // localStorage'dan cart verilerini al
+  const cartData = JSON.parse(localStorage.getItem("cart")) || [];
+
+  console.log(cartData, "jgffjfjfjfj")
+
+  // Subtotal hesapla
+  const subtotal = cartData.reduce((total, item) => {
+      return total + item.price * item.quantity;
+  }, 0);
+
+  // Subtotal'ı localStorage'a kaydet
+  localStorage.setItem("cartSubtotal", subtotal.toFixed(2));
+
+  // Konsola yazdır veya istediğin yere ekrana yazdır
+  console.log(`Cart Subtotal: $${subtotal.toFixed(2)}`);
+}
+
+// Bu fonksiyonu istediğin yerde çağır
 
 function removeFromCart(index) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -794,23 +819,22 @@ function removeFromFavorite(index) {
 }
 
   // Form submit event listener
-  document.getElementById("contactForm").addEventListener("submit", function (e) {
-    e.preventDefault(); // Formun standart göndermesini engelle
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const number = document.getElementById("number").value;
-    const message = document.getElementById("message").value;
-
-    // mailto bağlantısı oluştur
-    const mailtoLink = `mailto:deneme.deneme@gmail.com?subject=Contact%20Form%20Submission&body=Name:%20${encodeURIComponent(
-      name
-    )}%0AEmail:%20${encodeURIComponent(email)}%0ANumber:%20${encodeURIComponent(
-      number
-    )}%0AMessage:%20${encodeURIComponent(message)}`;
-
-    // Kullanıcıyı mailto bağlantısına yönlendir
-    window.location.href = mailtoLink;
-
-    // Form alanlarını temizle
-    document.getElementById("contactForm").reset();
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const number = document.getElementById("number").value;
+      const message = document.getElementById("message").value;
+  
+      const mailtoLink = `mailto:deneme.deneme@gmail.com?subject=Contact%20Form%20Submission&body=Name:%20${encodeURIComponent(
+        name
+      )}%0AEmail:%20${encodeURIComponent(email)}%0ANumber:%20${encodeURIComponent(
+        number
+      )}%0AMessage:%20${encodeURIComponent(message)}`;
+  
+      window.location.href = mailtoLink;
+      document.getElementById("contactForm").reset();
+    });
   });
+  
