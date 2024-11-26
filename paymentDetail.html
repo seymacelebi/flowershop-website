@@ -123,7 +123,7 @@ script<!DOCTYPE html>
     const address = document.getElementById("address").value;
     const invoiceType = document.querySelector('input[name="invoice-type"]:checked').nextSibling.textContent.trim()
 
-    const paymentDetails = {
+    const paymentDetailsSender = {
       senderName,
       phoneNumber,
       address,
@@ -132,7 +132,7 @@ script<!DOCTYPE html>
 
     const orderDetails = paymentDetails.map((item) => ({
       ...item,
-      paymentDetails
+      paymentDetailsSender
     }))
 
     console.log(orderDetails, "dopjısadıdfj")
@@ -142,6 +142,9 @@ script<!DOCTYPE html>
 
   // Güncellenmiş array'i localStorage'a kaydet
   localStorage.setItem("paymentDetails", JSON.stringify(paymentDetails));
+
+  window.location.href = "paymentFinal.html";
+
 </script>
 
 <style>
