@@ -99,7 +99,6 @@
       </aside>
       <main class="main-content" id="main-content"></main>
     </div>
-    <script src="js/script.js" defer></script>
   </body>
 </html>
 
@@ -137,6 +136,11 @@
           console.error(error);
           mainContent.innerHTML = `<h1>Error</h1><p>Could not load content for "${content}".</p>`;
         });
+      // İlgili script dosyasını yükle
+      const scriptPath = filePath.replace(".html", ".js");
+      const scriptElement = document.createElement("script");
+      scriptElement.src = scriptPath;
+      document.body.appendChild(scriptElement);
     } else {
       mainContent.innerHTML = `<h1>${content}</h1><p>Content for "${content}" goes here.</p>`;
     }
@@ -150,9 +154,6 @@
     // Add 'active' class to the clicked link
     element.classList.add("active");
   }
-
-
-
 
   // Sayfa yüklendiğinde ilk içeriği göster
   window.onload = function () {
