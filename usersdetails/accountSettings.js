@@ -1,19 +1,40 @@
-document.addEventListener('DOMContentLoaded', function(){
+if (typeof loggedInUser === 'undefined') {
+    let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || {};
+}
 
-    document.getElementById('saveUserInfo').addEventListener('click', function(){
-        const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-        console.log(loggedInUser, "dddd");
-        
+// loggedInUser'daki bilgileri input alanlarına doldur
+if (loggedInUser.fullName) {
+    document.getElementById("namesurname").value = loggedInUser.fullName;
+}
+if (loggedInUser.email) {
+    document.getElementById("email").value = loggedInUser.email;
+}
+if (loggedInUser.phoneNumber) {
+    document.getElementById("phoneNumber").value = loggedInUser.phoneNumber;
+}
+if (loggedInUser.address) {
+    document.getElementById("address").value = loggedInUser.address;
+}
 
-        if(!loggedInUser){
-            alert("Please sign in first")
-            return;
-        }
+// "Kaydet" butonuna tıklanınca bilgileri kaydet
+document.getElementById("saveUserInfo").addEventListener("click", () => {
+    // Formdan bilgileri al
+    const fullName = document.getElementById("namesurname").value;
+    const email = document.getElementById("email").value;
+    const phoneNumber = document.getElementById("phoneNumber").value;
+    const address = document.getElementById("address").value;
 
-        const userInfoNameSurname = document.getElementById('namesurname').value.trim();
-        const userInfoEmail = document.getElementById('email').value.trim();
-        const userInfoAddress = document.getElementById('address').value.trim();
-        const userInfoPhone = document.getElementById('phoneNumber').value.trim();
+    // loggedInUser'ı güncelle
+    loggedInUser = {
+        ...loggedInUser, // Mevcut diğer bilgileri korumak için spread operatörü
+        fullName,
+        email,
+        phoneNumber,
+        address,
+    };
 
-    })
-})
+    // Güncellenen loggedInUser'ı localStorage'a kaydet
+    localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+
+    alert("Bilgiler başarıyla kaydedildi!");
+});

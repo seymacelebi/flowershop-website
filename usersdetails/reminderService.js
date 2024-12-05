@@ -61,7 +61,7 @@ document.getElementById('add-reminder').addEventListener('click', function () {
   localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
 
   // Kullanıcıya başarılı mesajı gösteriliyor
-  alert('Hatırlatıcı başarıyla eklendi!');
+  alert('Reminder successfully added!');
 
   // Input alanlarını temizleme
   document.getElementById('name-input').value = '';
