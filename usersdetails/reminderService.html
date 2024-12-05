@@ -46,14 +46,16 @@
       <div class="modal-content">
         <span class="close">&times;</span>
         <p>Please add new reminder..</p>
-        <input type="text" placeholder="Reminder Header" id="name-input" class="input-textbox">
+        <input type="text" placeholder="Reminder Header" id="name-input" class="input-textbox"></input>
         <input placeholder="Reminder Body" id="comment-box" class="input-textarea"></input>
 
         <button class="detail-button" id="add-reminder">Add Reminder</button>
       </div>
     </div>
 
-    <div class="saved-card">
+    <div id="reminders-container"></div>
+
+    <!-- <div class="saved-card">
       <div class="card-header">
         <p>Card Name: Mastercard</p>
         <button class="detail-button">Update</button>
@@ -63,7 +65,7 @@
           <p class="number">Reason to celebrate : Birthday</p>
         </div>
       </div>
-    </div>
+    </div> -->
   </body>
 </html>
 
@@ -137,24 +139,37 @@
     cursor: pointer;
     font-size: 14px;
   }
+
+  /* Kart İçeriği */
+.details {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+  align-items: center;
+  gap: 8px; /* Her satır arasında boşluk */
+}
+
+.details p {
+  margin: 0;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5; /* Daha okunaklı metin aralığı */
+}
+
+.details .number {
+  font-weight: bold;
+  color: #222;
+  margin: 10px 0 0 10px;
+
+}
+
   .card-content {
     display: flex;
     align-items: center;
     margin-top: 16px;
     justify-content: space-between;
   }
-  .details {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Simge ve numara arasındaki boşluk */
-  }
-
-  .details p {
-    margin: 10px 0;
-  }
-  .details .number {
-    margin: 10px 0 0 10px;
-  }
+ 
   .fa-credit-card {
     font-size: 20px;
     margin-top: 9px;

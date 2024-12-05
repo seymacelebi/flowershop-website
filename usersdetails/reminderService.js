@@ -1,4 +1,4 @@
-console.log("lalaalalal")
+
 window.onload = function () {
   const myElement = document.getElementById("myBtn");
   console.log(myElement);
@@ -24,7 +24,7 @@ btn.onclick = function () {
 // Kullanıcı bilgisi mevcut loggedInUser key'i altında localStorage'da
 document.getElementById('add-reminder').addEventListener('click', function () {
   // Kullanıcı bilgisi çekiliyor
-  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser") || "{}");
   console.log(loggedInUser,"seyma")
 
   if (!loggedInUser) {
@@ -82,3 +82,51 @@ window.onclick = function (event) {
     console.log("Modal dışına tıklandı, modal kapatıldı."); // Konsola yazdırma
   }
 };
+
+
+
+// LocalStorage'den loggedInUser objesini çek
+
+// Hatırlatmaları ekrana yazdıran fonksiyon
+function renderReminders(userObject) {
+  const container = document.getElementById("reminders-container");
+  container.innerHTML = ""; // Eski içerikleri temizle
+
+  // Kullanıcı hatırlatmalarını kontrol et
+  if (!userObject || !Array.isArray(userObject.reminders)) {
+    console.error("loggedInUser.reminders is not a valid array");
+    return;
+  }
+
+  // Reminder'ları işleyip ekrana yazdır
+  userObject.reminders.forEach((reminder) => {
+    // Reminder kartı oluştur
+    const reminderCard = document.createElement("div");
+    reminderCard.classList.add("saved-card");
+
+    reminderCard.innerHTML = `
+    <div class="card-header">
+      <p>User: ${userObject.fullName}</p>
+      <p>Card Name: Reminder</p>
+      <button class="detail-button" onclick="updateReminder(${reminder.id})">Update</button>
+    </div>
+    <div class="card-content">
+      <div class="details">
+        <p class="number"><strong>Reason to celebrate:</strong> ${reminder.header}</p>
+        <p>Description: ${reminder.body}</p>
+        <p>Date:${new Date(reminder.date).toLocaleString()}</p>
+      </div>
+    </div>
+  `;
+    container.appendChild(reminderCard);
+  });
+}
+
+// Reminder güncelleme işlemi
+function updateReminder(id) {
+  console.log("Updating reminder with ID:", id);
+  // Güncelleme mantığını burada tanımlayabilirsiniz
+}
+
+// Sayfa yüklendiğinde render et
+renderReminders(loggedInUser);
