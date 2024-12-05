@@ -21,6 +21,54 @@ btn.onclick = function () {
   console.log("Modal açıldı."); // Kontrol için konsola yazdırma
 };
 
+// Kullanıcı bilgisi mevcut loggedInUser key'i altında localStorage'da
+document.getElementById('add-reminder').addEventListener('click', function () {
+  // Kullanıcı bilgisi çekiliyor
+  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+  console.log(loggedInUser,"seyma")
+
+  if (!loggedInUser) {
+      alert('Lütfen önce giriş yapınız!');
+      return;
+  }
+
+  // Input alanlarından veri alınıyor
+  const reminderHeader = document.getElementById('name-input').value.trim();
+  const reminderBody = document.getElementById('comment-box').value.trim();
+
+  if (!reminderHeader || !reminderBody) {
+      alert('Lütfen tüm alanları doldurunuz.');
+      return;
+  }
+
+  // Yeni hatırlatıcı objesi oluşturuluyor
+  const newReminder = {
+      id: Date.now(), // Unique ID
+      header: reminderHeader,
+      body: reminderBody,
+      date: new Date().toISOString(), // Tarih ekleniyor
+  };
+
+  // Kullanıcının hatırlatıcı listesi mevcut mu kontrol ediliyor
+  if (!loggedInUser.reminders) {
+      loggedInUser.reminders = [];
+  }
+
+  // Yeni hatırlatıcı listeye ekleniyor
+  loggedInUser.reminders.push(newReminder);
+
+  // Güncellenmiş kullanıcı bilgisi localStorage'a kaydediliyor
+  localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+
+  // Kullanıcıya başarılı mesajı gösteriliyor
+  alert('Hatırlatıcı başarıyla eklendi!');
+
+  // Input alanlarını temizleme
+  document.getElementById('name-input').value = '';
+  document.getElementById('comment-box').value = '';
+});
+
+
 // Kapatma düğmesine tıklanınca modalı kapat
 span.onclick = function () {
   modal.style.display = "none";

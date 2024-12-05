@@ -45,7 +45,11 @@
     <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <p>Some text in the Modal..</p>
+        <p>Please add new reminder..</p>
+        <input type="text" placeholder="Reminder Header" id="name-input" class="input-textbox">
+        <input placeholder="Reminder Body" id="comment-box" class="input-textarea"></input>
+
+        <button class="detail-button" id="add-reminder">Add Reminder</button>
       </div>
     </div>
 
@@ -187,7 +191,7 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 60%;
   }
 
   /* Close button */
@@ -204,4 +208,17 @@
     text-decoration: none;
     cursor: pointer;
   }
+  .input-textbox, .input-textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.input-textarea {
+  height: 100px;
+  resize: none;
+}
 </style>
