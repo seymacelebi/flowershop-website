@@ -6,11 +6,9 @@ window.onload = function () {
 
 // Modal'ı alın
 var modal = document.getElementById("myModal");
-console.log(modal, "modalqqq");
 
 // Butonu alın
 var btn = document.getElementById("myBtn");
-console.log(modal, "btn1");
 
 // Kapatma düğmesini alın
 var span = document.getElementsByClassName("close")[0];
@@ -18,17 +16,16 @@ var span = document.getElementsByClassName("close")[0];
 // Butona tıklanınca modalı göster
 btn.onclick = function () {
   modal.style.display = "block";
-  console.log("Modal açıldı."); // Kontrol için konsola yazdırma
+  console.log("Modal açıldı."); 
 };
 
 // Kullanıcı bilgisi mevcut loggedInUser key'i altında localStorage'da
 document.getElementById('add-reminder').addEventListener('click', function () {
   // Kullanıcı bilgisi çekiliyor
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser") || "{}");
-  console.log(loggedInUser,"seyma")
 
   if (!loggedInUser) {
-      alert('Lütfen önce giriş yapınız!');
+      alert('Please sign in first!');
       return;
   }
 
@@ -37,7 +34,7 @@ document.getElementById('add-reminder').addEventListener('click', function () {
   const reminderBody = document.getElementById('comment-box').value.trim();
 
   if (!reminderHeader || !reminderBody) {
-      alert('Lütfen tüm alanları doldurunuz.');
+      alert('Please fill in all fields.');
       return;
   }
 
