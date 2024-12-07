@@ -1,8 +1,6 @@
 var modal = document.getElementById("myModal");
-console.log(modal, "modal");
 
 var btn = document.getElementById("myBtn");
-console.log(btn, "ss");
 
 var spans = document.getElementsByClassName("close");
 if (spans.length > 0) {
@@ -14,7 +12,6 @@ if (spans.length > 0) {
 
 btn.onclick = function () {
   modal.style.display = "block";
-  console.log("Modal Açıldı.");
 };
 
 document.getElementById("add-address").addEventListener("click", function () {
@@ -70,8 +67,6 @@ window.onclick = function (event) {
 
 // LocalStorage'den loggedInUser objesini çek
 function renderAddress(userObject) {
-  console.log(userObject, "kfdkflşd");
-
   const container = document.getElementById("address-container");
   container.innerHTML = "";
   if (!userObject || !Array.isArray(userObject.addressList)) {

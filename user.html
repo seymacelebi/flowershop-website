@@ -103,63 +103,144 @@
 </html>
 
 <script>
-  function loadContent(content, element) {
-    const mainContent = document.getElementById("main-content");
+  function loadCSS(filePath) {
+  const existingLink = document.getElementById("dynamic-css");
+  if (existingLink) existingLink.remove(); // Önceki CSS'yi kaldır
 
-    // Map content titles to their respective HTML file paths
-    const contentFiles = {
-      "My Orders": "usersdetails/myOrders.html",
-      "My Account Settings": "usersdetails/accountSettings.html",
-      "My Reviews": "usersdetails/userReviews.html",
-      "My Shopping Cart": "usersdetails/cart.html",
-      Favorites: "usersdetails/favoriteProduct.html",
-      "My Saved Cards": "usersdetails/userSavedCard.html",
-      "My Address Book": "usersdetails/userAddressBook.html",
-      "Reminder Service": "usersdetails/reminderService.html",
-      "Change Password": "usersdetails/changepassword.html",
-    };
+  const link = document.createElement("link");
+  link.id = "dynamic-css";
+  link.rel = "stylesheet";
+  link.href = filePath;
+  document.head.appendChild(link); // Yeni CSS'yi yükle
+}
 
-    // Fetch and load the corresponding HTML file
-    const filePath = contentFiles[content];
-    if (filePath) {
-      fetch(filePath)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`Failed to load ${filePath}`);
-          }
-          return response.text();
-        })
-        .then((data) => {
-          mainContent.innerHTML = `<h1>${content}</h1>${data}`;
-        })
-        .catch((error) => {
-          console.error(error);
-          mainContent.innerHTML = `<h1>Error</h1><p>Could not load content for "${content}".</p>`;
-        });
-      // İlgili script dosyasını yükle
-      const scriptPath = filePath.replace(".html", ".js");
-      const scriptElement = document.createElement("script");
-      scriptElement.src = scriptPath;
-      document.body.appendChild(scriptElement);
-    } else {
-      mainContent.innerHTML = `<h1>${content}</h1><p>Content for "${content}" goes here.</p>`;
-    }
+function loadContent(content, element) {
+  const mainContent = document.getElementById("main-content");
+  const contentFiles = {
+    "My Orders": "usersdetails/myOrders.html",
+    "My Account Settings": "usersdetails/accountSettings.html",
+    "My Reviews": "usersdetails/userReviews.html",
+    "My Shopping Cart": "usersdetails/cart.html",
+    Favorites: "usersdetails/favoriteProduct.html",
+    "My Saved Cards": "usersdetails/userSavedCard.html",
+    "My Address Book": "usersdetails/userAddressBook.html",
+    "Reminder Service": "usersdetails/reminderService.html",
+    "Change Password": "usersdetails/changepassword.html",
+  };
 
-    // Remove 'active' class from the previous active link
-    const activeLink = document.querySelector(".sidebar a.active");
-    if (activeLink) {
-      activeLink.classList.remove("active");
-    }
+  const filePath = contentFiles[content];
+  if (filePath) {
+    fetch(filePath)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Failed to load ${filePath}`);
+        }
+        return response.text();
+      })
+      .then((data) => {
+        mainContent.innerHTML = `<h1>${content}</h1>${data}`;
 
-    // Add 'active' class to the clicked link
-    element.classList.add("active");
+        // CSS dosyasını yüklüyoruz
+        const cssPath = filePath.replace(".html", ".css");
+        loadCSS(cssPath);
+
+        // JavaScript dosyasını yüklüyoruz
+        const scriptPath = filePath.replace(".html", ".js");
+        const oldScript = document.getElementById("dynamic-script");
+        if (oldScript) oldScript.remove();
+        fetch(scriptPath)
+          .then((response) => {
+            if (response.ok) {
+              const scriptElement = document.createElement("script");
+              scriptElement.src = scriptPath;
+              scriptElement.id = "dynamic-script";
+              document.body.appendChild(scriptElement);
+            }
+          })
+          .catch(() => {
+            console.warn(`No JavaScript file found for ${content}`);
+          });
+      })
+      .catch((error) => {
+        console.error(error);
+        mainContent.innerHTML = `<h1>Error</h1><p>Could not load content for "${content}".</p>`;
+      });
+  } else {
+    mainContent.innerHTML = `<h1>${content}</h1><p>Content for "${content}" goes here.</p>`;
   }
 
-  // Sayfa yüklendiğinde ilk içeriği göster
-  window.onload = function () {
-    const firstLink = document.querySelector(".sidebar a");
+  const activeLink = document.querySelector(".sidebar a.active");
+  if (activeLink) {
+    activeLink.classList.remove("active");
+  }
+  element.classList.add("active");
+}
+
+window.onload = function () {
+  const firstLink = document.querySelector(".sidebar a");
+  if (firstLink) {
     loadContent("My Account Settings", firstLink);
-  };
+  }
+};
+
+
+  // function loadContent(content, element) {
+  //   const mainContent = document.getElementById("main-content");
+
+  //   // Map content titles to their respective HTML file paths
+  //   const contentFiles = {
+  //     "My Orders": "usersdetails/myOrders.html",
+  //     "My Account Settings": "usersdetails/accountSettings.html",
+  //     "My Reviews": "usersdetails/userReviews.html",
+  //     "My Shopping Cart": "usersdetails/cart.html",
+  //     Favorites: "usersdetails/favoriteProduct.html",
+  //     "My Saved Cards": "usersdetails/userSavedCard.html",
+  //     "My Address Book": "usersdetails/userAddressBook.html",
+  //     "Reminder Service": "usersdetails/reminderService.html",
+  //     "Change Password": "usersdetails/changepassword.html",
+  //   };
+
+  //   // Fetch and load the corresponding HTML file
+  //   const filePath = contentFiles[content];
+  //   if (filePath) {
+  //     fetch(filePath)
+  //       .then((response) => {
+  //         if (!response.ok) {
+  //           throw new Error(`Failed to load ${filePath}`);
+  //         }
+  //         return response.text();
+  //       })
+  //       .then((data) => {
+  //         mainContent.innerHTML = `<h1>${content}</h1>${data}`;
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //         mainContent.innerHTML = `<h1>Error</h1><p>Could not load content for "${content}".</p>`;
+  //       });
+  //     // İlgili script dosyasını yükle
+  //     const scriptPath = filePath.replace(".html", ".js");
+  //     const scriptElement = document.createElement("script");
+  //     scriptElement.src = scriptPath;
+  //     document.body.appendChild(scriptElement);
+  //   } else {
+  //     mainContent.innerHTML = `<h1>${content}</h1><p>Content for "${content}" goes here.</p>`;
+  //   }
+
+  //   // Remove 'active' class from the previous active link
+  //   const activeLink = document.querySelector(".sidebar a.active");
+  //   if (activeLink) {
+  //     activeLink.classList.remove("active");
+  //   }
+
+  //   // Add 'active' class to the clicked link
+  //   element.classList.add("active");
+  // }
+
+  // // Sayfa yüklendiğinde ilk içeriği göster
+  // window.onload = function () {
+  //   const firstLink = document.querySelector(".sidebar a");
+  //   loadContent("My Account Settings", firstLink);
+  // };
 
   // LocalStorage'dan loggedInUser nesnesini alıyoruz
   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || {};
@@ -207,6 +288,18 @@
 </script>
 
 <style>
+  #main-content a {
+  text-decoration: none;
+}
+a {
+  text-decoration: none;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
   * {
     margin: 0;
     padding: 0;
