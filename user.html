@@ -104,85 +104,84 @@
 
 <script>
   function loadCSS(filePath) {
-  const existingLink = document.getElementById("dynamic-css");
-  if (existingLink) existingLink.remove(); // Önceki CSS'yi kaldır
+    const existingLink = document.getElementById("dynamic-css");
+    if (existingLink) existingLink.remove(); // Önceki CSS'yi kaldır
 
-  const link = document.createElement("link");
-  link.id = "dynamic-css";
-  link.rel = "stylesheet";
-  link.href = filePath;
-  document.head.appendChild(link); // Yeni CSS'yi yükle
-}
+    const link = document.createElement("link");
+    link.id = "dynamic-css";
+    link.rel = "stylesheet";
+    link.href = filePath;
+    document.head.appendChild(link); // Yeni CSS'yi yükle
+  }
 
-function loadContent(content, element) {
-  const mainContent = document.getElementById("main-content");
-  const contentFiles = {
-    "My Orders": "usersdetails/myOrders.html",
-    "My Account Settings": "usersdetails/accountSettings.html",
-    "My Reviews": "usersdetails/userReviews.html",
-    "My Shopping Cart": "usersdetails/cart.html",
-    Favorites: "usersdetails/favoriteProduct.html",
-    "My Saved Cards": "usersdetails/userSavedCard.html",
-    "My Address Book": "usersdetails/userAddressBook.html",
-    "Reminder Service": "usersdetails/reminderService.html",
-    "Change Password": "usersdetails/changepassword.html",
+  function loadContent(content, element) {
+    const mainContent = document.getElementById("main-content");
+    const contentFiles = {
+      "My Orders": "usersdetails/myOrders.html",
+      "My Account Settings": "usersdetails/accountSettings.html",
+      "My Reviews": "usersdetails/userReviews.html",
+      "My Shopping Cart": "usersdetails/cart.html",
+      Favorites: "usersdetails/favoriteProduct.html",
+      "My Saved Cards": "usersdetails/userSavedCard.html",
+      "My Address Book": "usersdetails/userAddressBook.html",
+      "Reminder Service": "usersdetails/reminderService.html",
+      "Change Password": "usersdetails/changepassword.html",
+    };
+
+    const filePath = contentFiles[content];
+    if (filePath) {
+      fetch(filePath)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`Failed to load ${filePath}`);
+          }
+          return response.text();
+        })
+        .then((data) => {
+          mainContent.innerHTML = `<h1>${content}</h1>${data}`;
+
+          // CSS dosyasını yüklüyoruz
+          const cssPath = filePath.replace(".html", ".css");
+          loadCSS(cssPath);
+
+          // JavaScript dosyasını yüklüyoruz
+          const scriptPath = filePath.replace(".html", ".js");
+          const oldScript = document.getElementById("dynamic-script");
+          if (oldScript) oldScript.remove();
+          fetch(scriptPath)
+            .then((response) => {
+              if (response.ok) {
+                const scriptElement = document.createElement("script");
+                scriptElement.src = scriptPath;
+                scriptElement.id = "dynamic-script";
+                document.body.appendChild(scriptElement);
+              }
+            })
+            .catch(() => {
+              console.warn(`No JavaScript file found for ${content}`);
+            });
+        })
+        .catch((error) => {
+          console.error(error);
+          mainContent.innerHTML = `<h1>Error</h1><p>Could not load content for "${content}".</p>`;
+        });
+    } else {
+      mainContent.innerHTML = `<h1>${content}</h1><p>Content for "${content}" goes here.</p>`;
+    }
+
+    const activeLink = document.querySelector(".sidebar a.active");
+    if (activeLink) {
+      activeLink.classList.remove("active");
+    }
+    element.classList.add("active");
+  }
+
+  window.onload = function () {
+    const firstLink = document.querySelector(".sidebar a");
+    if (firstLink) {
+      loadContent("My Account Settings", firstLink);
+    }
   };
-
-  const filePath = contentFiles[content];
-  if (filePath) {
-    fetch(filePath)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Failed to load ${filePath}`);
-        }
-        return response.text();
-      })
-      .then((data) => {
-        mainContent.innerHTML = `<h1>${content}</h1>${data}`;
-
-        // CSS dosyasını yüklüyoruz
-        const cssPath = filePath.replace(".html", ".css");
-        loadCSS(cssPath);
-
-        // JavaScript dosyasını yüklüyoruz
-        const scriptPath = filePath.replace(".html", ".js");
-        const oldScript = document.getElementById("dynamic-script");
-        if (oldScript) oldScript.remove();
-        fetch(scriptPath)
-          .then((response) => {
-            if (response.ok) {
-              const scriptElement = document.createElement("script");
-              scriptElement.src = scriptPath;
-              scriptElement.id = "dynamic-script";
-              document.body.appendChild(scriptElement);
-            }
-          })
-          .catch(() => {
-            console.warn(`No JavaScript file found for ${content}`);
-          });
-      })
-      .catch((error) => {
-        console.error(error);
-        mainContent.innerHTML = `<h1>Error</h1><p>Could not load content for "${content}".</p>`;
-      });
-  } else {
-    mainContent.innerHTML = `<h1>${content}</h1><p>Content for "${content}" goes here.</p>`;
-  }
-
-  const activeLink = document.querySelector(".sidebar a.active");
-  if (activeLink) {
-    activeLink.classList.remove("active");
-  }
-  element.classList.add("active");
-}
-
-window.onload = function () {
-  const firstLink = document.querySelector(".sidebar a");
-  if (firstLink) {
-    loadContent("My Account Settings", firstLink);
-  }
-};
-
 
   // function loadContent(content, element) {
   //   const mainContent = document.getElementById("main-content");
@@ -288,17 +287,38 @@ window.onload = function () {
 </script>
 
 <style>
-  #main-content a {
-  text-decoration: none;
-}
-a {
-  text-decoration: none;
-}
+  /* Logo bağlantısı için varsayılan rengi ayarla */
+  .logo {
+    color: #4a3e9b; /* Logonuzun varsayılan rengi */
+    text-decoration: none; /* Alt çizgiyi kaldır */
+  }
 
-h1 {
-  margin: 0;
-  padding: 0;
-}
+  /* Logo tıklandıktan sonra da rengini sabit tut */
+  .logo:visited {
+    color: #4a3e9b; /* Aynı renk */
+  }
+
+  /* Hover durumunda logonun rengini sabit tut veya değiştir */
+  .logo:hover {
+    color: #4a3e9b; /* Renk değişmeden kalır */
+  }
+
+  /* Active durumunda (tıklama anında) rengini koru */
+  .logo:active {
+    color: #4a3e9b;
+  }
+
+  #main-content a {
+    text-decoration: none;
+  }
+  a {
+    text-decoration: none;
+  }
+
+  h1 {
+    margin: 0;
+    padding: 0;
+  }
 
   * {
     margin: 0;
