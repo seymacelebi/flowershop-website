@@ -592,12 +592,23 @@ function addToCart(buttonElement) {
   updateCartDisplay();
 }
 
-
 // Sepetteki ürün sayısını güncelleme işlevi
 function updateCartCount() {
   const cartCountElement = document.getElementById("cart-count");
+  const cart = JSON.parse(localStorage.getItem("cart")) || []; // Sepet verilerini al
   cartCountElement.textContent = cart.length; // Sepetteki ürün sayısını göster
 }
+
+// Sayfa yüklendiğinde çağır
+document.addEventListener("DOMContentLoaded", updateCartCount);
+
+
+
+// // Sepetteki ürün sayısını güncelleme işlevi
+// function updateCartCount() {
+//   const cartCountElement = document.getElementById("cart-count");
+//   cartCountElement.textContent = cart.length; // Sepetteki ürün sayısını göster
+// }
 
 
 // Sepeti yeniden gösterme işlevi
