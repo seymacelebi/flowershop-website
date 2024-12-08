@@ -40,15 +40,16 @@
     </header>
 
     <div class="content">
-      <!-- Order Progress Bar -->
-      <div class="progress-bar">
-        <div class="step active">Order Information</div>
-        <div class="step">Sender Information</div>
-        <div class="step">Payment</div>
-        <!-- <div class="step">Order Progress Bar</div> -->
+       <!-- Order Progress Bar -->
+       <div class="progress-bar">
+        <div class="step" data-step="order-information">Order Information</div>
+        <div class="step" data-step="sender-information">
+          Sender Information
+        </div>
+        <div class="step" data-step="payment">Payment</div>
       </div>
 
-      <section class="order-info">
+      <div class="order-info">
         <div class="form-container">
           <div class="form-group">
             <label for="sender-name">Sender Name Surname</label>
@@ -91,12 +92,37 @@
           <button class="discountbutton">Use it</button>
           <p class="summary">Total: <span>$0.00</span></p>
         </div>
-      </section>
+      </div>
     </div>
+    
+    <script src="js/script.js" >
+    </script>
   </body>
 </html>
 
 <script>
+  // Aktif olduğu adımı gösteren script
+function setActiveStep() {
+  const pagePath = window.location.pathname;
+  let activeStep = '';
+
+  if (pagePath.includes('payment.html')) {
+    activeStep = 'order-information';
+  } else if (pagePath.includes('paymentDetail.html')) {
+    activeStep = 'sender-information';
+  } else if (pagePath.includes('paymentFinal.html')) {
+    activeStep = 'payment';
+  }
+
+  const steps = document.querySelectorAll('.progress-bar .step');
+  steps.forEach((step) => {
+    if (step.getAttribute('data-step') === activeStep) {
+      step.classList.add('active');
+    } else {
+      step.classList.remove('active');
+    }
+  });
+}
   
   document.addEventListener("DOMContentLoaded", () => {
     // localStorage'dan subtotal çek

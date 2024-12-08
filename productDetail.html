@@ -26,6 +26,11 @@
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/toastify-js"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.2/pikaday.min.js"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.2/css/pikaday.min.css"
+      rel="stylesheet"
+    />
 
     <!-- custom css link -->
     <link rel="stylesheet" href="css/style.css" />
@@ -72,8 +77,8 @@
         <div class="product-price">
           <h1>Sun Flower</h1>
           <div>
-            <span class="current-price">1.350,00 TL</span>
-            <span class="original-price"><s>1.550,00 TL</s></span>
+            <span class="current-price"></span>
+            <span class="original-price"><s></s></span>
             <!-- Yıldız simgesi -->
             <span class="rating-stars">
               <i class="fas fa-star"></i>
@@ -92,18 +97,16 @@
           <i class="fas fa-building"></i>
           <select id="city-select" class="inputA" onchange="showDateOptions()">
             <option value="">Select the address you want to send to</option>
-        </select>
+          </select>
         </div>
 
-           
         <div id="date-options" class="date-options hidden">
           <button>Bugün <span>02 Kasım</span></button>
           <button>Yarın <span>03 Kasım</span></button>
           <button>Pazartesi <span>04 Kasım</span></button>
-          <button onclick="openCalendar()">Takvim</button>
-      </div>
+          <button id="datepicker" onclick="openCalendar()">Takvim</button>
+        </div>
 
-    
         <div class="textRandom">
           <i class="fa-solid fa-ticket"></i>
           <span>Up to 6 Months Installment</span>
@@ -114,8 +117,14 @@
         </div>
 
         <div class="buttons">
-          <button class="add-to-cart btn" onClick="addToCart(this)" >Add to Cart</button>
-          <a href="favoriteProduct.html"  onClick="addToFavorite(this)" class="fas fa-heart"></a>
+          <button class="add-to-cart btn" onClick="addToCart(this)">
+            Add to Cart
+          </button>
+          <a
+            href="favoriteProduct.html"
+            onClick="addToFavorite(this)"
+            class="fas fa-heart"
+          ></a>
         </div>
 
         <div class="text-shippment">
@@ -133,12 +142,30 @@
 
       <hr />
     </div>
-     <script src="cities.json"></script>
+    <script src="cities.json"></script>
     <script src="js/script.js"></script>
   </body>
 </html>
 
 <script>
+  let selectedDate = null;
+
+  // Pikaday takvimini oluştur
+  var picker = new Pikaday({
+    field: document.getElementById("datepicker"),
+    format: "YYYY-MM-DD",
+    onSelect: function (date) {
+      selectedDate = date.toISOString().split("T")[0]; // Sadece YYYY-MM-DD formatını al
+      console.log("Seçilen Tarih:", selectedDate);
+    },
+  });
+
+  // Takvim açma fonksiyonu
+  function openCalendar() {
+    picker.show(); // Takvimi aç
+    picker._onInputFocus(); // Takvim alanını manuel olarak odakla
+  }
+
   const allProducts = JSON.parse(localStorage.getItem("productInStore"));
   const urlParams = new URLSearchParams(window.location.search);
 
@@ -148,42 +175,40 @@
   const product = allProducts.find((p) => p.id === parseInt(productId));
 
   // Sepete ürün eklemek için addToCart fonksiyonu
-function addToCart(element) {
-  // Sepetteki ürünleri al
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  
-  console.log(cart, "cartt")
+  function addToCart(element) {
+    // Sepetteki ürünleri al
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  // Sepette aynı ürün var mı kontrol et
-  const existingProduct = cart.find((p) => p.id === product.id);
-  if (existingProduct) {
-    // Varsa miktarını arttır
-    existingProduct.quantity += 1;
-  } else {
-    // Yoksa yeni ürün olarak ekle
-    cart.push({
-      ...product, // product nesnesini ekliyoruz
-      quantity: 1 // Başlangıç miktarı olarak 1 veriyoruz
-    });
+    // Sepette aynı ürün var mı kontrol et
+    const existingProduct = cart.find((p) => p.id === product.id);
+    if (existingProduct) {
+      // Varsa miktarını arttır
+      existingProduct.quantity += 1;
+    } else {
+      // Yoksa yeni ürün olarak ekle
+      cart.push({
+        ...product, // product nesnesini ekliyoruz
+        quantity: 1, // Başlangıç miktarı olarak 1 veriyoruz
+        date: selectedDate || "Tarih seçilmedi", // Seçilen tarihi ekle veya varsayılan bir metin kullan
+      });
+    }
+    console.log(product, "deneme234");
+    // Güncellenmiş sepeti localStorage'da sakla
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // Sepet sayacını güncelle
+    updateCartCount();
   }
 
-  // Güncellenmiş sepeti localStorage'da sakla
-  localStorage.setItem("cart", JSON.stringify(cart));
+  // Sepetteki ürün sayısını güncellemek için bir fonksiyon
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById("cart-count").textContent = totalQuantity;
+  }
 
-  // Sepet sayacını güncelle
+  // Sayfa yüklendiğinde sepet sayısını güncelle
   updateCartCount();
-}
-
-// Sepetteki ürün sayısını güncellemek için bir fonksiyon
-function updateCartCount() {
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
-  document.getElementById("cart-count").textContent = totalQuantity;
-}
-
-// Sayfa yüklendiğinde sepet sayısını güncelle
-updateCartCount();
-
 
   // Set the main image initially
   mainImage.src = product.imageSrc;
@@ -206,9 +231,6 @@ updateCartCount();
     thumbnailsContainer.appendChild(img);
   });
 
-  // Check if the main image and thumbnails are set up correctly
-  console.log(mainImage, thumbnailsContainer);
-
   document.addEventListener("DOMContentLoaded", () => {
     // URL parametresinden id'yi al
     const productId = urlParams.get("id");
@@ -218,12 +240,10 @@ updateCartCount();
       // ID'si ile ürünü bul
       const product = allProducts.find((p) => p.id === parseInt(productId));
       displayProductDetails(product); // Ürün bilgilerini göster
-      console.log(product, "şşş");
     }
   });
 
   function displayProductDetails(product) {
-
     // Ürün adı
     document.querySelector(".product-price h1").innerText = product.title;
 
@@ -269,83 +289,79 @@ updateCartCount();
     });
   }
 
-
-
   // JSON dosyasını fetch kullanarak alıyoruz
-  fetch('cities.json')
-    .then(response => {
-      console.log(response,"responsee")
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
+  fetch("cities.json")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
     })
-    .then(data => {
-        console.log(data); // JSON verisini kontrol etmek için
-        const citySelect = document.getElementById('city-select');
-        data.cities.forEach(city => {
-            const option = document.createElement('option');
-            option.value = city.toLowerCase();
-            option.textContent = city;
-            citySelect.appendChild(option);
-        });
+    .then((data) => {
+      const citySelect = document.getElementById("city-select");
+      data.cities.forEach((city) => {
+        const option = document.createElement("option");
+        option.value = city.toLowerCase();
+        option.textContent = city;
+        citySelect.appendChild(option);
+      });
     })
-    .catch(error => console.error('Error fetching the JSON data:', error));
+    .catch((error) => console.error("Error fetching the JSON data:", error));
 
-    function showDateOptions() {
-    const citySelect = document.getElementById('city-select');
-    const dateOptions = document.getElementById('date-options');
+  function showDateOptions() {
+    const citySelect = document.getElementById("city-select");
+    const dateOptions = document.getElementById("date-options");
 
     if (citySelect.value) {
-        dateOptions.classList.remove('hidden');
+      dateOptions.classList.remove("hidden");
     } else {
-        dateOptions.classList.add('hidden');
+      dateOptions.classList.add("hidden");
     }
-}
-
-
-//Favorilere ekleme işlemi
-function addToFavorite(buttonElement) {
-  const boxElement = buttonElement.closest(".box");
-  const productTitle = boxElement.querySelector("h3").innerText;
-  const productPrice = boxElement
-    .querySelector(".price")
-    .childNodes[0].textContent.trim();
-
-  const productImage = boxElement.querySelector(".image img").src;
-
-  const productInFavorite = {
-    title: productTitle,
-    price: productPrice,
-    quantity: 1,
-    image: productImage,
-  };
-
-  const existingProduct = cart.find(
-    (product) => product.title === productInFavorite.title
-  );
-
-  if (existingProduct) {
-    existingProduct.quantity += 1; // Miktar artır
-  } else {
-    favorite.push(productInFavorite); // Yeni ürünü sepete ekle
   }
 
-  localStorage.setItem("favorite", JSON.stringify(favorite));
-}
+  //Favorilere ekleme işlemi
+  function addToFavorite(buttonElement) {
+    const boxElement = buttonElement.closest(".box");
+    const productTitle = boxElement.querySelector("h3").innerText;
+    const productPrice = boxElement
+      .querySelector(".price")
+      .childNodes[0].textContent.trim();
 
+    const productImage = boxElement.querySelector(".image img").src;
 
+    const productInFavorite = {
+      title: productTitle,
+      price: productPrice,
+      quantity: 1,
+      image: productImage,
+    };
 
+    const existingProduct = cart.find(
+      (product) => product.title === productInFavorite.title
+    );
 
+    if (existingProduct) {
+      existingProduct.quantity += 1; // Miktar artır
+    } else {
+      favorite.push(productInFavorite); // Yeni ürünü sepete ekle
+    }
 
+    localStorage.setItem("favorite", JSON.stringify(favorite));
+  }
 </script>
 
 <style>
   html,
   body {
+    overflow-x: hidden; /* Yatayda taşmayı engeller */
+  }
+  .thumbnail {
+    max-width: 100%; /* Mobilde taşmayı engeller */
+  }
+  html,
+  body {
     height: 100%;
     width: 100%;
-    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     overflow: hidden; /* Scroll'u kapatır */
   }
@@ -360,23 +376,21 @@ function addToFavorite(buttonElement) {
   /* Yan menü stili */
   /* Sidebar styling for the main image */
   .sidebar {
-    width: 40%;
-    padding: 10px;
-    height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
-    overflow-y: hidden;
+    align-items: center; /* Resmi dikey ve yatay ortalar */
+    width: 40%;
+    height: 100vh;
+    padding: 10px;
+    overflow: hidden;
   }
-
   .sidebar img {
-    margin-top: 100px;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    max-height: 100%;
+    width: auto; /* Oranı koruyarak genişlik ayarlanır */
+    height: auto; /* Oranı koruyarak yükseklik ayarlanır */
+    max-width: 100%; /* Yatay taşmaları engeller */
+    max-height: 100%; /* Dikey taşmaları engeller */
+    object-fit: contain; /* Görüntüyü kutu içine sığdırır */
   }
-
   /* Thumbnails styling */
   .thumbnails {
     margin-top: 90px;
@@ -511,7 +525,6 @@ function addToFavorite(buttonElement) {
     padding: 10px 10px 10px 40px; /* Sol tarafta simge için boşluk */
   }
 
-
   .addressText {
     position: relative;
     width: 100%;
@@ -527,8 +540,6 @@ function addToFavorite(buttonElement) {
     font-size: 18px; /* Simge boyutu */
     border-radius: 5rem;
   }
-
-
 
   .fas.fa-heart {
     font-size: 24px; /* İstediğiniz boyutu girin */
@@ -623,9 +634,9 @@ function addToFavorite(buttonElement) {
   .date-options {
     display: flex;
     gap: 10px;
-}
+  }
 
-.date-options button {
+  .date-options button {
     width: 225px;
     margin-top: 10px;
     padding: 10px 15px;
@@ -634,19 +645,43 @@ function addToFavorite(buttonElement) {
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
-}
+  }
 
-.date-options button span {
+  .date-options button span {
     display: block;
     font-weight: bold;
+  }
+
+  .hidden {
+    display: none;
+  }
+  @media (max-width: 768px) {
+  .product-container {
+    display: flex;
+    flex-direction: column; /* Dikey sıralama */
+    align-items: center; /* Ortalar */
+  }
+
+  .product-image {
+    order: -1; /* Resmi üstte getirir */
+  }
+
+  .comments-section {
+    width: 90%;
+    margin-top: 10px; /* Yorumlar için boşluk ekleyebilirsiniz */
+  }
 }
 
-.hidden {
-    display: none;
-}
-  @media (max-width: 768px) {
-    .comments-section {
-      width: 90%;
-    }
+@media (max-width: 1179px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
   }
+
+  .sidebar img {
+    width: 100%;
+    height: auto;
+  }
+}
+
 </style>
