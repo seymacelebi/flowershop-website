@@ -138,7 +138,7 @@ header .fa-bars {
 }
 .home .content p {
   font-size: 1.5rem;
-  color: #999;
+  color: #333;
   padding: 1rem 0;
   line-height: 1.5;
 }
@@ -266,10 +266,15 @@ body {
   font-size: 3rem;
   color: #333;
 }
-
+.about .row .content h4{
+  
+    font-size: 2rem;
+    color: var(--pink);
+  
+}
 .about .row .content p {
   font-size: 1.5rem;
-  color: #999;
+  color: #333;
   padding: 0.5rem;
   line-height: 1.5;
 }
