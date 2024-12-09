@@ -7,7 +7,7 @@ document.getElementById('save-button').addEventListener('click', () => {
     // localStorage'dan loggedInUser'ı alıyoruz
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
     if (!loggedInUser) {
-        alert("Kullanıcı bilgisi bulunamadı!");
+        alert("User information not found!");
         return; 
     }
 

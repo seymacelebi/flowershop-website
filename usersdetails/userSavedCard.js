@@ -7,7 +7,7 @@ if (spans.length > 0) {
   var span = spans[0];
   // span ile işlemler yapabilirsiniz.
 } else {
-  console.error("Hedeflenen öğe bulunamadı.");
+  console.error("Targeted item not found.");
 }
 
 btn.onclick = function () {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,14 +10,14 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     />
-
-    <!-- custom css link -->
   </head>
+
   <body>
+    <!-- Header Section -->
     <header>
       <input type="checkbox" name="" id="toggler" />
       <label for="toggler" class="fas fa-bars"></label>
-      <a href="#" class="logo">flower<span>.</span></a>
+      <a href="/index.html#home" class="logo">flower<span>.</span></a>
 
       <nav class="navbar">
         <a href="/index.html#home">Home</a>
@@ -31,385 +31,220 @@
         <a href="favoriteProduct.html" class="fas fa-heart"></a>
         <a href="cart.html" class="fas fa-shopping-cart">
           <span id="cart-count" class="total-qty"></span>
+          <!-- Sepet sayısı burada gösterilecek -->
         </a>
         <a href="login.html" class="fas fa-user"></a>
       </div>
     </header>
 
-
-    <div class="tab-container login-container">
+    <div class="container">
       <div class="tabs">
-        <button class="tab-btn active" onclick="openTab('login')">Login </button>
-        <button class="tab-btn" onclick="openTab('register')">Sign Up</button>
+        <button id="login-tab" class="tab active">Login</button>
+        <button id="register-tab" class="tab">Register</button>
+      </div>
+      <div id="login-content" class="tab-content">
+        <h2>Login</h2>
+        <form id="login-form">
+          <label for="login-email">Email:</label>
+          <input type="email" id="login-email" required />
+          <label for="login-password">Password:</label>
+          <input type="password" id="login-password" required />
+          <button type="submit">Login</button>
+        </form>
       </div>
 
-   
-      <div id="login" class="tab-content active login-box">
-        <h1 class="heading">Login <span>Page</span></h1>
-        <form id="login-form" method="post">
-          <label for="email">E-mail</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Enter email address"
-            required
-          />
-
-          <label for="password">Password</label>
+      <div id="register-content" class="tab-content hidden">
+        <h2>Register</h2>
+        <form id="register-form">
+          <label for="register-name">Full Name:</label>
+          <input type="text" id="register-name" name="name" required />
+          <label for="register-email">Email:</label>
+          <input type="email" id="register-email" name="email" required />
+          <label for="register-password">Password:</label>
           <input
             type="password"
-            id="password"
-            placeholder="Enter password"
+            id="register-password"
+            name="password"
             required
           />
-
-          <div class="form-options">
-            <label>
-              <input type="checkbox" required /> I accept the terms of
-              membership
-            </label>
-           
-            <a href="#">I forgot my password</a>
-          </div>
-
-          <button type="submit" class="login-btn">Login</button>
-          <button type="button" class="google-login">Login with Google</button>
+          <button type="submit">Register</button>
         </form>
       </div>
-   
-      <div id="register" class="tab-content">
-        <h1 class="heading">Register <span>Page</span></h1>
-        <form id="register-form" method="post">
-          <label>Full Name</label>
-          <input type="text" placeholder="Enter Full Name" required />
-          <label>E-Mail</label>
-          <input type="registerEmail" id="registerEmail" placeholder="Enter Email Address" required />
-          <label>Password</label>
-          <input type="registerPassword" id="registerPassword" placeholder="Enter Password" required />
-          <button type="registerSubmit">Register</button>
-        </form>
-      </div>
-  </div>
+    </div>
   </body>
 </html>
 
 <script>
-  // login-container
-  function openTab(tabName) {
-  const contents = document.querySelectorAll('.tab-content');
-  const buttons = document.querySelectorAll('.tab-btn');
+  document.addEventListener("DOMContentLoaded", () => {
+    const loginTab = document.getElementById("login-tab");
+    const registerTab = document.getElementById("register-tab");
+    const loginContent = document.getElementById("login-content");
+    const registerContent = document.getElementById("register-content");
+    checkLoginStatus();
 
-  contents.forEach(content => content.classList.remove('active'));
-  buttons.forEach(button => button.classList.remove('active'));
 
-  document.getElementById(tabName).classList.add('active');
-  event.currentTarget.classList.add('active');
-}
-// Function to open tabs (login/register)
-function openTab(tabName) {
-  // Hide all tab contents
-  const tabContents = document.querySelectorAll(".tab-content");
-  tabContents.forEach(content => content.classList.remove("active"));
+    const toggleTabs = (showLogin) => {
+      if (showLogin) {
+        loginTab.classList.add("active");
+        registerTab.classList.remove("active");
+        loginContent.classList.add("active");
+        registerContent.classList.remove("active");
+      } else {
+        loginTab.classList.remove("active");
+        registerTab.classList.add("active");
+        loginContent.classList.remove("active");
+        registerContent.classList.add("active");
+      }
+    };
 
-  // Remove active class from all buttons
-  const tabButtons = document.querySelectorAll(".tab-btn");
-  tabButtons.forEach(button => button.classList.remove("active"));
+    loginTab.addEventListener("click", () => toggleTabs(true));
+    registerTab.addEventListener("click", () => toggleTabs(false));
 
-  // Show the specific tab content
-  document.getElementById(tabName).classList.add("active");
+    document.getElementById("register-form").addEventListener("submit", (e) => {
+      e.preventDefault();
 
-  // Add active class to the clicked button
-  event.currentTarget.classList.add("active");
-}
+      const fullName = document.getElementById("register-name").value;
+      const email = document.getElementById("register-email").value;
+      const password = document.getElementById("register-password").value;
 
-// Handle the registration process
-document.getElementById("register-form").addEventListener("submit", function(event) {
-  event.preventDefault();
+      // LocalStorage'dan kullanıcıları al veya boş bir dizi oluştur
+      let users = JSON.parse(localStorage.getItem("users")) || [];
 
-  // Get the input values
-  const fullName = document.querySelector("#register-form input[type='text']").value;
-  const email = document.querySelector("#register-form input[type='registerEmail']").value;
-  const password = document.querySelector("#register-form input[type='registerPassword']").value;
+      // Email'in zaten kayıtlı olup olmadığını kontrol et
+      const isUserExists = users.find((user) => user.email === email);
 
-  // Create a user object
-  const user = {
-    fullName: fullName,
-    email: email,
-    password: password
-  };
+      if (isUserExists) {
+        alert("This email is already registered!");
+        return;
+      }
 
-  // Store the user in localStorage (keyed by the user's email)
-  localStorage.setItem("loggedInUser", JSON.stringify(user));
+      // Yeni kullanıcıyı ekle
+      users.push({ name: fullName, email, password });
+      localStorage.setItem("users", JSON.stringify(users));
 
-  alert("Registration successful! You can now log in.");
-  openTab('login');
-});
+      alert(
+        "Registration successful! You are being directed to the login tab..."
+      );
+      toggleTabs(true); // Giriş sekmesine geçmek için mevcut bir fonksiyon
+    });
+  });
+  //Login form part
 
-// Handle the login process
-document.getElementById("login-form").addEventListener("submit", function(event) {
-  event.preventDefault();
+  document.getElementById("login-form").addEventListener("submit", (e) => {
+    e.preventDefault();
 
-  // Get the input values
-  const email = document.querySelector("#login-form #email").value;
-  const password = document.querySelector("#login-form #password").value;
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
 
-  // Retrieve the user data from localStorage
-  const storedUser = localStorage.getItem(email);
-  
-  if (storedUser) {
-    const user = JSON.parse(storedUser);
+    // LocalStorage'dan tüm kullanıcıları al
+    const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    // Validate password
-    if (user.password === password) {
-      alert(`Welcome back, ${user.fullName}!`);
+    // Email ve şifre doğrulaması
+    const user = users.find(
+      (user) => user.email === email && user.password === password
+    );
+
+    if (user) {
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
+      alert(`Welcome back, ${user.name}!`);
       window.location.href = "index.html#home"; // user.html sayfasına yönlendir
     } else {
       alert("Incorrect password. Please try again.");
     }
-  } else {
-    alert("No account found with this email. Please register.");
-  }
+  });
+  //login check
+  function checkLoginStatus() {
+    const loggedInUser = localStorage.getItem("loggedInUser");
 
-});
-
-//login check
-// Function to check if the user is already logged in
-function checkLoginStatus() {
-  const loggedInUser = localStorage.getItem("loggedInUser");
-
-  if (loggedInUser) {
-    window.location.href = "user.html"; // Redirect to user dashboard or home page
-  }
-}
-
-// Run the checkLoginStatus function when the page loads
-document.addEventListener("DOMContentLoaded", function() {
-  checkLoginStatus();
-});
-
-// Handle the login process
-document.getElementById("login-form").addEventListener("submit", function(event) {
-  event.preventDefault();
-
-  // Get the input values
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  // Retrieve the user data from localStorage
-  const storedUser = localStorage.getItem(email);
-
-  if (storedUser) {
-    const user = JSON.parse(storedUser);
-
-    // Validate password
-    if (user.password === password) {
-      alert(`Welcome back, ${user.fullName}!`);
-
-      // Store logged-in user in localStorage
-      localStorage.setItem("loggedInUser", email);
-      // Redirect to the user dashboard or another page
-      window.location.href = "user.html"; // Change to your dashboard or home page
-    } else {
-      alert("Incorrect password. Please try again.");
+    if (loggedInUser) {
+      window.location.href = "user.html"; // Redirect to user dashboard or home page
     }
-  } else {
-  console.log("No account")
   }
-});
-
-// Function to handle logout
-function logout() {
-  localStorage.removeItem("loggedInUser"); // Remove the logged-in user from localStorage
-  alert("You have been logged out.");
-  window.location.href = "index.html"; // Redirect back to login page or home page
-}
-
 </script>
 
 <style>
-  /* Genel ayarlar */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f8f8;
-    margin: 0;
-    padding: 0;
-}
-
-/* Konteyner ve form ayarları */
-.tab-container {
-    width: 100%;
-    max-width: 400px;
-    margin: 100px auto;
-    background-color: #fff;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 20px;
-}
-
-.tabs {
+  body {
+    font-family: Arial, sans-serif;
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-}
-
-.tab-btn {
-    width: 50%;
-    padding: 10px;
-    background-color: transparent;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-    transition: border-bottom 0.3s;
-}
-
-.tab-btn.active {
-    border-bottom: 3px solid #000;
-    font-weight: bold;
-}
-
-.tab-content {
-    display: none;
-}
-
-.tab-content.active {
-    display: block;
-}
-
-/* Form elemanları */
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    font-size: 14px;
-    margin-bottom: 5px;
-    color: #333;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-input[type="text"],
-input[type="registerEmail"],
-input[type="registerPassword"] {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-}
-button {
-    padding: 10px;
-    background-color: gray;
-    color: #000;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #ff33991a;
-}
-
-/* Google ile giriş düğmesi */
-.google-login {
-    padding: 10px;
-    background-color: #4285F4;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    cursor: pointer;
-}
-
-.google-login img {
-    width: 20px;
-    margin-right: 10px;
-}
-
-.google-login:hover {
-    background-color: #357ae8;
-}
-
-/* Checkbox ve diğer bağlantılar */
-.checkbox-container {
-    display: flex;
     align-items: center;
-    margin-bottom: 15px;
-}
-
-.checkbox-container input {
-    margin-right: 10px;
-}
-
-.form-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0;
-    font-size: 15px; /* Her iki öğeye aynı font boyutunu ekliyorum */
-}
-
-.form-options label {
-    font-size: 15px; /* Checkbox etiketine de aynı font boyutunu veriyoruz */
-}
-
-.form-options a {
-    text-align: right;
-    font-size: 15px; /* Link için font boyutu aynı kalıyor */
-    margin-bottom: 15px;
-    color: #000;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-/* 
-.form-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f9;
   }
 
-  .form-options a {
-    text-align: right;
-    font-size: 15px;
-    margin-bottom: 15px;
-    color: #000;
+  .container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 650px;
+    text-align: center;
+  }
+
+  .tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+
+  .tab {
+    background: #ccc;
+    border: none;
+    padding: 10px 20px;
     cursor: pointer;
-    text-decoration: none;
-  } */
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
 
-/* Responsive ayarlar */
-@media (max-width: 600px) {
-    .tab-container {
-        margin: 50px auto;
-        padding: 15px;
-    }
+  .tab.active {
+    background: #007bff;
+    color: white;
+  }
 
-    .tab-btn {
-        font-size: 14px;
-    }
+  .tab-content {
+    display: none;
+  }
 
-    button {
-        font-size: 14px;
-    }
-}
+  .tab-content.active {
+    display: block;
+  }
 
+  .hidden {
+    display: none;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    margin-top: 10px;
+    text-align: left;
+  }
+
+  input {
+    margin: 5px 0 15px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  input[type="email"] {
+    text-transform: none; /* Yazının büyük harfe dönüşmesini engeller */
+  }
+
+  button {
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background: #0056b3;
+  }
 </style>

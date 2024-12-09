@@ -189,64 +189,7 @@
     }
   };
 
-  // function loadContent(content, element) {
-  //   const mainContent = document.getElementById("main-content");
-
-  //   // Map content titles to their respective HTML file paths
-  //   const contentFiles = {
-  //     "My Orders": "usersdetails/myOrders.html",
-  //     "My Account Settings": "usersdetails/accountSettings.html",
-  //     "My Reviews": "usersdetails/userReviews.html",
-  //     "My Shopping Cart": "usersdetails/cart.html",
-  //     Favorites: "usersdetails/favoriteProduct.html",
-  //     "My Saved Cards": "usersdetails/userSavedCard.html",
-  //     "My Address Book": "usersdetails/userAddressBook.html",
-  //     "Reminder Service": "usersdetails/reminderService.html",
-  //     "Change Password": "usersdetails/changepassword.html",
-  //   };
-
-  //   // Fetch and load the corresponding HTML file
-  //   const filePath = contentFiles[content];
-  //   if (filePath) {
-  //     fetch(filePath)
-  //       .then((response) => {
-  //         if (!response.ok) {
-  //           throw new Error(`Failed to load ${filePath}`);
-  //         }
-  //         return response.text();
-  //       })
-  //       .then((data) => {
-  //         mainContent.innerHTML = `<h1>${content}</h1>${data}`;
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //         mainContent.innerHTML = `<h1>Error</h1><p>Could not load content for "${content}".</p>`;
-  //       });
-  //     // İlgili script dosyasını yükle
-  //     const scriptPath = filePath.replace(".html", ".js");
-  //     const scriptElement = document.createElement("script");
-  //     scriptElement.src = scriptPath;
-  //     document.body.appendChild(scriptElement);
-  //   } else {
-  //     mainContent.innerHTML = `<h1>${content}</h1><p>Content for "${content}" goes here.</p>`;
-  //   }
-
-  //   // Remove 'active' class from the previous active link
-  //   const activeLink = document.querySelector(".sidebar a.active");
-  //   if (activeLink) {
-  //     activeLink.classList.remove("active");
-  //   }
-
-  //   // Add 'active' class to the clicked link
-  //   element.classList.add("active");
-  // }
-
-  // // Sayfa yüklendiğinde ilk içeriği göster
-  // window.onload = function () {
-  //   const firstLink = document.querySelector(".sidebar a");
-  //   loadContent("My Account Settings", firstLink);
-  // };
-
+  
   // LocalStorage'dan loggedInUser nesnesini alıyoruz
   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || {};
 
@@ -270,26 +213,6 @@
       logout(); // Çıkış yapma fonksiyonunu çağır
     });
 
-  // // loggedInUser içindeki fullName değerini h1 içine ekliyoruz
-  // document.getElementById("fullName").textContent = `HELLO ${
-  //   loggedInUser.fullName || "Guest"
-  // }`;
-
-  // // Logout function to remove the user data and redirect
-  // function logout() {
-  //   localStorage.removeItem("loggedInUser"); // Remove the logged-in user from localStorage
-  //   alert("You have been logged out.");
-  //   window.location.href = "index.html"; // Redirect back to login page or home page
-  // }
-
-  // // Add an event listener to the logout button
-  // document.addEventListener("DOMContentLoaded", function () {
-  //   const logoutButton = document.getElementById("logout-button");
-  //   if (logoutButton) {
-  //     console.log(logoutButton, "aaa");
-  //     logoutButton.addEventListener("click", logout);
-  //   }
-  // });
 </script>
 
 <style>
