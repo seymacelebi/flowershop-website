@@ -123,7 +123,7 @@
   function loadContent(content, element) {
     const mainContent = document.getElementById("main-content");
     const contentFiles = {
-      "My Orders": "usersdetails/myOrders.html",
+      "My Orders": "usersdetails/userOrders.html",
       "My Account Settings": "usersdetails/accountSettings.html",
       "My Reviews": "usersdetails/userReviews.html",
       "My Shopping Cart": "usersdetails/cart.html",
@@ -147,7 +147,7 @@
           mainContent.innerHTML = `<h1>${content}</h1>${data}`;
 
           // CSS dosyasını yüklüyoruz
-          const cssPath = filePath.replace(".html", ".css");
+          const cssPath = filePath.replace(".html", ".js");
           loadCSS(cssPath);
 
           // JavaScript dosyasını yüklüyoruz
