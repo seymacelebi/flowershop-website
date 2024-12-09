@@ -103,38 +103,39 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-  initializeActiveStep();
-  updateOrderSummary();
-  logPaymentDetails();
-  initializeFormSubmission();
-});
-
-// Aktif adımı belirleyen fonksiyon
-function initializeActiveStep() {
-  const pagePath = window.location.pathname;
-  const activeStep = getActiveStepFromPath(pagePath);
-
-  const steps = document.querySelectorAll(".progress-bar .step");
-  steps.forEach((step) => {
-    if (step.getAttribute("data-step") === activeStep) {
-      step.classList.add("active");
-    } else {
-      step.classList.remove("active");
-    }
+    initializeActiveStep();
+    updateOrderSummary();
+    logPaymentDetails();
+    initializeFormSubmission();
   });
-}
 
-// Sayfa yoluna göre aktif adımı dönen fonksiyon
-function getActiveStepFromPath(pagePath) {
-  if (pagePath.includes("payment.html")) return "order-information";
-  if (pagePath.includes("paymentDetail.html")) return "sender-information";
-  if (pagePath.includes("paymentFinal.html")) return "payment";
-  return "";
-}
+  // Aktif adımı belirleyen fonksiyon
+  function initializeActiveStep() {
+    const pagePath = window.location.pathname;
+    const activeStep = getActiveStepFromPath(pagePath);
+
+    const steps = document.querySelectorAll(".progress-bar .step");
+    steps.forEach((step) => {
+      if (step.getAttribute("data-step") === activeStep) {
+        step.classList.add("active");
+      } else {
+        step.classList.remove("active");
+      }
+    });
+  }
+
+  // Sayfa yoluna göre aktif adımı dönen fonksiyon
+  function getActiveStepFromPath(pagePath) {
+    if (pagePath.includes("payment.html")) return "order-information";
+    if (pagePath.includes("paymentDetail.html")) return "sender-information";
+    if (pagePath.includes("paymentFinal.html")) return "payment";
+    return "";
+  }
 
 // Sipariş özetini güncelleyen fonksiyon
 function updateOrderSummary() {
   const subTotal = JSON.parse(localStorage.getItem("cartSubtotal")) || 0;
+  console.log(subTotal, "lütfencıksın");
 
   // Subtotal ve total alanlarını güncelle
   const subtotalElement = document.querySelector(".order-summary p span");
@@ -165,14 +166,17 @@ function initializeFormSubmission() {
 
     // LocalStorage'dan mevcut paymentDetails verilerini al
     const fullOrder = JSON.parse(localStorage.getItem("paymentDetails")) || [];
+    const cartSubtotal = JSON.parse(localStorage.getItem("cartSubtotal")) || 0;
 
     // Shopping cart verileriyle yeni bilgileri birleştir
     const updatedFullOrder = fullOrder.map((item) => ({
       ...item,
       orderSenderDetail, // orderSenderDetail objesini her item'a ekle
+      subtotal: cartSubtotal, // cartSubtotal değerini ekle
     }));
 
     console.log(updatedFullOrder, "Updated Order Details"); // Konsola yazdır
+
     localStorage.setItem("paymentDetails", JSON.stringify(updatedFullOrder)); // Güncellenmiş array'i kaydet
 
     // Kullanıcıyı bir sonraki adıma yönlendir
@@ -180,7 +184,8 @@ function initializeFormSubmission() {
   });
 }
 
-  
+
+
 </script>
 
 <style>

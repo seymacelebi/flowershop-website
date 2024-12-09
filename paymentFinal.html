@@ -54,27 +54,36 @@
         <form>
           <div class="form-group">
             <label for="card-number">Card Number</label>
-            <input type="text" id="card-number" placeholder="Card number">
+            <input type="text" id="card-number" placeholder="Card number" />
           </div>
           <div class="form-group">
             <label for="card-holder">Card Holder</label>
-            <input type="text" id="card-holder" placeholder="Card holder's name">
+            <input
+              type="text"
+              id="card-holder"
+              placeholder="Card holder's name"
+            />
           </div>
           <div class="form-row">
             <div class="form-group form-column">
               <label for="expiry-date">Expiry Date</label>
-              <input type="text" id="expiry-date" placeholder="MM/YY">
+              <input type="text" id="expiry-date" placeholder="MM/YY" />
             </div>
             <div class="form-group form-column">
               <label for="cvv">CVV</label>
-              <input type="text" id="cvv" placeholder="CVV">
+              <input type="text" id="cvv" placeholder="CVV" />
             </div>
           </div>
-          <button type="submit" class="click-button" onclick="showLoading(event, this)">Pay Now</button>
+          <button
+            type="submit"
+            class="click-button"
+            id="click-button1"
+            onclick="showLoading(event, this)"
+          >
+            Pay Now
+          </button>
         </form>
       </div>
-   
-      
     </div>
 
     <script src="js/script.js"></script>
@@ -82,6 +91,7 @@
 </html>
 
 <script>
+  console.log('deneme')
   // Aktif olduğu adımı gösteren script
   function setActiveStep() {
     const pagePath = window.location.pathname; // Sayfanın yolunu alır
@@ -107,23 +117,112 @@
     });
   }
 
-  // Ödeme işleminde "Loading" mesajı gösteren script
-  function showLoading(event, button) {
-    event.preventDefault(); // Formun varsayılan gönderilmesini engeller
-
-    button.innerHTML = "Processing Payment..."; // Buton içeriğini değiştirir
-
-    setTimeout(function() {
-      button.innerHTML = "Payment completed."; // İşlem tamamlandı mesajı
-    }, 3000); // 3 saniye bekleme süresi
-  }
-
   // Sayfa yüklendiğinde aktif adımı ayarlamak için
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function () {
     setActiveStep();
+    initializePaymentFormSubmission();
   });
-</script>
 
+  function initializePaymentFormSubmission() {
+  const submitButton = document.getElementById("click-button1");
+  if (!submitButton) return;
+
+  submitButton.addEventListener("click", (event) => {
+    event.preventDefault(); // Sayfanın yeniden yüklenmesini önle
+
+    // Form alanlarından verileri al
+    const cardNumber = document.getElementById("card-number").value.trim();
+    const cardHolder = document.getElementById("card-holder").value.trim();
+    const expiryDate = document.getElementById("expiry-date").value.trim();
+    const cvv = document.getElementById("cvv").value.trim();
+
+    // Ödeme detaylarını kontrol et (örneğin, boş alan var mı diye)
+    if (!cardNumber || !cardHolder || !expiryDate || !cvv) {
+      alert("Please fill out all payment fields.");
+      return;
+    }
+
+    // Ödeme durumu kontrolü (örnek için true kabul ediliyor)
+    const isPaymentSuccessful = true; // Gerçek ödeme doğrulaması bu değişkeni değiştirmeli.
+
+    // LocalStorage'dan mevcut sipariş detaylarını al
+    const fullOrder = JSON.parse(localStorage.getItem("paymentDetails")) || [];
+
+    // Form verilerini bir obje olarak oluştur
+    const paymentDetails = {
+      cardNumber,
+      cardHolder,
+      expiryDate,
+      cvv,
+    };
+
+    // Tüm ürünlere `paymentDetails` ve `status` ekle
+    const updatedFullOrder = fullOrder.map((item) => ({
+      ...item,
+      paymentDetails,
+      status: isPaymentSuccessful ? "Completed" : "Failed", // Ödeme durumuna göre ayarlanır
+    }));
+
+    // Güncellenmiş sipariş detaylarını `localStorage`'a kaydet
+    localStorage.setItem("paymentDetails", JSON.stringify(updatedFullOrder));
+
+    // Ödeme sonucuna göre kullanıcıya mesaj göster ve yönlendirme yap
+    if (isPaymentSuccessful) {
+      alert("Payment is successful!");
+      window.location.href = "index.html"; // Ödeme başarılıysa yönlendir
+    } else {
+      alert("Payment failed. Please try again.");
+    }
+
+    console.log(updatedFullOrder, "Updated Order Details"); // Konsola yazdır
+  });
+}
+
+
+  // function initializePaymentFormSubmission() {
+  // const submitButton = document.getElementById("click-button1");
+  // if (!submitButton) return;
+
+  // submitButton.addEventListener("click", (event) => {
+  //   event.preventDefault(); // Sayfanın yeniden yüklenmesini önle
+
+  //   // Form alanlarından verileri al
+  //   const cardNumber = document.getElementById("card-number").value.trim();
+  //   const cardHolder = document.getElementById("card-holder").value.trim();
+  //   const expiryDate = document.getElementById("expiry-date").value.trim();
+  //   const cvv = document.getElementById("cvv").value.trim();
+
+  //   // Form verilerini bir obje olarak oluştur
+  //   const paymentDetails = {
+  //     cardNumber,
+  //     cardHolder,
+  //     expiryDate,
+  //     cvv,
+  //   };
+
+  //   // LocalStorage'dan mevcut sipariş detaylarını al
+  //   const fullOrder = JSON.parse(localStorage.getItem("paymentDetails")) || [];
+
+  //   // Tüm ürünlere `paymentDetails` ekle
+  //   const updatedFullOrder = fullOrder.map((item) => ({
+  //     ...item,
+  //     paymentDetails, // `paymentDetails` üst seviyede ekleniyor
+  //   }));
+
+  //   // Güncellenmiş sipariş detaylarını `localStorage`'a kaydet
+  //   localStorage.setItem("paymentDetails", JSON.stringify(updatedFullOrder));
+
+  //   console.log(updatedFullOrder, "Updated Order Details"); // Konsola yazdır
+  //   alert("Payment is successful!");
+
+  //   // Kullanıcıyı bir sonraki adıma yönlendir
+  //   window.location.href = "index.html";
+
+  // });
+
+
+
+</script>
 
 <style>
   * {
@@ -158,84 +257,79 @@
     background-color: #4caf50;
     color: white;
   }
-  
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&family=Montserrat:wght@600&display=swap');
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&family=Montserrat:wght@600&display=swap");
 
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-.credit-card-form {
-  max-width: 600px;
-  margin: auto;
-  padding: 1em;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
-  background-color: #dbdbdb;
-  text-align: center;
-  align-content: center;
-}
+  .credit-card-form {
+    max-width: 600px;
+    margin: auto;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+    background-color: #dbdbdb;
+    text-align: center;
+    align-content: center;
+  }
 
-.credit-card-form h2 {
-  margin-bottom: 10%;
-  font-size: 24px;
-}
+  .credit-card-form h2 {
+    margin-bottom: 10%;
+    font-size: 24px;
+  }
 
-.credit-card-form .form-group {
-  margin-bottom: 15px;
-}
+  .credit-card-form .form-group {
+    margin-bottom: 15px;
+  }
 
-.credit-card-form label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 5px;
-  color: #777;
-}
+  .credit-card-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #777;
+  }
 
-.credit-card-form input[type="text"],
-.credit-card-form select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 1rem;
-  font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
-}
+  .credit-card-form input[type="text"],
+  .credit-card-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 1rem;
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+  }
 
-.credit-card-form .form-row {
-  display: flex;
-}
+  .credit-card-form .form-row {
+    display: flex;
+  }
 
+  .credit-card-form button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    background-color: #585858;
+    color: #fff;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    font-family: "Montserrat", sans-serif;
+  }
 
-.credit-card-form button[type="submit"] {
-  width: 100%;
-  padding: 14px;
-  background-color: #585858;
-  color: #fff;
-  border: none;
-  border-radius: 1rem;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-  font-family: 'Montserrat', sans-serif;
-}
+  .credit-card-form button[type="submit"]:hover {
+    background-color: #bebebe;
+    color: #424242;
+    font-family: "Montserrat", sans-serif;
+  }
 
-.credit-card-form button[type="submit"]:hover {
-  background-color: #bebebe;
-  color: #424242;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.credit-card-form button[type="submit"]:focus {
-  outline: none;
-  font-family: 'Montserrat', sans-serif;
-}
-
-
-
+  .credit-card-form button[type="submit"]:focus {
+    outline: none;
+    font-family: "Montserrat", sans-serif;
+  }
 </style>
