@@ -84,7 +84,7 @@
           </li>
           <li>
             <a href="#" onclick="loadContent('Change Password', this)"
-              ><i class="fa-solid fa-lock"></i> Change Password
+              ><i class="fa-solid fa-clock"></i> Change Password
             </a>
           </li>
           <li>
@@ -99,12 +99,8 @@
       </aside>
       <main class="main-content" id="main-content"></main>
     </div>
-    
-    <script src="js/script.js" >
-     
 
-    </script>
-
+    <script src="js/script.js"></script>
   </body>
 </html>
 
@@ -189,7 +185,6 @@
     }
   };
 
-  
   // LocalStorage'dan loggedInUser nesnesini alıyoruz
   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || {};
 
@@ -212,7 +207,6 @@
       event.preventDefault(); // Sayfanın yeniden yüklenmesini önler
       logout(); // Çıkış yapma fonksiyonunu çağır
     });
-
 </script>
 
 <style>
@@ -376,4 +370,60 @@
   .grid-item:hover {
     background-color: #e1e1e1;
   }
+  /* Media Queries */
+  @media (max-width: 480px) {
+  .sidebar a {
+    font-size: 14px; /* Yazı boyutunu küçült */
+  }
+  html {
+    font-size: 50%;
+  }
+  .heading {
+    font-size: 3rem;
+  }
+  .main-content {
+    padding: 10px; /* İçerik kenar boşluğunu azalt */
+  }
+}
+@media (max-width: 768px) {
+  header .fa-bars {
+    display: block;
+  }
+  header .navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #eee;
+    border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+    clip-path: polygon(0 0, 100% 0, 0 0);
+  }
+  header #toggler:checked ~ .navbar {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  header .navbar a {
+    margin: 1.5rem;
+    padding: 1.5rem;
+    background: #fff;
+    border: 0.1rem solid rgba(0, 0, 0, 0.1);
+    display: block;
+  }
+  
+  .main-content {
+    padding: 10px; /* İçerik kenar boşluğunu azalt */
+  }
+}
+@media (max-width: 991px) {
+  html {
+    font-size: 55%;
+  }
+  header {
+    padding: 2rem;
+  }
+  section {
+    padding: 2rem;
+  }
+}
+
 </style>
+   

@@ -598,19 +598,34 @@ body {
 }
 
 
-/* media queries */
-@media (max-with: 991px) {
+/* Global Styles */
+html {
+  font-size: 62.5%;
+}
+
+/* Component Styles */
+header {
+  padding: 3rem;
+}
+
+.heading {
+  font-size: 4rem;
+}
+
+/* Media Queries */
+@media (max-width: 991px) {
   html {
     font-size: 55%;
   }
   header {
     padding: 2rem;
   }
-  sectiom {
+  section {
     padding: 2rem;
   }
 }
-@media (max-with: 768px) {
+
+@media (max-width: 768px) {
   header .fa-bars {
     display: block;
   }
@@ -634,7 +649,8 @@ body {
     display: block;
   }
 }
-@media (max-with: 450px) {
+
+@media (max-width: 450px) {
   html {
     font-size: 50%;
   }
