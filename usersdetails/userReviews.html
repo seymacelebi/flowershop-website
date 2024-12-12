@@ -28,61 +28,146 @@
 
     <!-- custom css link -->
     <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Bootstrap CSS (integrity ve crossorigin kaldırıldı) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
   </head>
+
   <body>
-    <div class="review-container">
-    <div class="review-cart">
-      <img src="images/ll1.jpg" alt="Ürün Resmi" />
 
-      <div class="review-content">
-        <p class="product-name">Daisy</p>
-        <p class="delivery-date"> Delivery Date : 2024-11-10</p>
-        <span class="rating-stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-          <span class="review-count">(36133)</span>
-      </span>
-      <button class="review-button">Review Product</button>
+    <div id="review-container"></div>
+
+
+ <!-- Modal -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Please add new review..</p>
+      <input
+          readonly
+          type="text"
+          placeholder="Review Header"
+          id="name-input"
+          class="input-textbox"
+      />
+      <div class="rating-container">
+          <span class="star" data-value="1">&#9733;</span>
+          <span class="star" data-value="2">&#9733;</span>
+          <span class="star" data-value="3">&#9733;</span>
+          <span class="star" data-value="4">&#9733;</span>
+          <span class="star" data-value="5">&#9733;</span>
       </div>
-    </div>
+      <p id="rating-value">Seçilen puan: 0</p>
+      <button class="detail-button" id="add-review">Add Review</button>
+  </div>
+</div>
 
-  
-
-    <div class="review-cart">
-      <img src="images/ll1.jpg" alt="Ürün Resmi" />
-
-      <div class="review-content">
-        <p class="product-name">Daisy</p>
-        <p class="delivery-date"> Delivery Date : 2024-11-10</p>
-        <span class="rating-stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-          <span class="review-count">(36133)</span>
-      </span>
-      <button class="review-button">Review Product</button>
-      </div>
-      
-    </div>
-    </div>
   </body>
 </html>
 
 <script></script>
 
 <style>
+  /* star */
+  .star {
+    font-size: 24px;
+    cursor: pointer;
+    color: #ccc;
+}
+
+.star.selected {
+    color: gold;
+}
+
+.input-textbox {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.detail-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.detail-button:hover {
+    background-color: #45a049;
+}
+
+  /* modal */
+  .modal {
+    display: none; /* Gizli varsayılan */
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Siyah opaklık ile */
+  }
+
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+  }
+
+  /* Close button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .input-textbox,
+  .input-textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .input-textarea {
+    height: 100px;
+    resize: none;
+  }
+
+  .detail-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+  }
   .review-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
     gap: 20px; /* Space between the cards */
     justify-items: center; /* Center align cards within each grid cell */
-}
- .review-cart {
+  }
+  .review-cart {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -92,53 +177,74 @@
     width: 100%; /* Adjust as needed */
     background-color: #f9f9f9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 20px 0; 
+    margin: 20px 0;
+  }
 
-}
-
-.review-cart img {
+  .review-cart img {
     width: 100px; /* Adjust image width */
     height: auto;
     border-radius: 4px;
-}
+  }
 
-.review-content {
+  .review-content {
     display: flex;
     flex-direction: column;
     margin-left: 20px;
-}
+  }
 
-.product-name {
+  .product-name {
     font-size: 18px;
     font-weight: bold;
     margin: 0 0 5px;
     color: #333;
-}
+  }
 
-.delivery-date {
+  .delivery-date {
     font-size: 14px;
     color: #666;
     margin: 0 0 10px;
-}
+  }
+  .rating-container {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    margin: 20px 0;
+  }
 
-.rating-stars {
+  .star {
+    font-size: 30px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .star:hover,
+  .star:hover ~ .star {
+    color: #ffcc00;
+  }
+
+  .star.selected {
+    color: #ffcc00;
+  }
+
+  .rating-stars {
     display: flex;
     align-items: center;
     margin: 10px 0;
-}
+  }
 
-.rating-stars i {
-    color: #FFD700; /* Gold color for stars */
+  .rating-stars i {
+    color: #ffd700; /* Gold color for stars */
     margin-right: 3px;
-}
+  }
 
-.review-count {
+  .review-count {
     font-size: 14px;
     color: #666;
     margin-left: 8px;
-}
+  }
 
-.review-button {
+  .review-button {
     background-color: #28a745; /* Green color */
     color: #fff;
     border: none;
@@ -147,10 +253,9 @@
     font-size: 14px;
     cursor: pointer;
     margin-top: 10px;
-}
+  }
 
-.review-button:hover {
+  .review-button:hover {
     background-color: #218838; /* Darker green on hover */
-}
-
+  }
 </style>
