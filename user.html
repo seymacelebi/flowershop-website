@@ -371,59 +371,91 @@
     background-color: #e1e1e1;
   }
   /* Media Queries */
-  @media (max-width: 480px) {
-  .sidebar a {
-    font-size: 14px; /* Yazı boyutunu küçült */
-  }
   html {
-    font-size: 50%;
+    font-size: 62.5%;
   }
-  .heading {
-    font-size: 3rem;
-  }
-  .main-content {
-    padding: 10px; /* İçerik kenar boşluğunu azalt */
-  }
-}
-@media (max-width: 768px) {
-  header .fa-bars {
-    display: block;
-  }
-  header .navbar {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: #eee;
-    border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
-    clip-path: polygon(0 0, 100% 0, 0 0);
-  }
-  header #toggler:checked ~ .navbar {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  }
-  header .navbar a {
-    margin: 1.5rem;
-    padding: 1.5rem;
-    background: #fff;
-    border: 0.1rem solid rgba(0, 0, 0, 0.1);
-    display: block;
-  }
-  
-  .main-content {
-    padding: 10px; /* İçerik kenar boşluğunu azalt */
-  }
-}
-@media (max-width: 991px) {
-  html {
-    font-size: 55%;
-  }
-  header {
-    padding: 2rem;
-  }
-  section {
-    padding: 2rem;
-  }
-}
 
+  /* Component Styles */
+  header {
+    padding: 3rem;
+  }
+
+  .heading {
+    font-size: 4rem;
+  }
+
+  @media (max-width: 991px) {
+    html {
+      font-size: 55%;
+    }
+    header {
+      padding: 2rem;
+    }
+    section {
+      padding: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    header .fa-bars {
+      display: block;
+    }
+    header .navbar {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #eee;
+      border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+      clip-path: polygon(0 0, 100% 0, 0 0);
+    }
+    header #toggler:checked ~ .navbar {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+    header .navbar a {
+      margin: 1.5rem;
+      padding: 1.5rem;
+      background: #fff;
+      border: 0.1rem solid rgba(0, 0, 0, 0.1);
+      display: block;
+    }
+    .sidebar {
+      width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .main-content {
+      width: 100%;
+    }
+
+    .icons {
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+  }
+
+  @media (max-width: 450px) {
+    html {
+      font-size: 50%;
+    }
+    .heading {
+      font-size: 3rem;
+    }
+    .main-content {
+      margin-left: 0;
+    }
+    .icons {
+      gap: 10px;
+    }
+
+    .fas {
+      font-size: 18px;
+    }
+  }
 </style>
-   
