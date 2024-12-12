@@ -114,7 +114,7 @@ function setupModal() {
 
               // Modal içine değerleri aktar
               reviewInput.value = productName; // Ürün ismini Review Header'a aktar
-              ratingValue.textContent = "Seçilen puan: 0"; // Varsayılan puan
+              ratingValue.textContent = "Your rating: 0"; // Varsayılan puan
               ratingStars.forEach((star) => star.classList.remove("selected"));
 
               // Modal'ı göster
@@ -143,7 +143,7 @@ function setupModal() {
           // Modal'ı kapat
           modal.style.display = "none";
       } else {
-          alert("Lütfen bir puan seçin!");
+          alert("Please select star!");
       }
   });
 }
