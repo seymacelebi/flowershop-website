@@ -156,7 +156,6 @@
     format: "YYYY-MM-DD",
     onSelect: function (date) {
       selectedDate = date.toISOString().split("T")[0]; // Sadece YYYY-MM-DD formatını al
-      console.log("Seçilen Tarih:", selectedDate);
     },
   });
 
@@ -192,7 +191,6 @@
         date: selectedDate || "Tarih seçilmedi", // Seçilen tarihi ekle veya varsayılan bir metin kullan
       });
     }
-    console.log(product, "deneme234");
     // Güncellenmiş sepeti localStorage'da sakla
     localStorage.setItem("cart", JSON.stringify(cart));
 

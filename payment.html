@@ -128,7 +128,6 @@
   // Order summary alanını güncelleyen fonksiyon
   function updateOrderSummary() {
     const subTotal = JSON.parse(localStorage.getItem("cartSubtotal")) || 0;
-    console.log(subTotal, "sdkdkdkd");
 
     const subtotalElement = document.querySelector(".order-summary p span");
     const totalElement = document.querySelector(".order-summary .summary span");
@@ -165,14 +164,12 @@
     // Subtotal verisini `localStorage`'dan al
     const cartSubtotal = JSON.parse(localStorage.getItem("cartSubtotal")) || {};
     const subtotal = cartSubtotal.subtotal || 0; // Eğer subtotal yoksa varsayılan olarak 0
-    console.log(cartItems, "carttttt");
     const fullOrder = cartItems.map((item) => ({
       ...item,
       orderDetails,
       subtotal, // Subtotal değeri ekleniyor
     }));
 
-    console.log(fullOrder); // Yeni array'i konsolda gör
     localStorage.setItem("paymentDetails", JSON.stringify(fullOrder));
 
     window.location.href = "paymentDetail.html";

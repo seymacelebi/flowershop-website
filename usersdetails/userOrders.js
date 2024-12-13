@@ -12,11 +12,7 @@ function movePaymentDetailsToLoggedInUser() {
   currentUser.completedOrders = paymentDetails;
 
   localStorage.setItem("loggedInUser", JSON.stringify(currentUser));
-  // Eski PaymentDetails verisini temizle
-  //localStorage.removeItem("paymentDetails");
-  console.log(loggedInUser, "deneme");
 
-  console.log("Payment details moved to loggedInUser:", currentUser);
 }
 movePaymentDetailsToLoggedInUser();
 
@@ -79,8 +75,3 @@ if (loggedInUser && Array.isArray(loggedInUser.completedOrders)) {
   console.error("No completed orders found in loggedInUser.");
   displayOrders([]); // Eğer completedOrders yoksa boş bir liste gönder
 }
-// const orderList =[];
-//  displayOrders(orderList);
-// document.addEventListener("DOMContentLoaded", () => {
-//   displayOrders(orderList);
-//   });

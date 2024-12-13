@@ -21,13 +21,11 @@ stars.forEach((star) => {
     // Display the selected rating value
     ratingValueDisplay.textContent = `Seçilen puan: ${selectedRating}`;
 
-    console.log(ratingValueDisplay.textContent, "fdeflkö");
   });
 });
 // ----------------------------------------------------
 
 function showReview(item) {
-  console.log(item.completedOrders, "completedOrders");
   const container = document.getElementById("review-container");
   container.innerHTML = ""; // Mevcut içeriği temizle
 

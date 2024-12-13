@@ -575,7 +575,6 @@ function addToCart(buttonElement) {
     image: productImage,
   };
   
-  console.log(productInCart, "productInCart");
 
   const existingProduct = cart.find(
     (p) => p.id === productInCart.id
@@ -624,7 +623,6 @@ function updateCartDisplay() {
 function updateQuantity(event, change) {
   const index = event.target.getAttribute("data-index");
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  console.log(cart, "hjrfgod")
  
 
   // Update quantity
@@ -652,7 +650,6 @@ function displayCartItems() {
 
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  console.log(cart, "cart67676")
 
 
   if (cart.length === 0) {
@@ -717,7 +714,6 @@ function calculateCartSubtotal() {
   // localStorage'dan cart verilerini al
   const cartData = JSON.parse(localStorage.getItem("cart")) || [];
 
-  console.log(cartData, "jgffjfjfjfj")
 
   // Subtotal hesapla
   const subtotal = cartData.reduce((total, item) => {
@@ -727,8 +723,7 @@ function calculateCartSubtotal() {
   // Subtotal'ı localStorage'a kaydet
   localStorage.setItem("cartSubtotal", subtotal.toFixed(2));
 
-  // Konsola yazdır veya istediğin yere ekrana yazdır
-  console.log(`Cart Subtotal: $${subtotal.toFixed(2)}`);
+
 }
 
 // Bu fonksiyonu istediğin yerde çağır

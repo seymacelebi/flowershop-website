@@ -91,7 +91,6 @@
 </html>
 
 <script>
-  console.log('deneme')
   // Aktif olduğu adımı gösteren script
   function setActiveStep() {
     const pagePath = window.location.pathname; // Sayfanın yolunu alır
@@ -174,51 +173,9 @@
       alert("Payment failed. Please try again.");
     }
 
-    console.log(updatedFullOrder, "Updated Order Details"); // Konsola yazdır
   });
 }
 
-
-  // function initializePaymentFormSubmission() {
-  // const submitButton = document.getElementById("click-button1");
-  // if (!submitButton) return;
-
-  // submitButton.addEventListener("click", (event) => {
-  //   event.preventDefault(); // Sayfanın yeniden yüklenmesini önle
-
-  //   // Form alanlarından verileri al
-  //   const cardNumber = document.getElementById("card-number").value.trim();
-  //   const cardHolder = document.getElementById("card-holder").value.trim();
-  //   const expiryDate = document.getElementById("expiry-date").value.trim();
-  //   const cvv = document.getElementById("cvv").value.trim();
-
-  //   // Form verilerini bir obje olarak oluştur
-  //   const paymentDetails = {
-  //     cardNumber,
-  //     cardHolder,
-  //     expiryDate,
-  //     cvv,
-  //   };
-
-  //   // LocalStorage'dan mevcut sipariş detaylarını al
-  //   const fullOrder = JSON.parse(localStorage.getItem("paymentDetails")) || [];
-
-  //   // Tüm ürünlere `paymentDetails` ekle
-  //   const updatedFullOrder = fullOrder.map((item) => ({
-  //     ...item,
-  //     paymentDetails, // `paymentDetails` üst seviyede ekleniyor
-  //   }));
-
-  //   // Güncellenmiş sipariş detaylarını `localStorage`'a kaydet
-  //   localStorage.setItem("paymentDetails", JSON.stringify(updatedFullOrder));
-
-  //   console.log(updatedFullOrder, "Updated Order Details"); // Konsola yazdır
-  //   alert("Payment is successful!");
-
-  //   // Kullanıcıyı bir sonraki adıma yönlendir
-  //   window.location.href = "index.html";
-
-  // });
 
 
 

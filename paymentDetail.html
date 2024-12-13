@@ -135,7 +135,6 @@
 // Sipariş özetini güncelleyen fonksiyon
 function updateOrderSummary() {
   const subTotal = JSON.parse(localStorage.getItem("cartSubtotal")) || 0;
-  console.log(subTotal, "lütfencıksın");
 
   // Subtotal ve total alanlarını güncelle
   const subtotalElement = document.querySelector(".order-summary p span");
@@ -147,7 +146,6 @@ function updateOrderSummary() {
 // LocalStorage'dan paymentDetails verilerini al ve konsola yazdır
 function logPaymentDetails() {
   const paymentDetails = JSON.parse(localStorage.getItem("paymentDetails")) || [];
-  console.log(paymentDetails, "paymentDetails");
 }
 
 // Form gönderimini yöneten fonksiyon
@@ -175,7 +173,6 @@ function initializeFormSubmission() {
       subtotal: cartSubtotal, // cartSubtotal değerini ekle
     }));
 
-    console.log(updatedFullOrder, "Updated Order Details"); // Konsola yazdır
 
     localStorage.setItem("paymentDetails", JSON.stringify(updatedFullOrder)); // Güncellenmiş array'i kaydet
 

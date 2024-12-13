@@ -16,7 +16,6 @@ btn.onclick = function () {
 
 document.getElementById("add-address").addEventListener("click", function () {
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser") || "{}");
-  console.log(loggedInUser, "deneme");
 
   if (!loggedInUser) {
     alert("Please sign in first!");
