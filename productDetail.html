@@ -3,12 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="“viewport”"
-      content="“width"
-      ="device-width,"
-      initial-scale="1.0”"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>complete responsive flower website design</title>
 
     <!-- font awesome -->
@@ -40,7 +35,7 @@
     <header>
       <input type="checkbox" name="" id="toggler" />
       <label for="toggler" class="fas fa-bars"></label>
-      <a href="/index.html#home" class="logo">flower<span>.</span></a>
+      <a href="/index.html#home" class="logo">Everbloom<span>.</span></a>
 
       <nav class="navbar">
         <a href="/index.html#home">Home</a>
@@ -679,6 +674,86 @@
   .sidebar img {
     width: 100%;
     height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    display: flex;
+    flex-direction: column; /* Tüm içerikleri bir sütun halinde hizala */
+    align-items: center;
+    gap: 20px; /* Elemanlar arasında boşluk */
+  }
+
+  .container .sidebar {
+    width: 100%;
+    height: auto;
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+    order: -1; /* Sidebari en üstte göster */
+  }
+
+  .container .sidebar #main-image {
+    width: 100%; /* Ana resmi genişlik olarak ekrana yay */
+    height: auto;
+    object-fit: cover; /* Görüntüyü düzgün oranla boyutlandır */
+  }
+
+  .thumbnails {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Küçük ekranlarda thumbnail'leri birden fazla satıra taşı */
+    gap: 10px;
+  }
+
+  .main-content {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .product-price {
+    text-align: center; /* Fiyat ve başlık ortalansın */
+  }
+
+  .addressText {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .date-options {
+    display: flex;
+    flex-wrap: wrap; /* Düğmeler küçük ekranlarda birden fazla satıra geçsin */
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .textRandom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .comments-section {
+    text-align: center;
+  }
+
+  .text-shippment, .text-desc {
+    text-align: center;
+    padding: 10px;
+  }
+
+  hr {
+    width: 90%;
   }
 }
 
