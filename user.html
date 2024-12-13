@@ -195,6 +195,10 @@
 
     // localStorage veya sessionStorage'de kullanıcı bilgisi tutuluyorsa temizle
     localStorage.removeItem("loggedInUser"); // veya sessionStorage.removeItem('loggedInUser');
+    localStorage.removeItem("favorite");
+    localStorage.removeItem("paymentDetails")
+    localStorage.removeItem("productInStore")
+    localStorage.removeItem("cart")
 
     // Giriş ekranına veya ana sayfaya yönlendir
     window.location.href = "login.html"; // Giriş ekranına yönlendirin

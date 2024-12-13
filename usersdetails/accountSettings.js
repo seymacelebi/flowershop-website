@@ -1,7 +1,8 @@
 if (typeof loggedInUser === 'undefined') {
     let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || {};
+    console.log(loggedInUser, "loggedInUser"
+    )
 }
-
 // loggedInUser'daki bilgileri input alanlarına doldur
 if (loggedInUser.fullName) {
     document.getElementById("namesurname").value = loggedInUser.fullName;
