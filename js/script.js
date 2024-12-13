@@ -3,15 +3,13 @@ const products = [
   {
     id: 1,
     title: "Rose",
-    description: "A timeless bouquet of red roses, symbolizing love and passion.",
+    description:
+      "A timeless bouquet of red roses, symbolizing love and passion.",
     price: 12.99,
     originalPrice: 15.99,
     discount: "-10%",
     imageSrc: "images/rose1.jpg",
-    extraImages: [
-      "images/rose2.jpg",
-      "images/rose3.jpg"
-    ],
+    extraImages: ["images/rose2.jpg", "images/rose3.jpg"],
     availability: "In Stock",
     category: "Bouquet",
     colorOptions: ["Red", "White", "Pink"],
@@ -24,41 +22,39 @@ const products = [
     careInstructions: "Keep in a cool place and change water daily.",
     reviews: [
       { user: "Alice", rating: 5, comment: "Beautiful and fresh!" },
-      { user: "Bob", rating: 4, comment: "Perfect for a romantic gift." }
+      { user: "Bob", rating: 4, comment: "Perfect for a romantic gift." },
     ],
     variants: [
       {
         size: "Standard",
         price: 12.99,
-        availability: "In Stock"
+        availability: "In Stock",
       },
       {
         size: "Deluxe",
         price: 18.99,
-        availability: "In Stock"
+        availability: "In Stock",
       },
       {
         size: "Premium",
         price: 25.99,
-        availability: "Limited Stock"
-      }
+        availability: "Limited Stock",
+      },
     ],
     supplier: "Fresh Blooms Co.",
     giftWrapAvailable: true,
-    cartText: "add to cart"
+    cartText: "add to cart",
   },
   {
     id: 2,
     title: "Tulip",
-    description: "Elegant tulips in beautiful pastel shades for a touch of spring.",
+    description:
+      "Elegant tulips in beautiful pastel shades for a touch of spring.",
     price: 12.99,
     originalPrice: 15.99,
     discount: "-10%",
     imageSrc: "images/tulip1.jpg",
-    extraImages: [
-      "images/tulip2.jpg",
-      "images/tulip3.jpg"
-    ],
+    extraImages: ["images/tulip2.jpg", "images/tulip3.jpg"],
     availability: "In Stock",
     category: "Bouquet",
     colorOptions: ["Pink", "Purple", "Yellow"],
@@ -71,41 +67,39 @@ const products = [
     careInstructions: "Keep in indirect sunlight and water daily.",
     reviews: [
       { user: "Sara", rating: 5, comment: "Perfect for spring!" },
-      { user: "Jake", rating: 4, comment: "Lovely colors and freshness." }
+      { user: "Jake", rating: 4, comment: "Lovely colors and freshness." },
     ],
     variants: [
       {
         size: "Standard",
         price: 12.99,
-        availability: "In Stock"
+        availability: "In Stock",
       },
       {
         size: "Deluxe",
         price: 18.99,
-        availability: "In Stock"
+        availability: "In Stock",
       },
       {
         size: "Premium",
         price: 25.99,
-        availability: "Limited Stock"
-      }
+        availability: "Limited Stock",
+      },
     ],
     supplier: "Tulip Gardens Ltd.",
     giftWrapAvailable: false,
-    cartText: "add to cart"
+    cartText: "add to cart",
   },
   {
     id: 3,
     title: "Daisy",
-    description: "A charming daisy bouquet, bringing joy and simplicity to any occasion.",
+    description:
+      "A charming daisy bouquet, bringing joy and simplicity to any occasion.",
     price: 12.99,
     originalPrice: 15.99,
     discount: "-10%",
     imageSrc: "images/daisy1.jpg",
-    extraImages: [
-      "images/daisy3.jpg",
-      "images/daisy2.jpg"
-    ],
+    extraImages: ["images/daisy3.jpg", "images/daisy2.jpg"],
     availability: "In Stock",
     category: "Bouquet",
     colorOptions: ["White", "Yellow"],
@@ -118,41 +112,39 @@ const products = [
     careInstructions: "Place in fresh water and change daily.",
     reviews: [
       { user: "Emma", rating: 5, comment: "Brings so much joy!" },
-      { user: "John", rating: 4, comment: "Simple and beautiful." }
+      { user: "John", rating: 4, comment: "Simple and beautiful." },
     ],
     variants: [
       {
         size: "Standard",
         price: 12.99,
-        availability: "In Stock"
+        availability: "In Stock",
       },
       {
         size: "Deluxe",
         price: 18.99,
-        availability: "In Stock"
+        availability: "In Stock",
       },
       {
         size: "Premium",
         price: 25.99,
-        availability: "Limited Stock"
-      }
+        availability: "Limited Stock",
+      },
     ],
     supplier: "Bloom Suppliers",
     giftWrapAvailable: true,
-    cartText: "add to cart"
+    cartText: "add to cart",
   },
   {
     id: 4,
     title: "Sunflower",
-    description: "Radiant sunflowers that brighten up any space with their cheerful appearance.",
+    description:
+      "Radiant sunflowers that brighten up any space with their cheerful appearance.",
     price: 12.99,
     originalPrice: 150.99,
     discount: "-10%",
     imageSrc: "images/sunflower1.jpg",
-    extraImages: [
-      "images/sunflower3.jpg",
-      "images/sunflower2.jpg"
-    ],
+    extraImages: ["images/sunflower3.jpg", "images/sunflower2.jpg"],
     availability: "Limited Stock",
     category: "Bouquet",
     colorOptions: ["Yellow"],
@@ -165,41 +157,39 @@ const products = [
     careInstructions: "Place in direct sunlight and water as needed.",
     reviews: [
       { user: "Olivia", rating: 5, comment: "So bright and happy!" },
-      { user: "Lucas", rating: 4, comment: "A bit pricey but beautiful." }
+      { user: "Lucas", rating: 4, comment: "A bit pricey but beautiful." },
     ],
     variants: [
       {
         size: "Standard",
         price: 12.99,
-        availability: "In Stock"
+        availability: "In Stock",
       },
       {
         size: "Deluxe",
         price: 18.99,
-        availability: "In Stock"
+        availability: "In Stock",
       },
       {
         size: "Premium",
         price: 25.99,
-        availability: "Limited Stock"
-      }
+        availability: "Limited Stock",
+      },
     ],
     supplier: "Sunny Blossoms",
     giftWrapAvailable: true,
-    cartText: "add to cart"
+    cartText: "add to cart",
   },
   {
     id: 5,
     title: "Lily",
-    description: "Elegant lilies that add a touch of sophistication to any setting.",
+    description:
+      "Elegant lilies that add a touch of sophistication to any setting.",
     price: 12.99,
     originalPrice: 15.99,
     discount: "-10%",
     imageSrc: "images/lily1.jpg",
-    extraImages: [
-      "images/lily3.jpg",
-      "images/lily2.jpg"
-    ],
+    extraImages: ["images/lily3.jpg", "images/lily2.jpg"],
     availability: "In Stock",
     category: "Bouquet",
     colorOptions: ["White", "Pink"],
@@ -212,41 +202,39 @@ const products = [
     careInstructions: "Keep in cool water and trim stems regularly.",
     reviews: [
       { user: "Sophia", rating: 5, comment: "Elegant and fresh!" },
-      { user: "Ethan", rating: 4, comment: "Great for formal events." }
+      { user: "Ethan", rating: 4, comment: "Great for formal events." },
     ],
     variants: [
       {
         size: "Standard",
         price: 12.99,
-        availability: "In Stock"
+        availability: "In Stock",
       },
       {
         size: "Deluxe",
         price: 18.99,
-        availability: "In Stock"
+        availability: "In Stock",
       },
       {
         size: "Premium",
         price: 25.99,
-        availability: "Limited Stock"
-      }
+        availability: "Limited Stock",
+      },
     ],
     supplier: "Lily Gardens",
     giftWrapAvailable: true,
-    cartText: "add to cart"
+    cartText: "add to cart",
   },
   {
     id: 6,
     title: "Orchid",
-    description: "An exotic orchid plant that adds elegance and beauty to any room.",
+    description:
+      "An exotic orchid plant that adds elegance and beauty to any room.",
     price: 12.99,
     originalPrice: 15.99,
     discount: "-10%",
     imageSrc: "images/orchid1.jpg",
-    extraImages: [
-      "images/orchid2.jpg",
-      "images/orchid3.jpg"
-    ],
+    extraImages: ["images/orchid2.jpg", "images/orchid3.jpg"],
     availability: "In Stock",
     category: "Potted Plant",
     colorOptions: ["White"],
@@ -259,41 +247,39 @@ const products = [
     careInstructions: "Requires indirect sunlight and minimal watering.",
     reviews: [
       { user: "Mia", rating: 5, comment: "Absolutely stunning!" },
-      { user: "Noah", rating: 4, comment: "Beautiful but needs special care." }
+      { user: "Noah", rating: 4, comment: "Beautiful but needs special care." },
     ],
     variants: [
       {
         size: "Standard",
         price: 12.99,
-        availability: "In Stock"
+        availability: "In Stock",
       },
       {
         size: "Deluxe",
         price: 18.99,
-        availability: "In Stock"
+        availability: "In Stock",
       },
       {
         size: "Premium",
         price: 25.99,
-        availability: "Limited Stock"
-      }
+        availability: "Limited Stock",
+      },
     ],
     supplier: "Exotic Plants Co.",
     giftWrapAvailable: false,
-    cartText: "add to cart"
+    cartText: "add to cart",
   },
   {
     id: 7,
     title: "Lavender",
-    description: "Fragrant lavender that calms the senses and enhances any space.",
+    description:
+      "Fragrant lavender that calms the senses and enhances any space.",
     price: 12.99,
     originalPrice: 15.99,
     discount: "-10%",
     imageSrc: "images/lavanta1.jpg",
-    extraImages: [
-      "images/lavanta2.jpg",
-      "images/lavanta3.jpg"
-    ],
+    extraImages: ["images/lavanta2.jpg", "images/lavanta3.jpg"],
     availability: "In Stock",
     category: "Herb",
     colorOptions: ["Purple"],
@@ -306,41 +292,39 @@ const products = [
     careInstructions: "Keep in a dry place and avoid direct sunlight.",
     reviews: [
       { user: "Liam", rating: 5, comment: "The scent is amazing!" },
-      { user: "Emma", rating: 4, comment: "Great for calming the mind." }
+      { user: "Emma", rating: 4, comment: "Great for calming the mind." },
     ],
     variants: [
       {
         size: "Standard",
         price: 12.99,
-        availability: "In Stock"
+        availability: "In Stock",
       },
       {
         size: "Deluxe",
         price: 18.99,
-        availability: "In Stock"
+        availability: "In Stock",
       },
       {
         size: "Premium",
         price: 25.99,
-        availability: "Limited Stock"
-      }
+        availability: "Limited Stock",
+      },
     ],
     supplier: "Herb Garden",
     giftWrapAvailable: true,
-    cartText: "add to cart"
+    cartText: "add to cart",
   },
   {
     id: 8,
     title: "Gerbera",
-    description: "Fragrant lavender that calms the senses and enhances any space.",
+    description:
+      "Fragrant lavender that calms the senses and enhances any space.",
     price: 12.99,
     originalPrice: 15.99,
     discount: "-10%",
     imageSrc: "images/g1.jpg",
-    extraImages: [
-      "images/g2.jpg",
-      "images/g3.jpg"
-    ],
+    extraImages: ["images/g2.jpg", "images/g3.jpg"],
     availability: "In Stock",
     category: "Herb",
     colorOptions: ["Purple"],
@@ -353,41 +337,39 @@ const products = [
     careInstructions: "Keep in a dry place and avoid direct sunlight.",
     reviews: [
       { user: "Liam", rating: 5, comment: "The scent is amazing!" },
-      { user: "Emma", rating: 4, comment: "Great for calming the mind." }
+      { user: "Emma", rating: 4, comment: "Great for calming the mind." },
     ],
     variants: [
       {
         size: "Standard",
         price: 12.99,
-        availability: "In Stock"
+        availability: "In Stock",
       },
       {
         size: "Deluxe",
         price: 18.99,
-        availability: "In Stock"
+        availability: "In Stock",
       },
       {
         size: "Premium",
         price: 25.99,
-        availability: "Limited Stock"
-      }
+        availability: "Limited Stock",
+      },
     ],
     supplier: "Herb Garden",
     giftWrapAvailable: true,
-    cartText: "add to cart"
+    cartText: "add to cart",
   },
   {
     id: 9,
     title: "Spatifilyum",
-    description: "Fragrant lavender that calms the senses and enhances any space.",
+    description:
+      "Fragrant lavender that calms the senses and enhances any space.",
     price: 12.99,
     originalPrice: 15.99,
     discount: "-10%",
     imageSrc: "images/ss1.jpg",
-    extraImages: [
-      "images/ss2.jpg",
-      "images/ss3.jpg"
-    ],
+    extraImages: ["images/ss2.jpg", "images/ss3.jpg"],
     availability: "In Stock",
     category: "Herb",
     colorOptions: ["Purple"],
@@ -400,41 +382,39 @@ const products = [
     careInstructions: "Keep in a dry place and avoid direct sunlight.",
     reviews: [
       { user: "Liam", rating: 5, comment: "The scent is amazing!" },
-      { user: "Emma", rating: 4, comment: "Great for calming the mind." }
+      { user: "Emma", rating: 4, comment: "Great for calming the mind." },
     ],
     variants: [
       {
         size: "Standard",
         price: 12.99,
-        availability: "In Stock"
+        availability: "In Stock",
       },
       {
         size: "Deluxe",
         price: 18.99,
-        availability: "In Stock"
+        availability: "In Stock",
       },
       {
         size: "Premium",
         price: 25.99,
-        availability: "Limited Stock"
-      }
+        availability: "Limited Stock",
+      },
     ],
     supplier: "Herb Garden",
     giftWrapAvailable: true,
-    cartText: "add to cart"
+    cartText: "add to cart",
   },
   {
     id: 10,
     title: "Lisyantus",
-    description: "Fragrant lavender that calms the senses and enhances any space.",
+    description:
+      "Fragrant lavender that calms the senses and enhances any space.",
     price: 12.99,
     originalPrice: 15.99,
     discount: "-10%",
     imageSrc: "images/ll1.jpg",
-    extraImages: [
-      "images/ll2.jpg",
-      "images/ll3.jpg"
-    ],
+    extraImages: ["images/ll2.jpg", "images/ll3.jpg"],
     availability: "In Stock",
     category: "Herb",
     colorOptions: ["Purple"],
@@ -447,43 +427,36 @@ const products = [
     careInstructions: "Keep in a dry place and avoid direct sunlight.",
     reviews: [
       { user: "Liam", rating: 5, comment: "The scent is amazing!" },
-      { user: "Emma", rating: 4, comment: "Great for calming the mind." }
+      { user: "Emma", rating: 4, comment: "Great for calming the mind." },
     ],
     variants: [
       {
         size: "Standard",
         price: 12.99,
-        availability: "In Stock"
+        availability: "In Stock",
       },
       {
         size: "Deluxe",
         price: 18.99,
-        availability: "In Stock"
+        availability: "In Stock",
       },
       {
         size: "Premium",
         price: 25.99,
-        availability: "Limited Stock"
-      }
+        availability: "Limited Stock",
+      },
     ],
     supplier: "Herb Garden",
     giftWrapAvailable: true,
-    cartText: "add to cart"
+    cartText: "add to cart",
   },
-]
+];
 
 localStorage.setItem("productInStore", JSON.stringify(products));
 
 
-
-// Sayfa yüklendiğinde fonksiyonu çalıştır
-document.addEventListener("DOMContentLoaded", function () {
-  createProductBoxes();
-});
-
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let favorite = JSON.parse(localStorage.getItem("favorite")) || [];
-
 
 // Ürün kutularını oluşturma fonksiyonu
 // Ayrıca toast notification da var içinde
@@ -494,7 +467,7 @@ function createProductBoxes() {
   }
 
   // Clear the container before adding new product boxes
-  container.innerHTML = '';
+  container.innerHTML = "";
   products.forEach((product) => {
     const box = document.createElement("div");
     box.className = "box";
@@ -514,53 +487,41 @@ function createProductBoxes() {
         <div class="price">${product.price} <span>${product.originalPrice}</span></div>
       </div>
     `;
-     // Add click event listener to the cart button
-     const cartBtn = box.querySelector(".cart-btn");
-     cartBtn.addEventListener("click", function () {
-       Toastify({
-         text: "Product added to cart successfully!",
-         duration: 3000,
-         gravity: "top",
-         position: "right",
-         backgroundColor: "#28a745",
-         close: true,
-       }).showToast();
-     });  
-     // Add click event listener to the favorite button
-     const favoriteBtn = box.querySelector(".fa-heart");
-     favoriteBtn.addEventListener("click", function () {
-       Toastify({
-         text: "Product added to favorites successfully!",
-         duration: 3000,
-         gravity: "top",
-         position: "right",
-         backgroundColor: "#FF6347",
-         close: true,
-       }).showToast();
-     });
+    // Add click event listener to the cart button
+    const cartBtn = box.querySelector(".cart-btn");
+    cartBtn.addEventListener("click", function () {
+      Toastify({
+        text: "Product added to cart successfully!",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#28a745",
+        close: true,
+      }).showToast();
+    });
+    // Add click event listener to the favorite button
+    const favoriteBtn = box.querySelector(".fa-heart");
+    favoriteBtn.addEventListener("click", function () {
+      Toastify({
+        text: "Product added to favorites successfully!",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#FF6347",
+        close: true,
+      }).showToast();
+    });
 
     container.appendChild(box);
   });
 }
 
-// Sayfa yüklendiğinde fonksiyonu çalıştır
-document.addEventListener("DOMContentLoaded", function () {
-  createProductBoxes();
-  updateCartCount(); // Sayfa yüklendiğinde sepet simgesindeki sayıyı güncelle
-  displayCartItems(); // Sepetteki ürünleri göster
-  displayFavoriteItems();
-
-});
-
-
-
-
 // Sepete ekleme işlevi
 function addToCart(buttonElement) {
   const boxElement = buttonElement.closest(".box");
-   const productId = buttonElement.getAttribute("data-id");
+  const productId = buttonElement.getAttribute("data-id");
 
-   const productTitle = boxElement.querySelector("h3").innerText;
+  const productTitle = boxElement.querySelector("h3").innerText;
   const productPrice = boxElement
     .querySelector(".price")
     .childNodes[0].textContent.trim();
@@ -574,11 +535,8 @@ function addToCart(buttonElement) {
     quantity: 1,
     image: productImage,
   };
-  
 
-  const existingProduct = cart.find(
-    (p) => p.id === productInCart.id
-  );
+  const existingProduct = cart.find((p) => p.id === productInCart.id);
 
   if (existingProduct) {
     existingProduct.quantity += 1; // Increase quantity
@@ -599,16 +557,12 @@ function updateCartCount() {
 }
 
 // Sayfa yüklendiğinde çağır
-document.addEventListener("DOMContentLoaded", updateCartCount);
-
-
 
 // // Sepetteki ürün sayısını güncelleme işlevi
 // function updateCartCount() {
 //   const cartCountElement = document.getElementById("cart-count");
 //   cartCountElement.textContent = cart.length; // Sepetteki ürün sayısını göster
 // }
-
 
 // Sepeti yeniden gösterme işlevi
 function updateCartDisplay() {
@@ -623,7 +577,6 @@ function updateCartDisplay() {
 function updateQuantity(event, change) {
   const index = event.target.getAttribute("data-index");
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
- 
 
   // Update quantity
   cart[index].quantity += change;
@@ -649,8 +602,6 @@ function displayCartItems() {
   }
 
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-
 
   if (cart.length === 0) {
     cartContainer.innerHTML = `
@@ -693,7 +644,6 @@ function displayCartItems() {
     `;
     calculateCartSubtotal();
 
-
     cartContainer.appendChild(box);
   });
 
@@ -714,16 +664,13 @@ function calculateCartSubtotal() {
   // localStorage'dan cart verilerini al
   const cartData = JSON.parse(localStorage.getItem("cart")) || [];
 
-
   // Subtotal hesapla
   const subtotal = cartData.reduce((total, item) => {
-      return total + item.price * item.quantity;
+    return total + item.price * item.quantity;
   }, 0);
 
   // Subtotal'ı localStorage'a kaydet
   localStorage.setItem("cartSubtotal", subtotal.toFixed(2));
-
-
 }
 
 // Bu fonksiyonu istediğin yerde çağır
@@ -771,8 +718,8 @@ function addToFavorite(buttonElement) {
   }
 
   localStorage.setItem("favorite", JSON.stringify(favorite));
+  console.log(favorite, "favorite")
 }
-
 
 // FAVORITE PRODUCT DISPLAY
 function displayFavoriteItems() {
@@ -824,23 +771,41 @@ function removeFromFavorite(index) {
   displayFavoriteItems(); // Refresh the cart display
 }
 
-  // Form submit event listener
-  document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("contactForm").addEventListener("submit", function (e) {
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Ürün kutularını oluştur
+  createProductBoxes();
+
+  // Sepet simgesindeki sayıyı güncelle
+  updateCartCount();
+
+  // Sepetteki ürünleri göster
+  displayCartItems();
+
+  // Favori ürünleri göster
+  displayFavoriteItems();
+
+  // İletişim formu gönderim işlemi
+  const contactForm = document.getElementById("contactForm");
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
       e.preventDefault();
+
       const name = document.getElementById("name").value;
       const email = document.getElementById("email").value;
       const number = document.getElementById("number").value;
       const message = document.getElementById("message").value;
-  
+
       const mailtoLink = `mailto:deneme.deneme@gmail.com?subject=Contact%20Form%20Submission&body=Name:%20${encodeURIComponent(
         name
-      )}%0AEmail:%20${encodeURIComponent(email)}%0ANumber:%20${encodeURIComponent(
+      )}%0AEmail:%20${encodeURIComponent(
+        email
+      )}%0ANumber:%20${encodeURIComponent(
         number
       )}%0AMessage:%20${encodeURIComponent(message)}`;
-  
+
       window.location.href = mailtoLink;
-      document.getElementById("contactForm").reset();
+      contactForm.reset();
     });
-  });
-  
+  }
+});

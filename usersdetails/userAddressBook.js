@@ -80,12 +80,12 @@ function renderAddress(userObject) {
     addresCard.innerHTML = `
     <div class="address-card">
     <div class="address-header">
-      <p>User: ${userObject.fullName}</p>
+      <p>User: ${userObject.name}</p>
       <button class="detail-button" onclick="updateAddress(${address.id})">Update</button>
     </div>
     <div class="address-content">
       <div class="details">
-        <p class="number"><strong>Address text:</strong> ${address.header}</p>
+        <p class="number">Address text: ${address.header}</p>
         <p>Description: ${address.body}</p>
         <p>Phone Number: ${address.phoneNumber}</p>
       </div>

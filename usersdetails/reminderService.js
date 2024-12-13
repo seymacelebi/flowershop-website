@@ -99,13 +99,13 @@ function renderReminders(userObject) {
 
     reminderCard.innerHTML = `
     <div class="card-header">
-      <p>User: ${userObject.fullName}</p>
+      <p>User: ${userObject.name}</p>
       <p>Card Name: Reminder</p>
       <button class="detail-button" onclick="updateReminder(${reminder.id})">Update</button>
     </div>
     <div class="card-content">
       <div class="details">
-        <p class="number"><strong>Reason to celebrate:</strong> ${reminder.header}</p>
+        <p class="number">Reason to celebrate: ${reminder.header}</p>
         <p>Description: ${reminder.body}</p>
         <p>Date:${new Date(reminder.date).toLocaleString()}</p>
       </div>
