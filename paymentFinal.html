@@ -289,4 +289,136 @@
     outline: none;
     font-family: "Montserrat", sans-serif;
   }
+  @media (max-width: 480px) {
+    .content {
+      padding: 40px 10px;
+    }
+
+    .progress-bar {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .step {
+      font-size: 1em;
+      width: 100%;
+      margin-bottom: 15px;
+      max-width: 100%;
+    }
+
+    .credit-card-form {
+      padding: 0.8em;
+    }
+
+    .credit-card-form h2 {
+      font-size: 18px;
+    }
+
+    .credit-card-form input[type="text"] {
+      font-size: 12px;
+      padding: 8px;
+    }
+
+    .credit-card-form button[type="submit"] {
+      font-size: 12px;
+      padding: 10px;
+    }
+
+    .credit-card-form .form-row {
+      flex-direction: column;
+    }
+
+    .credit-card-form .form-column {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+
+  /* Mobile devices (max-width: 768px) */
+  @media (max-width: 768px) {
+    .content {
+      padding: 60px 20px;
+    }
+
+    .progress-bar {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .step {
+      font-size: 1.2em;
+      width: 90%;
+      margin-bottom: 20px;
+      max-width: 100%;
+    }
+
+    .credit-card-form {
+      padding: 1em;
+    }
+
+    .credit-card-form h2 {
+      font-size: 20px;
+    }
+
+    .credit-card-form input[type="text"] {
+      font-size: 14px;
+      padding: 10px;
+    }
+
+    .credit-card-form button[type="submit"] {
+      font-size: 14px;
+      padding: 12px;
+    }
+
+    .credit-card-form .form-row {
+      flex-direction: column;
+    }
+
+    .credit-card-form .form-column {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  }
+
+  /* Tablets and small laptops (max-width: 1024px) */
+  @media (max-width: 1024px) {
+    .content {
+      padding: 80px 40px;
+    }
+
+    .step {
+      font-size: 1.4em;
+      width: 85%;
+      max-width: 200px;
+    }
+
+    .credit-card-form {
+      padding: 1.5em;
+    }
+
+    .credit-card-form h2 {
+      font-size: 22px;
+    }
+
+    .credit-card-form input[type="text"] {
+      font-size: 15px;
+    }
+
+    .credit-card-form button[type="submit"] {
+      font-size: 15px;
+      padding: 13px;
+    }
+  }
+
+  /* Large screens (min-width: 1025px) */
+  @media (min-width: 1025px) {
+    .content {
+      padding: 120px;
+    }
+
+    .step {
+      font-size: 1.6em;
+      width: 80%;
+    }
+  }
 </style>

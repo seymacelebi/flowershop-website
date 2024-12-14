@@ -150,6 +150,18 @@
     const neighbourhood = document.getElementById("neighbourhood").value;
     const address = document.getElementById("address").value;
 
+    // Formun doldurulup doldurulmadığını kontrol et
+    if (
+      !recipientName ||
+      !recipientPhone ||
+      !city ||
+      !district ||
+      !neighbourhood ||
+      !address
+    ) {
+      alert("Please make sure you have filled in all fields.");
+      return; // Formu geçiş yapmadan durdur
+    }
     const orderDetails = {
       recipientName,
       recipientPhone,
@@ -329,13 +341,112 @@
     font-size: 1.2em; /* Daha büyük metin */
   }
   @media (max-width: 768px) {
+    .step.active {
+      background-color: #45a049; /* Daha açık yeşil arka plan */
+      font-size: 1.4em; /* Daha büyük yazı boyutu */
+      padding: 12px 18px; /* Daha fazla iç boşluk */
+    }
     .order-info {
+      flex-direction: column; /* Dikey düzen */
+      align-items: center; /* Ortala */
+      padding: 10px; /* Kenar boşluklarını artır */
+    }
+
+    .form-section {
+      width: 100%; /* Tam genişlik */
+      margin-bottom: 20px; /* Alt boşluk ekle */
+    }
+
+    .order-summary {
+      width: 100%; /* Tam genişlik */
+      margin-top: 20px; /* Üst boşluk ekle */
+    }
+
+    .progress-bar {
       flex-direction: column; /* Dikey düzen */
       align-items: center; /* Ortala */
     }
 
+    .step {
+      width: 90%; /* Daha küçük genişlik */
+      font-size: 1.2em; /* Daha küçük yazı boyutu */
+      margin-bottom: 15px; /* Adımlar arası boşluk */
+    }
+
+    .order-summary h1 {
+      font-size: 1.2em; /* Başlık boyutu küçültüldü */
+    }
+
+    .order-summary p {
+      font-size: 1em; /* Metin boyutu küçültüldü */
+    }
+
+    .order-summary input {
+      font-size: 1em; /* Giriş alanı metni küçültüldü */
+    }
+
+    .order-summary .discountbutton {
+      font-size: 1em; /* Buton metni küçültüldü */
+    }
+
+    .next-button {
+      font-size: 1em; /* Buton yazı boyutu küçültüldü */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .content {
+      padding: 55px; /* Daha az iç boşluk */
+    }
+
+    .step.active {
+      font-size: 1.2em; /* Küçük ekranlarda daha küçük yazı boyutu */
+      padding: 10px 16px; /* Daha az iç boşluk */
+      border-radius: 15px; /* Daha yuvarlak köşeler */
+    }
+    .progress-bar {
+      margin: 20px 0; /* Daha az üst-alt boşluk */
+    }
+
+    .step {
+      font-size: 1em; /* Daha küçük yazı boyutu */
+      padding: 8px 15px; /* Daha küçük iç boşluk */
+    }
+
+    .form-section {
+      font-size: 1.4em; /* Yazı boyutunu küçült */
+    }
+
+    .form-group label {
+      font-size: 1em; /* Etiket boyutunu küçült */
+    }
+
+    .form-group input,
+    .form-group textarea {
+      font-size: 1em; /* Giriş ve textarea yazı boyutu küçültüldü */
+      padding: 6px; /* Daha az iç boşluk */
+    }
+
     .order-summary {
-      width: 100%;
+      font-size: 1em; /* Genel yazı boyutunu küçült */
+    }
+
+    .order-summary p {
+      font-size: 0.9em; /* Özet metni boyutunu küçült */
+    }
+
+    .discountText {
+      font-size: 1em; /* İndirim alanı yazı boyutu küçültüldü */
+    }
+
+    .discountbutton {
+      font-size: 0.9em; /* Buton yazı boyutu küçültüldü */
+      padding: 8px 15px; /* Daha az iç boşluk */
+    }
+
+    .next-button {
+      font-size: 1em; /* Buton yazı boyutunu küçült */
+      padding: 10px; /* Daha küçük iç boşluk */
     }
   }
 </style>
